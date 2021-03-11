@@ -1,8 +1,9 @@
+import React from "react";
 import "./App.css";
 
-import Navbar from "./components/Navbar";
-import SearchBar from "./components/SearchBar";
-import Books from "./components/Books";
+import Navbar from "./components/Navbar/Navbar";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Books from "./components/Books/Books";
 
 const App = () => {
   return (
