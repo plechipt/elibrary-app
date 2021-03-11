@@ -21,6 +21,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
         horizontal: "right",
       }}
     >
+      <MenuItem>My Books</MenuItem>
       <MenuItem>Logout</MenuItem>
     </Menu>
   );
