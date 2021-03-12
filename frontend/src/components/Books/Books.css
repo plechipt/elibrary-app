@@ -7,8 +7,20 @@
 
 .book {
   margin: auto;
-  background: gray;
-  max-width: 50%;
+  max-width: 60%;
   min-height: 10rem;
   margin-top: 2.5rem;
+}
+
+.book img {
+  display: block !important;
+  width: 100%;
+}
+
+.book-button {
+  background: #1976d2 !important;
+}
+
+.book-button:hover {
+  background: #1976d2 !important;
 }
