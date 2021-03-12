@@ -29,7 +29,6 @@ const Books = () => {
             </Button>
           </Paper>
         </Grid>
-
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
           <Paper className="book">
             <img
@@ -66,11 +65,28 @@ const Books = () => {
             </Button>
           </Paper>
         </Grid>
-
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
           <Paper className="book">
             <img
               src={`${PUBLIC_FOLDER}/static/images/alice_in_wonderland.jpg`}
+              className="card-img-top"
+              alt=""
+            />
+            <Button
+              fullWidth
+              className="book-button"
+              color="primary"
+              variant="contained"
+              size="large"
+            >
+              More Info
+            </Button>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Paper className="book">
+            <img
+              src={`${PUBLIC_FOLDER}/static/images/frankenstein.jpg`}
               className="card-img-top"
               alt=""
             />
@@ -106,25 +122,6 @@ const Books = () => {
         <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
           <Paper className="book">
             <img
-              src={`${PUBLIC_FOLDER}/static/images/great_gatsby.jpg`}
-              className="card-img-top"
-              alt=""
-            />
-            <Button
-              fullWidth
-              className="book-button"
-              color="primary"
-              variant="contained"
-              size="large"
-            >
-              More Info
-            </Button>
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <Paper className="book">
-            <img
               src={`${PUBLIC_FOLDER}/static/images/romeo_a_julie.jpg`}
               className="card-img-top"
               alt=""
@@ -144,6 +141,60 @@ const Books = () => {
           <Paper className="book">
             <img
               src={`${PUBLIC_FOLDER}/static/images/lord_of_the_rings.jpg`}
+              className="card-img-top"
+              alt=""
+            />
+            <Button
+              fullWidth
+              className="book-button"
+              color="primary"
+              variant="contained"
+              size="large"
+            >
+              More Info
+            </Button>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Paper className="book">
+            <img
+              src={`${PUBLIC_FOLDER}/static/images/great_gatsby.jpg`}
+              className="card-img-top"
+              alt=""
+            />
+            <Button
+              fullWidth
+              className="book-button"
+              color="primary"
+              variant="contained"
+              size="large"
+            >
+              More Info
+            </Button>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Paper className="book">
+            <img
+              src={`${PUBLIC_FOLDER}/static/images/decameron.jpg`}
+              className="card-img-top"
+              alt=""
+            />
+            <Button
+              fullWidth
+              className="book-button"
+              color="primary"
+              variant="contained"
+              size="large"
+            >
+              More Info
+            </Button>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Paper className="book">
+            <img
+              src={`${PUBLIC_FOLDER}/static/images/schindlers_list.jpg`}
               className="card-img-top"
               alt=""
             />
