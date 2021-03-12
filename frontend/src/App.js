@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -13,8 +14,15 @@ const App = () => {
         <Navbar />
       </header>
       <main>
-        <SearchBar />
-        <Books />
+        <Switch>
+          <Route path="/my-books" component={UserBooks} />
+          <Route path="/">
+            <>
+              <SearchBar />
+              <Books />
+            </>
+          </Route>
+        </Switch>
       </main>
     </div>
   );

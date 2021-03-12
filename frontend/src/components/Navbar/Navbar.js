@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
 import "./Navbar.css";
 
@@ -9,6 +10,8 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 const Navbar = () => {
+  const history = useHistory();
+
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
 
@@ -20,7 +23,11 @@ const Navbar = () => {
         position="static"
       >
         <Toolbar>
-          <Typography variant="h6" className="logo">
+          <Typography
+            onClick={() => history.push("/")}
+            className="logo"
+            variant="h6"
+          >
             Elibrary
           </Typography>
           <IconButton
