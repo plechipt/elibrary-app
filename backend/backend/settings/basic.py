@@ -6,6 +6,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Pip packages
+    'corsheaders',
+    "graphene_django",
+    'graphql_jwt',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
 ]
 
 MIDDLEWARE = [
@@ -16,6 +22,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware', # Corsheaders
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise
+    "django_graphql_ratelimit.middleware.ParseClientIpMiddleware", # Django graphql ratelimit
 ]
 
 # Password validation
