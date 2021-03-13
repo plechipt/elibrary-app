@@ -7,6 +7,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Django apps
+    'users',
+
     # Pip packages
     'corsheaders',
     "graphene_django",

@@ -1,5 +1,5 @@
 GRAPHENE = {
-    "SCHEMA": "backend.schema.schema"
+    "SCHEMA": "backend.schema.schema",
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
