@@ -15,7 +15,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const httpLink = createHttpLink({
   uri: `${BASE_URL}/graphql/`,
-  credentials: "same-origin",
+  credentials: "include",
 });
 
 // Access token is send through httponly cookie
