@@ -33,5 +33,37 @@
   justify-content: center;
 }
 
-.modal-paper {
+.modal-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-title h2 {
+  font-size: 1.5rem;
+}
+
+.modal-left-side {
+  flex: 1;
+}
+
+.modal-right-side {
+  flex: 1;
+  margin-left: 50px;
+}
+
+.modal-right-side span {
+  margin-left: 5px;
+}
+
+.modal-image {
+  width: 100%;
+}
+
+.modal-description-item {
+  margin-bottom: 10px !important;
 }

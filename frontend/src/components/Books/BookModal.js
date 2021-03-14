@@ -1,43 +1,61 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import Typography from "@material-ui/core/Typography";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
 
-const useStyles = makeStyles((theme) => ({
-  modalPaper: {
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
-const BookModal = ({ openModal, closeModal }) => {
-  const classes = useStyles();
-
+const BookModal = ({
+  openModal,
+  closeModal,
+  title,
+  author,
+  numberOfPages,
+  genre,
+  imageName,
+}) => {
   return (
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className="modal"
+    <Dialog
       open={openModal}
       onClose={closeModal}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
+      aria-labelledby="customized-dialog-title"
     >
-      <Fade in={openModal}>
-        <div className={`${classes.modalPaper} modal-paper`}>
-          <h2 id="transition-modal-title">Transition modal</h2>
-          <p id="transition-modal-description">
-            react-transition-group animates me.
-          </p>
+      <DialogTitle onClose={closeModal} className="modal-title">
+        {title}
+      </DialogTitle>
+      <DialogContent className="modal-content" dividers>
+        <div className="modal-left-side">
+          <img
+            src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
+            className="modal-image"
+            alt=""
+          />
         </div>
-      </Fade>
-    </Modal>
+        <div className="modal-right-side">
+          <Typography className="modal-description-item">
+            <b>Author:</b>
+            <span>{author}</span>
+          </Typography>
+          <Typography className="modal-description-item">
+            <b>Genre: </b>
+            <span>{genre}</span>
+          </Typography>
+          <Typography className="modal-description-item">
+            <b>Number of pages: </b>
+            <span>{numberOfPages}</span>
+          </Typography>
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={closeModal} color="primary">
+          Save changes
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

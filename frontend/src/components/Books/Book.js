@@ -16,9 +16,8 @@ const Book = ({ id, title, author, numberOfPages, genre, imageName }) => {
         <img
           onClick={() => setOpenModal(true)}
           src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
-          className="card-img-top"
-          alt=""
           title={title}
+          alt=""
         />
         <Button
           onClick={() => setOpenModal(true)}
@@ -31,7 +30,15 @@ const Book = ({ id, title, author, numberOfPages, genre, imageName }) => {
           More Info
         </Button>
       </Paper>
-      <BookModal openModal={openModal} closeModal={() => setOpenModal(false)} />
+      <BookModal
+        openModal={openModal}
+        closeModal={() => setOpenModal(false)}
+        title={title}
+        author={author}
+        numberOfPages={numberOfPages}
+        genre={genre}
+        imageName={imageName}
+      />
     </Grid>
   );
 };
