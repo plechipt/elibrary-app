@@ -26,3 +26,12 @@
 .book-button:hover {
   background: #1976d2 !important;
 }
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-paper {
+}
