@@ -1,11 +1,13 @@
 import graphene
 from users.schema import UserMutation, UserQuery
-
-class Query(UserQuery, graphene.ObjectType):
-    hello = graphene.String(default_value="Hi!")
+from books.schema import BookMutation, BookQuery
 
 
-class Mutation(UserMutation, graphene.ObjectType):
+class Query(BookQuery, UserQuery, graphene.ObjectType):
+    pass
+
+
+class Mutation(BookMutation, UserMutation, graphene.ObjectType):
     pass
 
 
