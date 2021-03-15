@@ -5,6 +5,10 @@
   margin-top: 1.5rem;
 }
 
+.users-books-container {
+  margin-top: 120px;
+}
+
 .book {
   margin: auto;
   max-width: 60%;

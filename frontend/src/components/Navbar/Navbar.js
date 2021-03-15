@@ -15,6 +15,8 @@ const Navbar = () => {
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
 
+  console.log(profileMenuRef);
+
   return (
     <div className="root">
       <AppBar
@@ -39,6 +41,7 @@ const Navbar = () => {
             <AccountCircle />
           </IconButton>
           <ProfileMenu
+            ref={profileMenuRef}
             isOpen={profileMenuIsOpen}
             anchorEl={profileMenuRef.current}
             closeProfileMenu={() => setProfileMenuIsOpen(false)}

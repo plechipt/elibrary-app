@@ -7,7 +7,7 @@ const UserBooks = () => {
   let { data: usersBorrowings } = useQuery(BOOK_USER_LIST_QUERY);
 
   return (
-    <>
+    <div className="users-books-container">
       {usersBorrowings ? (
         <>
           {usersBorrowings.usersBorrowings.map(
@@ -29,7 +29,7 @@ const UserBooks = () => {
           )}
         </>
       ) : null}
-    </>
+    </div>
   );
 };
 
