@@ -3,7 +3,8 @@ from .mutations.borrowings import *
 
 
 class BorrowingMutation(graphene.ObjectType):
-    pass
+    borrow_book = BorrowBook.Field()
+    return_book = ReturnBook.Field()
 
 
 class BorrowingQuery(graphene.ObjectType):

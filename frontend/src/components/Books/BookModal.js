@@ -19,8 +19,6 @@ const BookModal = ({
   genre,
   imageName,
 }) => {
-  console.log(isBorrowed);
-
   return (
     <Dialog
       open={openModal}
