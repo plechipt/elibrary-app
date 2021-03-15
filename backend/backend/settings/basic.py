@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     # Django apps
     'users',
     'books',
+    'borrowings',
 
     # Pip packages
     'corsheaders',

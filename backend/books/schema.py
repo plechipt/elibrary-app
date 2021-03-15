@@ -7,8 +7,7 @@ class BookMutation(graphene.ObjectType):
 
 
 class BookQuery(graphene.ObjectType):
-   books = graphene.List(BookType)
+    books = graphene.List(BookType)
 
-   def resolve_books(root, info):
-       return Book.objects.all()
-
+    def resolve_books(root, info):
+        return Book.objects.all()
