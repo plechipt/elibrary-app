@@ -19,11 +19,11 @@
   height: 40%;
 }
 
-.book-button {
+.blue-button {
   background: #1976d2 !important;
 }
 
-.book-button:hover {
+.blue-button:hover {
   background: #1976d2 !important;
 }
 
@@ -38,9 +38,19 @@
   flex-direction: row;
 }
 
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-title {
   display: flex;
   justify-content: center;
+}
+
+.modal-close-button {
+  display: flex;
 }
 
 .modal-title h2 {

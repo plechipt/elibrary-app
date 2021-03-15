@@ -24,8 +24,10 @@ const BookModal = ({
       onClose={closeModal}
       aria-labelledby="customized-dialog-title"
     >
-      <DialogTitle onClose={closeModal} className="modal-title">
-        {title}
+      <DialogTitle onClose={closeModal}>
+        <div className="modal-header">
+          <span>{title}</span>
+        </div>
       </DialogTitle>
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
@@ -41,18 +43,23 @@ const BookModal = ({
             <span>{author}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>Genre: </b>
+            <b>Genre:</b>
             <span>{genre}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>Number of pages: </b>
+            <b>Number of pages:</b>
             <span>{numberOfPages}</span>
           </Typography>
         </div>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={closeModal} color="primary">
-          Save changes
+        <Button
+          onClick={closeModal}
+          className="blue-button"
+          color="primary"
+          variant="contained"
+        >
+          Borrow Book
         </Button>
       </DialogActions>
     </Dialog>

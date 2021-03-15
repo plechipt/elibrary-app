@@ -22,7 +22,7 @@ const Book = ({ id, title, author, numberOfPages, genre, imageName }) => {
         <Button
           onClick={() => setOpenModal(true)}
           fullWidth
-          className="book-button"
+          className="blue-button"
           color="primary"
           variant="contained"
           size="large"
