@@ -7,8 +7,6 @@ import TextField from "@material-ui/core/TextField";
 const SearchBar = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
-    console.log();
   };
 
   return (
