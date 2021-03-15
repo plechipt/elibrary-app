@@ -1,13 +1,14 @@
 import graphene
 from users.schema import UserMutation, UserQuery
 from books.schema import BookMutation, BookQuery
+from borrowings.schema import BorrowingMutation, BorrowingQuery
 
 
-class Query(BookQuery, UserQuery, graphene.ObjectType):
+class Query(BorrowingQuery, BookQuery, UserQuery, graphene.ObjectType):
     pass
 
 
-class Mutation(BookMutation, UserMutation, graphene.ObjectType):
+class Mutation(BorrowingMutation, BookMutation, UserMutation, graphene.ObjectType):
     pass
 
 
