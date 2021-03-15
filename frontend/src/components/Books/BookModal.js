@@ -10,6 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
 const BookModal = ({
+  isBorrowed,
   openModal,
   closeModal,
   title,
@@ -18,6 +19,8 @@ const BookModal = ({
   genre,
   imageName,
 }) => {
+  console.log(isBorrowed);
+
   return (
     <Dialog
       open={openModal}
@@ -53,14 +56,25 @@ const BookModal = ({
         </div>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={closeModal}
-          className="blue-button"
-          color="primary"
-          variant="contained"
-        >
-          Borrow Book
-        </Button>
+        {isBorrowed ? (
+          <Button
+            onClick={closeModal}
+            className="blue-button"
+            color="primary"
+            variant="contained"
+          >
+            Return Book
+          </Button>
+        ) : (
+          <Button
+            onClick={closeModal}
+            className="blue-button"
+            color="primary"
+            variant="contained"
+          >
+            Borrow Book
+          </Button>
+        )}
       </DialogActions>
     </Dialog>
   );

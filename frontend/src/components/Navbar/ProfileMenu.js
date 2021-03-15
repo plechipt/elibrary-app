@@ -7,12 +7,9 @@ import Menu from "@material-ui/core/Menu";
 const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   const history = useHistory();
 
-  const test = () => {
-    console.log("test");
-  };
-
   return (
     <Menu
+      onClick={closeProfileMenu}
       onClose={closeProfileMenu}
       open={isOpen}
       anchorEl={anchorEl}
@@ -28,9 +25,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
         horizontal: "right",
       }}
     >
-      <MenuItem onClose={test} onClick={() => history.push("/my-books")}>
-        My Books
-      </MenuItem>
+      <MenuItem onClick={() => history.push("/my-books")}>My Books</MenuItem>
       <MenuItem>Logout</MenuItem>
     </Menu>
   );

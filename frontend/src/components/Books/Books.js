@@ -18,6 +18,7 @@ const Books = () => {
               ({ id, title, author, numberOfPages, genre, imageName }) => {
                 return (
                   <Book
+                    isBorrowed={false}
                     key={id}
                     id={id}
                     title={title}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Grid";
@@ -7,8 +7,16 @@ import BookModal from "./BookModal";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
-const Book = ({ id, title, author, numberOfPages, genre, imageName }) => {
-  const [openModal, setOpenModal] = React.useState(false);
+const Book = ({
+  isBorrowed,
+  id,
+  title,
+  author,
+  numberOfPages,
+  genre,
+  imageName,
+}) => {
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -31,6 +39,7 @@ const Book = ({ id, title, author, numberOfPages, genre, imageName }) => {
         </Button>
       </Paper>
       <BookModal
+        isBorrowed={isBorrowed}
         openModal={openModal}
         closeModal={() => setOpenModal(false)}
         title={title}

@@ -16,6 +16,7 @@ const UserBooks = () => {
             }) => {
               return (
                 <Book
+                  isBorrowed={true}
                   key={id}
                   id={id}
                   title={title}
