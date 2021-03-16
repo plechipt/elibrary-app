@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { BOOK_LIST_QUERY, BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
+import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
 import Book from "./Book";
 import "./Books.css";
 

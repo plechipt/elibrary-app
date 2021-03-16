@@ -5,7 +5,6 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
-import SearchBar from "./components/SearchBar/SearchBar";
 import Books from "./components/Books/Books";
 import UserBooks from "./components/Books/UserBooks";
 
