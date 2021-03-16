@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// Query
 export const BORROWING_USER_LIST_QUERY = gql`
   query {
     usersBorrowings {
@@ -20,6 +21,7 @@ export const BORROWING_USER_LIST_QUERY = gql`
   }
 `;
 
+// Mutation
 export const BORROWING_BORROW_BOOK_MUTATION = gql`
   mutation($id: ID!) {
     borrowBook(id: $id) {
