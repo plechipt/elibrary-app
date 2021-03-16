@@ -11,6 +11,11 @@
   justify-content: center;
 }
 
+.text-container {
+  margin: auto !important;
+  margin-top: 1rem !important;
+}
+
 .book {
   margin: auto;
   max-width: 60%;

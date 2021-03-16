@@ -5,6 +5,7 @@ import Book from "./Book";
 import "./Books.css";
 
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 const Books = () => {
   const { data: notBorrowedBooks, loading } = useQuery(
@@ -15,21 +16,29 @@ const Books = () => {
     <div className="books-container">
       {notBorrowedBooks && loading === false ? (
         <Grid container>
-          {notBorrowedBooks.notBorrowedBooks.map(
-            ({ id, title, author, numberOfPages, genre, imageName }) => {
-              return (
-                <Book
-                  isBorrowed={false}
-                  key={id}
-                  id={id}
-                  title={title}
-                  author={author}
-                  numberOfPages={numberOfPages}
-                  genre={genre}
-                  imageName={imageName}
-                />
-              );
-            }
+          {notBorrowedBooks.notBorrowedBooks.length !== 0 ? (
+            <>
+              {notBorrowedBooks.notBorrowedBooks.map(
+                ({ id, title, author, numberOfPages, genre, imageName }) => {
+                  return (
+                    <Book
+                      isBorrowed={false}
+                      key={id}
+                      id={id}
+                      title={title}
+                      author={author}
+                      numberOfPages={numberOfPages}
+                      genre={genre}
+                      imageName={imageName}
+                    />
+                  );
+                }
+              )}
+            </>
+          ) : (
+            <Typography className="text-container" variant="h2">
+              No available books
+            </Typography>
           )}
         </Grid>
       ) : null}
