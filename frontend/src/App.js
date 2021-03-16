@@ -15,8 +15,6 @@ const App = () => {
     fetchPolicy: "network-only",
   });
 
-  console.log(loading);
-
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
@@ -33,12 +31,7 @@ const App = () => {
         {user && loading === false ? (
           <Switch>
             <Route path="/my-books" component={UserBooks} />
-            <Route path="/">
-              <>
-                <SearchBar />
-                <Books />
-              </>
-            </Route>
+            <Route path="/" component={Books} />
           </Switch>
         ) : null}
       </main>

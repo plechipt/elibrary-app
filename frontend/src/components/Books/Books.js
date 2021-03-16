@@ -10,30 +10,28 @@ const Books = () => {
   const { data: books } = useQuery(BOOK_LIST_QUERY);
 
   return (
-    <>
+    <div className="books-container">
       {books ? (
-        <div className="books-container">
-          <Grid container>
-            {books.books.map(
-              ({ id, title, author, numberOfPages, genre, imageName }) => {
-                return (
-                  <Book
-                    isBorrowed={false}
-                    key={id}
-                    id={id}
-                    title={title}
-                    author={author}
-                    numberOfPages={numberOfPages}
-                    genre={genre}
-                    imageName={imageName}
-                  />
-                );
-              }
-            )}
-          </Grid>
-        </div>
+        <Grid container>
+          {books.books.map(
+            ({ id, title, author, numberOfPages, genre, imageName }) => {
+              return (
+                <Book
+                  isBorrowed={false}
+                  key={id}
+                  id={id}
+                  title={title}
+                  author={author}
+                  numberOfPages={numberOfPages}
+                  genre={genre}
+                  imageName={imageName}
+                />
+              );
+            }
+          )}
+        </Grid>
       ) : null}
-    </>
+    </div>
   );
 };
 

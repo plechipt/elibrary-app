@@ -3,13 +3,15 @@ import { useQuery } from "@apollo/client";
 import { BORROWING_USER_LIST_QUERY } from "../Api/borrowings";
 import Book from "./Book";
 
+import Grid from "@material-ui/core/Grid";
+
 const UserBooks = () => {
   let { data: usersBorrowings } = useQuery(BORROWING_USER_LIST_QUERY);
 
   return (
-    <div className="users-books-container">
+    <div className="books-container">
       {usersBorrowings ? (
-        <>
+        <Grid container className="books-grid-container">
           {usersBorrowings.usersBorrowings.map(
             ({
               book: { id, title, author, numberOfPages, genre, imageName },
@@ -28,7 +30,7 @@ const UserBooks = () => {
               );
             }
           )}
-        </>
+        </Grid>
       ) : null}
     </div>
   );

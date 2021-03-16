@@ -5,8 +5,10 @@
   margin-top: 1.5rem;
 }
 
-.users-books-container {
-  margin-top: 46px;
+.books-grid-container {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .book {
