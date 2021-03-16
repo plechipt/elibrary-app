@@ -42,6 +42,7 @@ const Book = ({
         isBorrowed={isBorrowed}
         openModal={openModal}
         closeModal={() => setOpenModal(false)}
+        id={id}
         title={title}
         author={author}
         numberOfPages={numberOfPages}

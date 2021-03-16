@@ -1,4 +1,9 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
+import {
+  BORROWING_BORROW_BOOK_MUTATION,
+  BORROWING_RETURN_BOOK_MUTATION,
+} from "../Api/borrowings";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -13,12 +18,26 @@ const BookModal = ({
   isBorrowed,
   openModal,
   closeModal,
+  id,
   title,
   author,
   numberOfPages,
   genre,
   imageName,
 }) => {
+  const [borrowBook] = useMutation(BORROWING_BORROW_BOOK_MUTATION);
+  const [returnBook] = useMutation(BORROWING_RETURN_BOOK_MUTATION);
+
+  const borrowBookFunction = async () => {
+    await borrowBook({ variables: { id } });
+    closeModal();
+  };
+
+  const returnBookFunction = async () => {
+    await returnBook({ variables: { id } });
+    closeModal();
+  };
+
   return (
     <Dialog
       open={openModal}
@@ -56,7 +75,7 @@ const BookModal = ({
       <DialogActions>
         {isBorrowed ? (
           <Button
-            onClick={closeModal}
+            onClick={returnBookFunction}
             className="blue-button"
             color="primary"
             variant="contained"
@@ -65,7 +84,7 @@ const BookModal = ({
           </Button>
         ) : (
           <Button
-            onClick={closeModal}
+            onClick={borrowBookFunction}
             className="blue-button"
             color="primary"
             variant="contained"

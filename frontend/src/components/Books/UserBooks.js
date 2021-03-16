@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { BOOK_USER_LIST_QUERY } from "../Api/books";
+import { BORROWING_USER_LIST_QUERY } from "../Api/borrowings";
 import Book from "./Book";
 
 const UserBooks = () => {
-  let { data: usersBorrowings } = useQuery(BOOK_USER_LIST_QUERY);
+  let { data: usersBorrowings } = useQuery(BORROWING_USER_LIST_QUERY);
 
   return (
     <div className="users-books-container">
