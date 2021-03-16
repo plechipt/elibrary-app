@@ -1,19 +1,19 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { BOOK_LIST_QUERY } from "../Api/books";
+import { BOOK_LIST_QUERY, BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
 import Book from "./Book";
 import "./Books.css";
 
 import Grid from "@material-ui/core/Grid";
 
 const Books = () => {
-  const { data: books } = useQuery(BOOK_LIST_QUERY);
+  const { data: notBorrowedBooks } = useQuery(BOOK_NOT_BORROWED_BOOKS_QUERY);
 
   return (
     <div className="books-container">
-      {books ? (
+      {notBorrowedBooks ? (
         <Grid container>
-          {books.books.map(
+          {notBorrowedBooks.notBorrowedBooks.map(
             ({ id, title, author, numberOfPages, genre, imageName }) => {
               return (
                 <Book

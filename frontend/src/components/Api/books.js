@@ -13,3 +13,16 @@ export const BOOK_LIST_QUERY = gql`
     }
   }
 `;
+
+export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
+  query {
+    notBorrowedBooks {
+      id
+      title
+      author
+      numberOfPages
+      genre
+      imageName
+    }
+  }
+`;

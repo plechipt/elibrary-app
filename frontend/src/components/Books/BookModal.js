@@ -1,6 +1,8 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
+import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
 import {
+  BORROWING_USER_LIST_QUERY,
   BORROWING_BORROW_BOOK_MUTATION,
   BORROWING_RETURN_BOOK_MUTATION,
 } from "../Api/borrowings";
@@ -29,12 +31,24 @@ const BookModal = ({
   const [returnBook] = useMutation(BORROWING_RETURN_BOOK_MUTATION);
 
   const borrowBookFunction = async () => {
-    await borrowBook({ variables: { id } });
+    await borrowBook({
+      variables: { id },
+      refetchQueries: [
+        { query: BORROWING_USER_LIST_QUERY },
+        { query: BOOK_NOT_BORROWED_BOOKS_QUERY },
+      ],
+    });
     closeModal();
   };
 
   const returnBookFunction = async () => {
-    await returnBook({ variables: { id } });
+    await returnBook({
+      variables: { id },
+      refetchQueries: [
+        { query: BORROWING_USER_LIST_QUERY },
+        { query: BOOK_NOT_BORROWED_BOOKS_QUERY },
+      ],
+    });
     closeModal();
   };
 
