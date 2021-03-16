@@ -7,11 +7,13 @@ import "./Books.css";
 import Grid from "@material-ui/core/Grid";
 
 const Books = () => {
-  const { data: notBorrowedBooks } = useQuery(BOOK_NOT_BORROWED_BOOKS_QUERY);
+  const { data: notBorrowedBooks, loading } = useQuery(
+    BOOK_NOT_BORROWED_BOOKS_QUERY
+  );
 
   return (
     <div className="books-container">
-      {notBorrowedBooks ? (
+      {notBorrowedBooks && loading === false ? (
         <Grid container>
           {notBorrowedBooks.notBorrowedBooks.map(
             ({ id, title, author, numberOfPages, genre, imageName }) => {

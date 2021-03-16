@@ -6,11 +6,11 @@ import Book from "./Book";
 import Grid from "@material-ui/core/Grid";
 
 const UserBooks = () => {
-  let { data: usersBorrowings } = useQuery(BORROWING_USER_LIST_QUERY);
+  let { data: usersBorrowings, loading } = useQuery(BORROWING_USER_LIST_QUERY);
 
   return (
     <div className="books-container">
-      {usersBorrowings ? (
+      {usersBorrowings && loading === false ? (
         <Grid container className="books-grid-container">
           {usersBorrowings.usersBorrowings.map(
             ({

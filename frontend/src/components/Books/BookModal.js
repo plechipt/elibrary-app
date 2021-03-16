@@ -27,8 +27,12 @@ const BookModal = ({
   genre,
   imageName,
 }) => {
-  const [borrowBook] = useMutation(BORROWING_BORROW_BOOK_MUTATION);
-  const [returnBook] = useMutation(BORROWING_RETURN_BOOK_MUTATION);
+  const [borrowBook, { loading: borrowBookLoading }] = useMutation(
+    BORROWING_BORROW_BOOK_MUTATION
+  );
+  const [returnBook, { loading: returnBookLoading }] = useMutation(
+    BORROWING_RETURN_BOOK_MUTATION
+  );
 
   const borrowBookFunction = async () => {
     await borrowBook({
@@ -89,6 +93,7 @@ const BookModal = ({
       <DialogActions>
         {isBorrowed ? (
           <Button
+            disabled={returnBookLoading}
             onClick={returnBookFunction}
             className="blue-button"
             color="primary"
@@ -98,6 +103,7 @@ const BookModal = ({
           </Button>
         ) : (
           <Button
+            disabled={borrowBookLoading}
             onClick={borrowBookFunction}
             className="blue-button"
             color="primary"
