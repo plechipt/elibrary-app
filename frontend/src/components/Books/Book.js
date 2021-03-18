@@ -18,7 +18,6 @@ const Book = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  console.log("test");
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Paper className="book">

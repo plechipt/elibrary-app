@@ -32,6 +32,7 @@ const App = () => {
           <Switch>
             <Route path="/my-books" component={UserBooks} />
             <Route path="/">
+              <Message />
               <Books />
             </Route>
           </Switch>
