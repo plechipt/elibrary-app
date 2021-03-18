@@ -25,6 +25,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
         horizontal: "right",
       }}
     >
+      <MenuItem onClick={() => history.push("/")}>Home</MenuItem>
       <MenuItem onClick={() => history.push("/my-books")}>My Books</MenuItem>
       <MenuItem>Logout</MenuItem>
     </Menu>

@@ -4,6 +4,7 @@ import ProfileMenu from "./ProfileMenu";
 import "./Navbar.css";
 
 import AppBar from "@material-ui/core/AppBar";
+import Grid from "@material-ui/core/Grid";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
@@ -30,19 +31,21 @@ const Navbar = () => {
           >
             Elibrary
           </Typography>
-          <IconButton
-            onClick={() => setProfileMenuIsOpen(true)}
-            aria-label="account of current user"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <ProfileMenu
-            isOpen={profileMenuIsOpen}
-            anchorEl={profileMenuRef.current}
-            closeProfileMenu={() => setProfileMenuIsOpen(false)}
-          />
+          <Grid container justify="flex-end">
+            <IconButton
+              onClick={() => setProfileMenuIsOpen(true)}
+              aria-label="account of current user"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <ProfileMenu
+              isOpen={profileMenuIsOpen}
+              anchorEl={profileMenuRef.current}
+              closeProfileMenu={() => setProfileMenuIsOpen(false)}
+            />
+          </Grid>
         </Toolbar>
       </AppBar>
     </div>

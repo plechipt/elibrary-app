@@ -6,6 +6,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
 import Books from "./components/Books/Books";
+import Message from "./components/Message/Message";
 import UserBooks from "./components/Books/UserBooks";
 
 const App = () => {
@@ -30,7 +31,9 @@ const App = () => {
         {user && loading === false ? (
           <Switch>
             <Route path="/my-books" component={UserBooks} />
-            <Route path="/" component={Books} />
+            <Route path="/">
+              <Books />
+            </Route>
           </Switch>
         ) : null}
       </main>

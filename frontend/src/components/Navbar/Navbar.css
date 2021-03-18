@@ -9,6 +9,10 @@
 }
 
 .logo {
-  flex-grow: 1;
   cursor: pointer;
+}
+
+.navbar-right-side {
+  display: flex;
+  flex: 0;
 }
