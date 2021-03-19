@@ -4,7 +4,11 @@ import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
 import { MessageContext } from "./components/Contexts/MessageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
+import { getThemeMode } from "./components/functions";
 import "./App.css";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Navbar from "./components/Navbar/Navbar";
 import Books from "./components/Books/Books";
@@ -30,6 +34,23 @@ const App = () => {
     [messageContent, setMessageContent]
   );
 
+  const [darkMode, setDarkMode] = useState(getThemeMode());
+
+  const theme = useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: darkMode ? "dark" : "light",
+        },
+      }),
+    [darkMode]
+  );
+
+  // Set theme mode on change to local storage
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
@@ -39,28 +60,31 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <Navbar />
-      </header>
-      <main>
-        {user && loading === false ? (
-          <MessageContext.Provider value={showMessageValue}>
-            <MessageContentContext.Provider value={messageContentValue}>
-              <Message />
-              <Switch>
-                <Route path="/my-books" component={UserBooks} />
-                <Route path="/">
-                  <Books />
-                </Route>
-                <Route component={Message} />
-              </Switch>
-            </MessageContentContext.Provider>
-          </MessageContext.Provider>
-        ) : null}
-      </main>
-      <footer>
-        <BottomOfPage />
-      </footer>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <header>
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        </header>
+        <main>
+          {user && loading === false ? (
+            <MessageContext.Provider value={showMessageValue}>
+              <MessageContentContext.Provider value={messageContentValue}>
+                <Message />
+                <Switch>
+                  <Route path="/my-books" component={UserBooks} />
+                  <Route path="/">
+                    <Books />
+                  </Route>
+                  <Route component={Message} />
+                </Switch>
+              </MessageContentContext.Provider>
+            </MessageContext.Provider>
+          ) : null}
+        </main>
+        <footer>
+          <BottomOfPage />
+        </footer>
+      </ThemeProvider>
     </div>
   );
 };
