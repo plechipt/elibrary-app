@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
+import { MessageContext } from "./components/MessageContext";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -14,6 +15,12 @@ const App = () => {
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
   });
+
+  const [showMessage, setShowMessage] = useState(false);
+  const showMessageValue = useMemo(() => ({ showMessage, setShowMessage }), [
+    showMessage,
+    setShowMessage,
+  ]);
 
   // Set user to memory
   useEffect(() => {
@@ -31,10 +38,13 @@ const App = () => {
         {user && loading === false ? (
           <Switch>
             <Route path="/my-books" component={UserBooks} />
-            <Route path="/">
-              <Message />
-              <Books />
-            </Route>
+            <MessageContext.Provider value={showMessageValue}>
+              <Route path="/">
+                <Message />
+                <Books />
+              </Route>
+              <Route component={Message} />
+            </MessageContext.Provider>
           </Switch>
         ) : null}
       </main>

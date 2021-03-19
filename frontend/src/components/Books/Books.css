@@ -88,3 +88,9 @@
 .modal-description-item {
   margin-bottom: 10px !important;
 }
+
+@media (max-width: 600px) {
+  .book {
+    margin-bottom: 3rem;
+  }
+}
