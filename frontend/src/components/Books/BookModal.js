@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { MessageContext } from "../MessageContext";
 import { useMutation } from "@apollo/client";
+import { MessageContext } from "../Contexts/MessageContext";
+import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
 import {
   BORROWING_USER_LIST_QUERY,
@@ -29,6 +30,7 @@ const BookModal = ({
   imageName,
 }) => {
   const { setShowMessage } = useContext(MessageContext);
+  const { setMessageContent } = useContext(MessageContentContext);
 
   const [borrowBook, { loading: borrowBookLoading }] = useMutation(
     BORROWING_BORROW_BOOK_MUTATION
@@ -46,6 +48,7 @@ const BookModal = ({
       ],
     });
     closeModal();
+    setMessageContent(`You have borrowed ${title} book`);
     setShowMessage(true);
   };
 
@@ -58,6 +61,7 @@ const BookModal = ({
       ],
     });
     closeModal();
+    setMessageContent(`You have returned ${title} book`);
     setShowMessage(true);
   };
 

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { MessageContext } from "../MessageContext";
+import { MessageContext } from "../Contexts/MessageContext";
+import { MessageContentContext } from "../Contexts/MessageContentContext";
 import "./Message.css";
 
 import Grid from "@material-ui/core/Grid";
@@ -9,6 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 const Message = () => {
+  const { messageContent } = useContext(MessageContentContext);
   const { showMessage, setShowMessage } = useContext(MessageContext);
 
   return (
@@ -29,7 +31,7 @@ const Message = () => {
             }
           >
             <AlertTitle>Success</AlertTitle>
-            You have borrowed 'name' book
+            {messageContent}
           </Alert>
         </Collapse>
       </Grid>

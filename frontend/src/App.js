@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
-import { MessageContext } from "./components/MessageContext";
+import { MessageContext } from "./components/Contexts/MessageContext";
+import { MessageContentContext } from "./components/Contexts/MessageContentContext";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -22,6 +23,12 @@ const App = () => {
     setShowMessage,
   ]);
 
+  const [messageContent, setMessageContent] = useState("false");
+  const messageContentValue = useMemo(
+    () => ({ messageContent, setMessageContent }),
+    [messageContent, setMessageContent]
+  );
+
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
@@ -36,16 +43,18 @@ const App = () => {
       </header>
       <main>
         {user && loading === false ? (
-          <Switch>
-            <Route path="/my-books" component={UserBooks} />
-            <MessageContext.Provider value={showMessageValue}>
-              <Route path="/">
-                <Message />
-                <Books />
-              </Route>
-              <Route component={Message} />
-            </MessageContext.Provider>
-          </Switch>
+          <MessageContext.Provider value={showMessageValue}>
+            <MessageContentContext.Provider value={messageContentValue}>
+              <Message />
+              <Switch>
+                <Route path="/my-books" component={UserBooks} />
+                <Route path="/">
+                  <Books />
+                </Route>
+                <Route component={Message} />
+              </Switch>
+            </MessageContentContext.Provider>
+          </MessageContext.Provider>
         ) : null}
       </main>
     </div>
