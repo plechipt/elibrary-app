@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Books from "./components/Books/Books";
 import Message from "./components/Message/Message";
 import UserBooks from "./components/Books/UserBooks";
+import BottomOfPage from "./components/BottomOfPage/BottomOfPage";
 
 const App = () => {
   const [user, setUser] = useState("admin");
@@ -57,6 +58,9 @@ const App = () => {
           </MessageContext.Provider>
         ) : null}
       </main>
+      <footer>
+        <BottomOfPage />
+      </footer>
     </div>
   );
 };
