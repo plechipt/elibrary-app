@@ -73,7 +73,7 @@ const BookModal = ({
     >
       <DialogTitle onClose={closeModal}>
         <div className="modal-header">
-          <span>{title}</span>
+          <span className="modal-title">{title}</span>
         </div>
       </DialogTitle>
       <DialogContent className="modal-content" dividers>
