@@ -10,12 +10,29 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+import {
+  refreshTokenSilently,
+  verifyAccessToken,
+} from "./components/functions";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+// Verify if access token expired
+const customFetch = async (uri, options) => {
+  const tokenExpired = await verifyAccessToken();
+  console.log(tokenExpired);
+
+  if (tokenExpired === "true") {
+    await refreshTokenSilently();
+  }
+
+  return fetch(uri, options);
+};
+
 const httpLink = createHttpLink({
   uri: `${BASE_URL}/graphql/`,
-  credentials: "include",
+  credentials: "same-origin",
+  fetch: customFetch,
 });
 
 // Access token is send through httponly cookie
