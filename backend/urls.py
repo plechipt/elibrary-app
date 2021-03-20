@@ -11,7 +11,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ADMIN_PATH = os.getenv("ADMIN_PATH")
-print(ADMIN_PATH)
 
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
