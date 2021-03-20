@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useQuery } from "@apollo/client";
-import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
 import { MessageContext } from "./components/Contexts/MessageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
@@ -17,11 +15,6 @@ import UserBooks from "./components/Books/UserBooks";
 import BottomOfPage from "./components/BottomOfPage/BottomOfPage";
 
 const App = () => {
-  const [user, setUser] = useState("admin");
-  const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
-    fetchPolicy: "network-only",
-  });
-
   const [showMessage, setShowMessage] = useState(false);
   const showMessageValue = useMemo(() => ({ showMessage, setShowMessage }), [
     showMessage,
@@ -51,13 +44,6 @@ const App = () => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
-  // Set user to memory
-  useEffect(() => {
-    if (meQuery && meQuery.me) {
-      setUser(meQuery.me.username);
-    }
-  }, [meQuery]);
-
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -66,20 +52,18 @@ const App = () => {
           <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         </header>
         <main>
-          {user && loading === false ? (
-            <MessageContext.Provider value={showMessageValue}>
-              <MessageContentContext.Provider value={messageContentValue}>
-                <Message />
-                <Switch>
-                  <Route path="/my-books" component={UserBooks} />
-                  <Route path="/">
-                    <Books />
-                  </Route>
-                  <Route component={Message} />
-                </Switch>
-              </MessageContentContext.Provider>
-            </MessageContext.Provider>
-          ) : null}
+          <MessageContext.Provider value={showMessageValue}>
+            <MessageContentContext.Provider value={messageContentValue}>
+              <Message />
+              <Switch>
+                <Route path="/my-books" component={UserBooks} />
+                <Route path="/">
+                  <Books />
+                </Route>
+                <Route component={Message} />
+              </Switch>
+            </MessageContentContext.Provider>
+          </MessageContext.Provider>
         </main>
         <footer>
           <BottomOfPage />

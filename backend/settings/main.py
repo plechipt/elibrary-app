@@ -10,7 +10,7 @@ from .graphene import *
 # Load dotenv
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
@@ -26,7 +26,9 @@ DATABASES = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR / 'frontend' / 'build'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -39,3 +41,9 @@ TEMPLATES = [
     },
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR / 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR / 'frontend' / 'build' / 'static'),
+]
+
+print(BASE_DIR)
