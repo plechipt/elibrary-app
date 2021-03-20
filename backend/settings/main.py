@@ -6,6 +6,7 @@ from pathlib import Path
 from .basic import *
 from .development import *
 from .graphene import *
+from .production import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
