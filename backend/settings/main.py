@@ -1,7 +1,8 @@
 import os
 import sys
-from dotenv import load_dotenv
+import dj_database_url
 from pathlib import Path
+from dotenv import load_dotenv
 
 from .basic import *
 from .development import *
@@ -10,6 +11,11 @@ from .production import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+
+'''
+Frontend integration
+'''
+
 # Database
 DATABASES = {
     'default': {
@@ -17,6 +23,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Connect Postgres
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env) 
 
 TEMPLATES = [
     {
