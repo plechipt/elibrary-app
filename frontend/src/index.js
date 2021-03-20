@@ -20,7 +20,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 // Verify if access token expired
 const customFetch = async (uri, options) => {
   const tokenExpired = await verifyAccessToken();
-  console.log(tokenExpired);
 
   if (tokenExpired === "true") {
     await refreshTokenSilently();

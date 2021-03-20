@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/users";
@@ -70,7 +70,7 @@ const SignIn = ({ user }) => {
 
       if (loginWasSuccessful) {
         client.resetStore();
-        history.push("/order-summary");
+        history.push("/");
       } else {
         setFailedToLogin(true);
         setPassword("");
