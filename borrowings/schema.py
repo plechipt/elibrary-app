@@ -15,7 +15,6 @@ class BorrowingQuery(graphene.ObjectType):
         return Borrowing.objects.all()
 
     def resolve_users_borrowings(self, info):
-        admin = User.objects.get(username='admin')
-        user = admin
+        user = info.context.user
         return Borrowing.objects.filter(user=user)
 

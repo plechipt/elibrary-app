@@ -17,8 +17,7 @@ class BorrowBook(graphene.Mutation):
     borrowing = graphene.Field(BorrowingType)
 
     def mutate(self, info, id):
-        admin = User.objects.get(username='admin')
-        user = admin 
+        user = info.context.user
         book = Book.objects.get(id=id)
 
         borrowing = Borrowing.objects.create(user=user, book=book)
@@ -33,8 +32,7 @@ class ReturnBook(graphene.Mutation):
     message = graphene.String()
 
     def mutate(self, info, id):
-        admin = User.objects.get(username='admin')
-        user = admin 
+        user = info.context.user
         book = Book.objects.get(id=id)
 
         borrowing = Borrowing.objects.get(user=user, book=book)

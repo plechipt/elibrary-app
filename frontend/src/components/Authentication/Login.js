@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
-import { USER_LOGIN_MUTATION } from "../Api/resolvers/user";
+import { USER_LOGIN_MUTATION } from "../Api/users";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -46,10 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = () => {
+const SignIn = ({ user }) => {
   const classes = useStyles();
   const history = useHistory();
-  const { englishSelected } = useContext(LanguageContext);
 
   const client = useApolloClient();
   const [login, { data: loginData, loading }] = useMutation(
@@ -72,7 +70,7 @@ const SignIn = () => {
 
       if (loginWasSuccessful) {
         client.resetStore();
-        history.push("/");
+        history.push("/order-summary");
       } else {
         setFailedToLogin(true);
         setPassword("");
@@ -89,79 +87,83 @@ const SignIn = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          {englishSelected ? "Sign In" : "Přihlásit se"}
-        </Typography>
-        <form onSubmit={handleOnLogin} className={classes.form}>
-          <TextField
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            variant="outlined"
-            margin="normal"
-            id="username"
-            label={englishSelected ? "Username" : "Uživatelské Jméno"}
-            name="username"
-            autoComplete="username"
-            autoFocus
-            required
-            fullWidth
-            InputLabelProps={{ required: false }}
-          />
-          <TextField
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type={showPassword ? "text" : "password"}
-            error={failedToLogin ? true : false}
-            helperText={
-              /* Handle bad login  */
-              failedToLogin ? "Username or password is incorrect" : ""
-            }
-            variant="outlined"
-            margin="normal"
-            name="password"
-            label={englishSelected ? "Password" : "Heslo"}
-            id="password"
-            autoComplete="current-password"
-            required
-            fullWidth
-            InputLabelProps={{ required: false }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    aria-label="toggle password visibility"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            type="submit"
-            disabled={loading}
-            className={classes.submitButton}
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            {englishSelected ? "Sign In" : "Přihlásit se"}
-          </Button>
-          <Typography color="textSecondary">
-            {englishSelected ? "Don't have an account?" : "Nemáte účet?"}
-            <Link to="/register" className={classes.registerLink}>
-              {englishSelected ? "Sign Up" : "Registrovat se"}
-            </Link>
-          </Typography>
-        </form>
-      </div>
-    </Container>
+    <>
+      {user === null ? (
+        <Container component="main" maxWidth="xs">
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign In
+            </Typography>
+            <form onSubmit={handleOnLogin} className={classes.form}>
+              <TextField
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                variant="outlined"
+                margin="normal"
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+                required
+                fullWidth
+                InputLabelProps={{ required: false }}
+              />
+              <TextField
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+                error={failedToLogin ? true : false}
+                helperText={
+                  /* Handle bad login  */
+                  failedToLogin ? "Username or password is incorrect" : ""
+                }
+                variant="outlined"
+                margin="normal"
+                name="password"
+                label="Password"
+                id="password"
+                autoComplete="current-password"
+                required
+                fullWidth
+                InputLabelProps={{ required: false }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowPassword(!showPassword)}
+                        aria-label="toggle password visibility"
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Button
+                type="submit"
+                disabled={loading}
+                className={classes.submitButton}
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Sign In
+              </Button>
+              <Typography color="textSecondary">
+                Don't have an account?
+                <Link to="/register" className={classes.registerLink}>
+                  Sign Up
+                </Link>
+              </Typography>
+            </form>
+          </div>
+        </Container>
+      ) : null}
+    </>
   );
 };
 
