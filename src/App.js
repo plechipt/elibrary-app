@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { LanguageContext } from "./components/Contexts/LanguageContext";
 import { MessageContext } from "./components/Contexts/MessageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
-import { getThemeMode } from "./components/functions";
+import { getThemeMode, getLanguage } from "./components/functions";
 import "./App.css";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -37,7 +37,7 @@ const App = () => {
     [messageContent, setMessageContent]
   );
 
-  const [languageSelected, setLanguageSelected] = useState("czech");
+  const [languageSelected, setLanguageSelected] = useState(getLanguage());
   const languageSelectedValue = useMemo(
     () => ({ languageSelected, setLanguageSelected }),
     [languageSelected, setLanguageSelected]
@@ -54,11 +54,6 @@ const App = () => {
     [darkMode]
   );
 
-  // Set theme mode on change to local storage
-  useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
-
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
@@ -66,21 +61,29 @@ const App = () => {
     }
   }, [meQuery]);
 
-  console.log(languageSelected);
+  // Set new language to local storage
+  useEffect(() => {
+    localStorage.setItem("languageSelected", JSON.stringify(languageSelected));
+  }, [languageSelected]);
+
+  // Set new theme mode to local storage
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          {user && loading === false ? (
+          {true && loading === false ? (
             <LanguageContext.Provider value={languageSelectedValue}>
               <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             </LanguageContext.Provider>
           ) : null}
         </header>
         <main>
-          {user && loading === false ? (
+          {true && loading === false ? (
             <LanguageContext.Provider value={languageSelectedValue}>
               <MessageContext.Provider value={showMessageValue}>
                 <MessageContentContext.Provider value={messageContentValue}>

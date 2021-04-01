@@ -13,6 +13,16 @@ export const getThemeMode = () => {
   }
 };
 
+export const getLanguage = () => {
+  let language = localStorage.getItem("languageSelected");
+
+  if (language === '"english"' || language === '"czech"') {
+    return JSON.parse(language);
+  } else {
+    return "czech";
+  }
+};
+
 export const refreshTokenSilently = async () => {
   const csrftoken = Cookies.get("csrftoken");
 
