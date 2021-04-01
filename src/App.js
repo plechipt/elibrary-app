@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
+import { LanguageContext } from "./components/Contexts/LanguageContext";
 import { MessageContext } from "./components/Contexts/MessageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
 import { getThemeMode } from "./components/functions";
@@ -36,6 +37,11 @@ const App = () => {
     [messageContent, setMessageContent]
   );
 
+  const [languageSelected, setLanguageSelected] = useState("czech");
+  const languageSelectedValue = useMemo(
+    () => ({ languageSelected, setLanguageSelected }),
+    [languageSelected, setLanguageSelected]
+  );
   const [darkMode, setDarkMode] = useState(getThemeMode());
 
   const theme = useMemo(
@@ -60,29 +66,35 @@ const App = () => {
     }
   }, [meQuery]);
 
+  console.log(languageSelected);
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
           {user && loading === false ? (
-            <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+            <LanguageContext.Provider value={languageSelectedValue}>
+              <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+            </LanguageContext.Provider>
           ) : null}
         </header>
         <main>
           {user && loading === false ? (
-            <MessageContext.Provider value={showMessageValue}>
-              <MessageContentContext.Provider value={messageContentValue}>
-                <Message />
-                <Switch>
-                  <Route path="/my-books" component={UserBooks} />
-                  <Route path="/">
-                    <Books />
-                  </Route>
-                  <Route component={Message} />
-                </Switch>
-              </MessageContentContext.Provider>
-            </MessageContext.Provider>
+            <LanguageContext.Provider value={languageSelectedValue}>
+              <MessageContext.Provider value={showMessageValue}>
+                <MessageContentContext.Provider value={messageContentValue}>
+                  <Message />
+                  <Switch>
+                    <Route path="/my-books" component={UserBooks} />
+                    <Route path="/">
+                      <Books />
+                    </Route>
+                    <Route component={Message} />
+                  </Switch>
+                </MessageContentContext.Provider>
+              </MessageContext.Provider>
+            </LanguageContext.Provider>
           ) : (
             <>
               {loading === false ? (

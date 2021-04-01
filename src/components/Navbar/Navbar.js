@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
+import SelectLanguage from "./SelectLanguage";
 import "./Navbar.css";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -35,6 +36,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             Elibrary
           </Typography>
           <Grid container justify="flex-end">
+            <SelectLanguage />
             <IconButton
               onClick={() => setDarkMode((prevMode) => !prevMode)}
               aria-label="dark mode toggle"
