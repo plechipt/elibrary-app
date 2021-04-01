@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
 import {
   BORROWING_USER_LIST_QUERY,
@@ -31,6 +32,7 @@ const BookModal = ({
 }) => {
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
+  const { languageSelected } = useContext(LanguageContext);
 
   const [borrowBook, { loading: borrowBookLoading }] = useMutation(
     BORROWING_BORROW_BOOK_MUTATION
@@ -40,6 +42,11 @@ const BookModal = ({
   );
 
   const borrowBookFunction = async () => {
+    const message =
+      languageSelected === "czech"
+        ? `Půjčil sis ${title} knihu`
+        : `You have borrowed ${title} book`;
+
     await borrowBook({
       variables: { id },
       refetchQueries: [
@@ -48,11 +55,16 @@ const BookModal = ({
       ],
     });
     closeModal();
-    setMessageContent(`You have borrowed ${title} book`);
     setShowMessage(true);
+    setMessageContent(message);
   };
 
   const returnBookFunction = async () => {
+    const message =
+      languageSelected === "czech"
+        ? `Vrátil si ${title} knihu`
+        : `You have borrowed ${title} book`;
+
     await returnBook({
       variables: { id },
       refetchQueries: [
@@ -61,8 +73,8 @@ const BookModal = ({
       ],
     });
     closeModal();
-    setMessageContent(`You have returned ${title} book`);
     setShowMessage(true);
+    setMessageContent(message);
   };
 
   return (

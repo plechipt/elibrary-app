@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import "./Message.css";
 
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +13,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 const Message = () => {
   const { messageContent } = useContext(MessageContentContext);
   const { showMessage, setShowMessage } = useContext(MessageContext);
+  const { languageSelected } = useContext(LanguageContext);
 
   return (
     <Grid container className="message-container">
@@ -30,7 +32,9 @@ const Message = () => {
               </IconButton>
             }
           >
-            <AlertTitle>Success</AlertTitle>
+            <AlertTitle>
+              {languageSelected === "czech" ? "Úspěch" : "Success"}
+            </AlertTitle>
             {messageContent}
           </Alert>
         </Collapse>
