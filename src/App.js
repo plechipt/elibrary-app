@@ -74,17 +74,17 @@ const App = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <header>
-          {user && loading === false ? (
-            <LanguageContext.Provider value={languageSelectedValue}>
-              <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-            </LanguageContext.Provider>
-          ) : null}
-        </header>
-        <main>
-          {user && loading === false ? (
-            <LanguageContext.Provider value={languageSelectedValue}>
+        <LanguageContext.Provider value={languageSelectedValue}>
+          <CssBaseline />
+          <header>
+            {user && loading === false ? (
+              <LanguageContext.Provider value={languageSelectedValue}>
+                <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+              </LanguageContext.Provider>
+            ) : null}
+          </header>
+          <main>
+            {user && loading === false ? (
               <MessageContext.Provider value={showMessageValue}>
                 <MessageContentContext.Provider value={messageContentValue}>
                   <Message />
@@ -97,24 +97,24 @@ const App = () => {
                   </Switch>
                 </MessageContentContext.Provider>
               </MessageContext.Provider>
-            </LanguageContext.Provider>
-          ) : (
-            <>
-              {loading === false ? (
-                <Switch>
-                  <Route
-                    path="/register"
-                    component={() => <SignUp user={user} />}
-                  />
-                  <Route path="/" component={() => <SignIn user={user} />} />
-                </Switch>
-              ) : null}
-            </>
-          )}
-        </main>
-        <footer>
-          <BottomOfPage />
-        </footer>
+            ) : (
+              <>
+                {loading === false ? (
+                  <Switch>
+                    <Route
+                      path="/register"
+                      component={() => <SignUp user={user} />}
+                    />
+                    <Route path="/" component={() => <SignIn user={user} />} />
+                  </Switch>
+                ) : null}
+              </>
+            )}
+          </main>
+          <footer>
+            <BottomOfPage />
+          </footer>
+        </LanguageContext.Provider>
       </ThemeProvider>
     </div>
   );

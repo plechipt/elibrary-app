@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/users";
+import { LanguageContext } from "../Contexts/LanguageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = ({ user }) => {
   const classes = useStyles();
   const history = useHistory();
+  const { languageSelected } = useContext(LanguageContext);
 
   const client = useApolloClient();
   const [login, { data: loginData, loading }] = useMutation(
@@ -86,6 +88,8 @@ const SignIn = ({ user }) => {
     });
   };
 
+  console.log(languageSelected);
+
   return (
     <>
       {user === null ? (
@@ -95,7 +99,7 @@ const SignIn = ({ user }) => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign In
+              {languageSelected === "czech" ? "Přihlásit se" : "Sign In"}
             </Typography>
             <form onSubmit={handleOnLogin} className={classes.form}>
               <TextField
@@ -104,7 +108,11 @@ const SignIn = ({ user }) => {
                 variant="outlined"
                 margin="normal"
                 id="username"
-                label="Username"
+                label={
+                  languageSelected === "czech"
+                    ? "Uživatelské Jméno"
+                    : "Username"
+                }
                 name="username"
                 autoComplete="username"
                 autoFocus
@@ -119,12 +127,16 @@ const SignIn = ({ user }) => {
                 error={failedToLogin ? true : false}
                 helperText={
                   /* Handle bad login  */
-                  failedToLogin ? "Username or password is incorrect" : ""
+                  failedToLogin
+                    ? languageSelected === "czech"
+                      ? "Příhlašovací jméno nebo heslo jsou zadané špatně"
+                      : "Username or password is incorrect"
+                    : ""
                 }
                 variant="outlined"
                 margin="normal"
                 name="password"
-                label="Password"
+                label={languageSelected === "czech" ? "Heslo" : "Password"}
                 id="password"
                 autoComplete="current-password"
                 required
@@ -151,12 +163,14 @@ const SignIn = ({ user }) => {
                 variant="contained"
                 color="primary"
               >
-                Sign In
+                {languageSelected === "czech" ? "Přihlásit se" : "Sign In"}
               </Button>
               <Typography color="textSecondary">
-                Don't have an account?
+                {languageSelected === "czech"
+                  ? "Nemáte účet?"
+                  : "Don't have an account?"}
                 <Link to="/register" className={classes.registerLink}>
-                  Sign Up
+                  {languageSelected === "czech" ? "Registrovat se" : "Sign Up"}
                 </Link>
               </Typography>
             </form>

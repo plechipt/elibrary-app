@@ -134,7 +134,7 @@ const BookModal = ({
             color="primary"
             variant="contained"
           >
-            Borrow Book
+            {languageSelected === "czech" ? "Půjčit knihu" : "Borrow Book"}
           </Button>
         )}
       </DialogActions>

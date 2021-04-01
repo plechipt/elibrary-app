@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_REGISTER_MUTATION } from "../Api/users";
+import { LanguageContext } from "../Contexts/LanguageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = ({ user }) => {
   const classes = useStyles();
   const history = useHistory();
+  const { languageSelected } = useContext(LanguageContext);
 
   const [register, { data: registerData, loading }] = useMutation(
     USER_REGISTER_MUTATION
@@ -131,7 +133,7 @@ const SignUp = ({ user }) => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign Up
+              {languageSelected === "czech" ? "Registrovat se" : "Sign Up"}
             </Typography>
             <form onSubmit={handleOnRegister} className={classes.form}>
               <Grid container spacing={2}>
@@ -146,7 +148,11 @@ const SignUp = ({ user }) => {
                     name="username"
                     variant="outlined"
                     id="username"
-                    label="Username"
+                    label={
+                      languageSelected === "czech"
+                        ? "Uživatelské Jméno"
+                        : "Username"
+                    }
                     autoFocus
                     required
                     fullWidth
@@ -180,7 +186,7 @@ const SignUp = ({ user }) => {
                     type={showPasswords ? "text" : "password"}
                     variant="outlined"
                     name="password"
-                    label="Password"
+                    label={languageSelected === "czech" ? "Heslo" : "Password"}
                     id="password"
                     autoComplete="current-password"
                     required
@@ -200,7 +206,11 @@ const SignUp = ({ user }) => {
                     type={showPasswords ? "text" : "password"}
                     variant="outlined"
                     name="password"
-                    label="Confirm Password"
+                    label={
+                      languageSelected === "czech"
+                        ? "Potvrdit Heslo"
+                        : "Confirm Password"
+                    }
                     id="confirm-password"
                     autoComplete="confirm-password"
                     fullWidth
@@ -217,7 +227,11 @@ const SignUp = ({ user }) => {
                         color="primary"
                       />
                     }
-                    label="Show Passwords"
+                    label={
+                      languageSelected === "czech"
+                        ? "Ukázat Hesla"
+                        : "Show Passwords"
+                    }
                   />
                 </Grid>
               </Grid>
@@ -229,12 +243,14 @@ const SignUp = ({ user }) => {
                 variant="contained"
                 color="primary"
               >
-                Sign Up
+                {languageSelected === "czech" ? "Registrovat se" : "Sign Up"}
               </Button>
               <Typography color="textSecondary">
-                Already have an account?
+                {languageSelected === "czech"
+                  ? "Už máte účet?"
+                  : "Already have an account?"}
                 <Link to="/" className={classes.loginLink}>
-                  Sign In
+                  {languageSelected === "czech" ? "Přihlásit se" : "Sign In"}
                 </Link>
               </Typography>
             </form>
