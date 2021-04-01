@@ -76,14 +76,14 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <LanguageContext.Provider value={languageSelectedValue}>
               <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             </LanguageContext.Provider>
           ) : null}
         </header>
         <main>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <LanguageContext.Provider value={languageSelectedValue}>
               <MessageContext.Provider value={showMessageValue}>
                 <MessageContentContext.Provider value={messageContentValue}>

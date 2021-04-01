@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
 import SelectLanguage from "./SelectLanguage";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import "./Navbar.css";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -19,6 +20,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
+  const { languageSelected } = useContext(LanguageContext);
 
   return (
     <div className="root">
@@ -33,7 +35,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="logo"
             variant="h6"
           >
-            Elibrary
+            {languageSelected === "czech" ? "Eknihovna" : "Elibrary"}
           </Typography>
           <Grid container justify="flex-end">
             <SelectLanguage />

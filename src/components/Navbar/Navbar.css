@@ -4,6 +4,12 @@
   margin-bottom: 1.5rem;
 }
 
+.main-title {
+  display: flex;
+  flex: 1;
+  width: 110%;
+}
+
 .app-bar {
   background: #1976d2;
 }
