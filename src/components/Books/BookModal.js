@@ -98,15 +98,19 @@ const BookModal = ({
         </div>
         <div className="modal-right-side">
           <Typography className="modal-description-item">
-            <b>Author:</b>
+            <b>{languageSelected === "czech" ? "Autor:" : "Author: "}</b>
             <span>{author}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>Genre:</b>
+            <b>{languageSelected === "czech" ? "Žánr:" : "Genre: "}</b>
             <span>{genre}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>Number of pages:</b>
+            <b>
+              {languageSelected === "czech"
+                ? "Počet stránek:"
+                : "Number of pages:"}
+            </b>
             <span>{numberOfPages}</span>
           </Typography>
         </div>
@@ -120,7 +124,7 @@ const BookModal = ({
             color="primary"
             variant="contained"
           >
-            Return Book
+            {languageSelected === "czech" ? "Vrátit knihu" : "Return Book"}
           </Button>
         ) : (
           <Button

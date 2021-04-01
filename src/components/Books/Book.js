@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Grid";
@@ -17,6 +18,7 @@ const Book = ({
   imageName,
 }) => {
   const [openModal, setOpenModal] = useState(false);
+  const { languageSelected } = useContext(LanguageContext);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -35,7 +37,7 @@ const Book = ({
           variant="contained"
           size="large"
         >
-          More Info
+          {languageSelected === "czech" ? "Více info" : "More info"}
         </Button>
       </Paper>
       <BookModal
