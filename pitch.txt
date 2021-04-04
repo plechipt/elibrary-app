@@ -1,0 +1,6 @@
+
+E-knihovna, kde je možné si pujčít a vrátit knihy
+
+Přihlašovací systém, půjčování a vracení knih, čestina a angličtina
+
+User, který bude moc přidávat, odebírat, upravovat, vidět od koho jsou pujčené knihy...
