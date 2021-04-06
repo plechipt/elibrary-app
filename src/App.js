@@ -49,6 +49,9 @@ const App = () => {
       createMuiTheme({
         palette: {
           type: darkMode ? "dark" : "light",
+          primary: {
+            main: "#1976D2",
+          },
         },
       }),
     [darkMode]
@@ -77,14 +80,14 @@ const App = () => {
         <LanguageContext.Provider value={languageSelectedValue}>
           <CssBaseline />
           <header>
-            {user && loading === false ? (
+            {true && loading === false ? (
               <LanguageContext.Provider value={languageSelectedValue}>
                 <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
               </LanguageContext.Provider>
             ) : null}
           </header>
           <main>
-            {user && loading === false ? (
+            {true && loading === false ? (
               <MessageContext.Provider value={showMessageValue}>
                 <MessageContentContext.Provider value={messageContentValue}>
                   <Message />

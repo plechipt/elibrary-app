@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { BORROWING_USER_LIST_QUERY } from "../Api/borrowings";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import Book from "./Book";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 const UserBooks = () => {
+  const { languageSelected } = useContext(LanguageContext);
   let { data: usersBorrowings, loading } = useQuery(BORROWING_USER_LIST_QUERY);
+
+  console.log(languageSelected);
 
   return (
     <div className="books-container">
@@ -36,7 +40,9 @@ const UserBooks = () => {
             </>
           ) : (
             <Typography className="text-container" variant="h2">
-              No borrowed books
+              {languageSelected === "czech"
+                ? "Žádné vypůjčené knihy"
+                : "No borrowed bookss"}
             </Typography>
           )}
         </Grid>

@@ -24,11 +24,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   return (
     <div className="root">
-      <AppBar
-        className="app-bar"
-        style={{ background: "#1976D2" }}
-        position="static"
-      >
+      <AppBar className="app-bar" position="static">
         <Toolbar>
           <Typography
             onClick={() => history.push("/")}

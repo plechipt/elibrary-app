@@ -32,7 +32,6 @@ const Book = ({
         <Button
           onClick={() => setOpenModal(true)}
           fullWidth
-          className="blue-button"
           color="primary"
           variant="contained"
           size="large"

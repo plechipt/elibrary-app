@@ -88,8 +88,6 @@ const SignIn = ({ user }) => {
     });
   };
 
-  console.log(languageSelected);
-
   return (
     <>
       {user === null ? (
