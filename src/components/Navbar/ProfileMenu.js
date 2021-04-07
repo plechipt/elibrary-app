@@ -15,8 +15,6 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   const { user } = useContext(UserContext);
   const { languageSelected } = useContext(LanguageContext);
 
-  console.log(user.isSuperuser);
-
   const handleOnLogout = async () => {
     await deleteTokens();
     window.location.reload(); // Reset page

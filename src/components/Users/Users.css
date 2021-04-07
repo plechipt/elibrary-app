@@ -1,0 +1,15 @@
+.users-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.user-item {
+  margin-top: 0.5rem !important;
+  max-width: 200%;
+}
+
+.text-item span {
+  font-size: 1.5rem;
+}

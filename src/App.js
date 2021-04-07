@@ -13,6 +13,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Navbar from "./components/Navbar/Navbar";
+import Users from "./components/Users/Users";
 import Books from "./components/Books/Books";
 import Message from "./components/Message/Message";
 import UserBooks from "./components/Books/UserBooks";
@@ -21,7 +22,7 @@ import SignIn from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/Register";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ username: "TestUser", isSuperuser: true });
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
@@ -83,16 +84,17 @@ const App = () => {
           <LanguageContext.Provider value={languageSelectedValue}>
             <CssBaseline />
             <header>
-              {user && loading === false ? (
+              {true && loading === false ? (
                 <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
               ) : null}
             </header>
             <main>
-              {user && loading === false ? (
+              {true && loading === false ? (
                 <MessageContext.Provider value={showMessageValue}>
                   <MessageContentContext.Provider value={messageContentValue}>
                     <Message />
                     <Switch>
+                      <Route path="/users" component={Users} />
                       <Route path="/my-books" component={UserBooks} />
                       <Route path="/">
                         <Books />
