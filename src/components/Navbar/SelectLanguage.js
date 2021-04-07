@@ -69,7 +69,7 @@ const SelectLanguage = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem onClick={() => handleItemClick("czech")}>Czech</MenuItem>
+        <MenuItem onClick={() => handleItemClick("czech")}>Čestina</MenuItem>
         <MenuItem onClick={() => handleItemClick("english")}>English</MenuItem>
       </Menu>
     </div>

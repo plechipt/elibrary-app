@@ -1,7 +1,9 @@
 .users-container {
   flex: 1;
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  margin: auto !important;
+  justify-content: center !important;
+  align-items: center !important;
   width: 100%;
 }
 
