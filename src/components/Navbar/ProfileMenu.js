@@ -43,9 +43,23 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
       <MenuItem onClick={() => history.push("/")}>
         {languageSelected === "czech" ? "Domů" : "Home"}
       </MenuItem>
-      <MenuItem onClick={() => history.push("/my-books")}>
-        {languageSelected === "czech" ? "Moje knihy" : "My books"}
-      </MenuItem>
+      {user.isSuperuser ? (
+        <>
+          <MenuItem onClick={() => history.push("/users")}>
+            {languageSelected === "czech" ? "Uživatelé" : "Users"}
+          </MenuItem>
+          <MenuItem onClick={() => history.push("/borrowed-books")}>
+            {languageSelected === "czech" ? "Pujčené knihy" : "Borrowed books"}
+          </MenuItem>
+          <MenuItem onClick={() => history.push("/manage-books")}>
+            {languageSelected === "czech" ? "Spravovat knihy" : "Manage books"}
+          </MenuItem>
+        </>
+      ) : (
+        <MenuItem onClick={() => history.push("/my-books")}>
+          {languageSelected === "czech" ? "Moje knihy" : "My books"}
+        </MenuItem>
+      )}
       <MenuItem onClick={handleOnLogout}>
         {languageSelected === "czech" ? "Odhlásit se" : "Logout"}
       </MenuItem>
