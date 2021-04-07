@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
+import { UserContext } from "./components/Contexts/UserContext";
 import { LanguageContext } from "./components/Contexts/LanguageContext";
 import { MessageContext } from "./components/Contexts/MessageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
@@ -21,6 +22,7 @@ import SignUp from "./components/Authentication/Register";
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
   });
@@ -60,7 +62,7 @@ const App = () => {
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
-      setUser(meQuery.me.username);
+      setUser(meQuery.me);
     }
   }, [meQuery]);
 
@@ -77,47 +79,50 @@ const App = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <LanguageContext.Provider value={languageSelectedValue}>
-          <CssBaseline />
-          <header>
-            {true && loading === false ? (
-              <LanguageContext.Provider value={languageSelectedValue}>
+        <UserContext.Provider value={userValue}>
+          <LanguageContext.Provider value={languageSelectedValue}>
+            <CssBaseline />
+            <header>
+              {user && loading === false ? (
                 <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-              </LanguageContext.Provider>
-            ) : null}
-          </header>
-          <main>
-            {true && loading === false ? (
-              <MessageContext.Provider value={showMessageValue}>
-                <MessageContentContext.Provider value={messageContentValue}>
-                  <Message />
-                  <Switch>
-                    <Route path="/my-books" component={UserBooks} />
-                    <Route path="/">
-                      <Books />
-                    </Route>
-                    <Route component={Message} />
-                  </Switch>
-                </MessageContentContext.Provider>
-              </MessageContext.Provider>
-            ) : (
-              <>
-                {loading === false ? (
-                  <Switch>
-                    <Route
-                      path="/register"
-                      component={() => <SignUp user={user} />}
-                    />
-                    <Route path="/" component={() => <SignIn user={user} />} />
-                  </Switch>
-                ) : null}
-              </>
-            )}
-          </main>
-          <footer>
-            <BottomOfPage />
-          </footer>
-        </LanguageContext.Provider>
+              ) : null}
+            </header>
+            <main>
+              {user && loading === false ? (
+                <MessageContext.Provider value={showMessageValue}>
+                  <MessageContentContext.Provider value={messageContentValue}>
+                    <Message />
+                    <Switch>
+                      <Route path="/my-books" component={UserBooks} />
+                      <Route path="/">
+                        <Books />
+                      </Route>
+                      <Route component={Message} />
+                    </Switch>
+                  </MessageContentContext.Provider>
+                </MessageContext.Provider>
+              ) : (
+                <>
+                  {loading === false ? (
+                    <Switch>
+                      <Route
+                        path="/register"
+                        component={() => <SignUp user={user} />}
+                      />
+                      <Route
+                        path="/"
+                        component={() => <SignIn user={user} />}
+                      />
+                    </Switch>
+                  ) : null}
+                </>
+              )}
+            </main>
+            <footer>
+              <BottomOfPage />
+            </footer>
+          </LanguageContext.Provider>
+        </UserContext.Provider>
       </ThemeProvider>
     </div>
   );

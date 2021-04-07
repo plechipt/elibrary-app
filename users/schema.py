@@ -1,4 +1,5 @@
 import graphene
+from users.models import User
 from .mutations.users import *
 from .mutations.jwt import *
 
