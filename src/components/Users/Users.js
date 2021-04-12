@@ -1,6 +1,6 @@
 import React from "react";
-import "./Users.css";
 import UsersRow from "./UsersRow";
+import "./Users.css";
 
 import Grid from "@material-ui/core/Grid";
 import Pagination from "@material-ui/lab/Pagination";
@@ -16,8 +16,8 @@ const Users = () => {
       </Grid>
       <Pagination
         className="paginator"
-        size="large"
         count={10}
+        size="large"
         color="primary"
       />
     </>

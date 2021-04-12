@@ -4,16 +4,14 @@
 }
 
 .user-row {
-  margin-top: 1.5rem !important;
-  margin: 2rem;
+  margin: 0rem 3rem !important;
 }
-
 .text-item span {
   font-size: 1.25rem;
 }
 
 .paginator {
-  margin-top: 1rem;
+  margin-top: 3rem;
   display: flex;
   justify-content: center;
 }

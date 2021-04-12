@@ -23,6 +23,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   return (
     <Menu
       open={isOpen}
+      onClick={closeProfileMenu}
       onClose={closeProfileMenu}
       anchorEl={anchorEl}
       getContentAnchorEl={null}
