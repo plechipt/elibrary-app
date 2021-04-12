@@ -11,8 +11,6 @@ const UserBooks = () => {
   const { languageSelected } = useContext(LanguageContext);
   let { data: usersBorrowings, loading } = useQuery(BORROWING_USER_LIST_QUERY);
 
-  console.log(languageSelected);
-
   return (
     <div className="books-container">
       {usersBorrowings && loading === false ? (

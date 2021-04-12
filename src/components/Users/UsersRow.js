@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
 const UsersRow = () => {
   const classes = useStyles();
 
-  return (
+  return null;
+  /*
     <List width={500} className="users">
       {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
@@ -38,7 +39,7 @@ const UsersRow = () => {
         );
       })}
     </List>
-  );
+    */
 };
 
 export default UsersRow;

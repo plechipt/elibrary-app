@@ -13,6 +13,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Navbar from "./components/Navbar/Navbar";
+import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 import Users from "./components/Users/Users";
 import Books from "./components/Books/Books";
 import Message from "./components/Message/Message";
@@ -84,18 +85,19 @@ const App = () => {
           <LanguageContext.Provider value={languageSelectedValue}>
             <CssBaseline />
             <header>
-              {true && loading === false ? (
+              {user && loading === false ? (
                 <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
               ) : null}
             </header>
             <main>
-              {true && loading === false ? (
+              {user && loading === false ? (
                 <MessageContext.Provider value={showMessageValue}>
                   <MessageContentContext.Provider value={messageContentValue}>
                     <Message />
                     <Switch>
                       <Route path="/users" component={Users} />
                       <Route path="/my-books" component={UserBooks} />
+                      <Route path="/borrowed-books" component={BorrowedBooks} />
                       <Route path="/">
                         <Books />
                       </Route>
