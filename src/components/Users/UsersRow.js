@@ -21,8 +21,8 @@ const UsersRow = () => {
   const classes = useStyles();
 
   return (
-    <List width={500} className="users">
-      {[0, 1, 2, 3].map((value) => {
+    <List className="user-row" width={500}>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
           <ListItem className="user-item" key={value} button>

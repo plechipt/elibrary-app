@@ -3,26 +3,24 @@ import "./Users.css";
 import UsersRow from "./UsersRow";
 
 import Grid from "@material-ui/core/Grid";
+import Pagination from "@material-ui/lab/Pagination";
 
 const Users = () => {
   return (
-    <div className="users-container">
-      <Grid container item xs={12} spacing={3}>
-        <UsersRow />
+    <>
+      <Grid container item xs={12}>
+        <div className="users-container">
+          <UsersRow />
+          <UsersRow />
+        </div>
       </Grid>
-      <Grid container item xs={12} spacing={3}>
-        <UsersRow />
-      </Grid>
-      <Grid container item xs={12} spacing={3}>
-        <UsersRow />
-      </Grid>
-      <Grid container item xs={12} spacing={3}>
-        <UsersRow />
-      </Grid>
-      <Grid container item xs={12} spacing={3}>
-        <UsersRow />
-      </Grid>
-    </div>
+      <Pagination
+        className="paginator"
+        size="large"
+        count={10}
+        color="primary"
+      />
+    </>
   );
 };
 
