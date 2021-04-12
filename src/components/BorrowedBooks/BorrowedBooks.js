@@ -15,8 +15,6 @@ import Paper from "@material-ui/core/Paper";
 const BorrowedBooks = () => {
   const { languageSelected } = useContext(LanguageContext);
 
-  console.log(languageSelected);
-
   return (
     <TableContainer className="table-container" component={Paper}>
       <Table aria-label="simple table">

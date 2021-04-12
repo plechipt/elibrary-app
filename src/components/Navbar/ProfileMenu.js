@@ -22,13 +22,12 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
 
   return (
     <Menu
-      onClick={closeProfileMenu}
-      onClose={closeProfileMenu}
       open={isOpen}
+      onClose={closeProfileMenu}
       anchorEl={anchorEl}
+      getContentAnchorEl={null}
       id="menu-appbar"
       keepMounted
-      getContentAnchorEl={null}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
@@ -42,7 +41,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
         {languageSelected === "czech" ? "Domů" : "Home"}
       </MenuItem>
       {user.isSuperuser ? (
-        <>
+        <div>
           <MenuItem onClick={() => history.push("/users")}>
             {languageSelected === "czech" ? "Uživatelé" : "Users"}
           </MenuItem>
@@ -52,7 +51,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
           <MenuItem onClick={() => history.push("/manage-books")}>
             {languageSelected === "czech" ? "Spravovat knihy" : "Manage books"}
           </MenuItem>
-        </>
+        </div>
       ) : (
         <MenuItem onClick={() => history.push("/my-books")}>
           {languageSelected === "czech" ? "Moje knihy" : "My books"}

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import ProfileMenu from "./ProfileMenu";
 import SelectLanguage from "./SelectLanguage";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import "./Navbar.css";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -18,7 +18,7 @@ import Brightness7Icon from "@material-ui/icons/Brightness7";
 const Navbar = ({ darkMode, setDarkMode }) => {
   const history = useHistory();
 
-  const profileMenuRef = useRef();
+  const profileMenuRef = useRef(null);
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
   const { languageSelected } = useContext(LanguageContext);
 
@@ -43,6 +43,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
             <IconButton
+              ref={profileMenuRef}
               onClick={() => setProfileMenuIsOpen(true)}
               aria-label="account of current user"
               aria-haspopup="true"
