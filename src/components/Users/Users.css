@@ -1,13 +1,11 @@
 .users-container {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+  display: flex;
   margin: auto;
 }
 
 .user-row {
-  margin: 3rem !important;
   margin-top: 1.5rem !important;
+  margin: 2rem;
 }
 
 .text-item span {
@@ -15,7 +13,7 @@
 }
 
 .paginator {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
 }

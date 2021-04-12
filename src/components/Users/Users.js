@@ -8,7 +8,7 @@ import Pagination from "@material-ui/lab/Pagination";
 const Users = () => {
   return (
     <>
-      <Grid container item xs={12}>
+      <Grid container>
         <div className="users-container">
           <UsersRow />
           <UsersRow />
