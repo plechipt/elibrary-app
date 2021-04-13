@@ -34,9 +34,11 @@ const UserModal = ({
   const [borrowBook, { loading: borrowBookLoading }] = useMutation(
     BORROWING_BORROW_BOOK_MUTATION
   );
+
   const [returnBook, { loading: returnBookLoading }] = useMutation(
     BORROWING_RETURN_BOOK_MUTATION
   );
+
   const borrowBookFunction = async () => {
     const message =
       languageSelected === "czech"

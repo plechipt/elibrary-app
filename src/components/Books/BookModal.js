@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../Contexts/UserContext";
 import UserModal from "./UserModal";
+import AdminModal from "./AdminModal";
 
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -15,6 +17,10 @@ const BookModal = ({
   genre,
   imageName,
 }) => {
+  const { user } = useContext(UserContext);
+
+  console.log(user);
+
   return (
     <Dialog
       open={openModal}
@@ -26,16 +32,25 @@ const BookModal = ({
           <span className="modal-title">{title}</span>
         </div>
       </DialogTitle>
-      <UserModal
-        isBorrowed={isBorrowed}
-        closeModal={closeModal}
-        id={id}
-        title={title}
-        author={author}
-        numberOfPages={numberOfPages}
-        genre={genre}
-        imageName={imageName}
-      />
+      {user.isSuperuser ? (
+        <AdminModal
+          author={author}
+          genre={genre}
+          numberOfPages={numberOfPages}
+          imageName={imageName}
+        />
+      ) : (
+        <UserModal
+          isBorrowed={isBorrowed}
+          closeModal={closeModal}
+          id={id}
+          title={title}
+          author={author}
+          numberOfPages={numberOfPages}
+          genre={genre}
+          imageName={imageName}
+        />
+      )}
     </Dialog>
   );
 };
