@@ -23,7 +23,8 @@ import SignIn from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/Register";
 
 const App = () => {
-  const [user, setUser] = useState({ username: "TestUser", isSuperuser: true });
+  //const [user, setUser] = useState({ username: "admin1", isSuperuser: true });
+  const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
@@ -46,8 +47,8 @@ const App = () => {
     () => ({ languageSelected, setLanguageSelected }),
     [languageSelected, setLanguageSelected]
   );
-  const [darkMode, setDarkMode] = useState(getThemeMode());
 
+  const [darkMode, setDarkMode] = useState(getThemeMode());
   const theme = useMemo(
     () =>
       createMuiTheme({
@@ -97,10 +98,9 @@ const App = () => {
                     <Switch>
                       <Route path="/users" component={Users} />
                       <Route path="/my-books" component={UserBooks} />
+                      <Route path="/manage-books" component={Books} />
                       <Route path="/borrowed-books" component={BorrowedBooks} />
-                      <Route path="/">
-                        <Books />
-                      </Route>
+                      <Route path="/" component={Books} />
                       <Route component={Message} />
                     </Switch>
                   </MessageContentContext.Provider>
