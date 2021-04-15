@@ -19,8 +19,6 @@ const BookModal = ({
 }) => {
   const { user } = useContext(UserContext);
 
-  console.log(user);
-
   return (
     <Dialog
       open={openModal}

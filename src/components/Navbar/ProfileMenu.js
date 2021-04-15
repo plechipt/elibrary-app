@@ -46,6 +46,9 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
           <MenuItem onClick={() => history.push("/users")}>
             {languageSelected === "czech" ? "Uživatelé" : "Users"}
           </MenuItem>
+          <MenuItem onClick={() => history.push("/create-book")}>
+            {languageSelected === "czech" ? "Vytvořit knihu" : "Create a book"}
+          </MenuItem>
           <MenuItem onClick={() => history.push("/borrowed-books")}>
             {languageSelected === "czech" ? "Pujčené knihy" : "Borrowed books"}
           </MenuItem>

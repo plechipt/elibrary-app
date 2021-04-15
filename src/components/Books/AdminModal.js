@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import { set } from "js-cookie";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
@@ -58,7 +57,10 @@ const AdminModal = ({ author, genre, numberOfPages, imageName }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button className="blue-button" color="primary" variant="contained">
+        <Button color="primary" variant="contained">
+          {languageSelected === "czech" ? "Smazat knihu" : "Delete Book"}
+        </Button>
+        <Button color="primary" variant="contained">
           {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
         </Button>
       </DialogActions>

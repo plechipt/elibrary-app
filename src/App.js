@@ -98,8 +98,9 @@ const App = () => {
                     <Switch>
                       <Route path="/users" component={Users} />
                       <Route path="/my-books" component={UserBooks} />
-                      <Route path="/manage-books" component={Books} />
                       <Route path="/borrowed-books" component={BorrowedBooks} />
+                      <Route path="/manage-books" component={Books} />
+                      <Route path="/create-book" component={Books} />
                       <Route path="/" component={Books} />
                       <Route component={Message} />
                     </Switch>
