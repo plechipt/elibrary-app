@@ -2,10 +2,12 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/users";
 import { Route, Switch } from "react-router-dom";
+
 import { UserContext } from "./components/Contexts/UserContext";
-import { LanguageContext } from "./components/Contexts/LanguageContext";
 import { MessageContext } from "./components/Contexts/MessageContext";
+import { LanguageContext } from "./components/Contexts/LanguageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
+import { ShowCreateModalContext } from "./components/Contexts/ShowCreateModalContext";
 import { getThemeMode, getLanguage } from "./components/functions";
 import "./App.css";
 
@@ -48,6 +50,12 @@ const App = () => {
     [languageSelected, setLanguageSelected]
   );
 
+  const [showCreateModal, setShowCreateModal] = useState();
+  const showCreateModalValue = useMemo(
+    () => ({ showCreateModal, setShowCreateModal }),
+    [showCreateModal, setShowCreateModal]
+  );
+
   const [darkMode, setDarkMode] = useState(getThemeMode());
   const theme = useMemo(
     () =>
@@ -83,50 +91,55 @@ const App = () => {
     <div className="App">
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={userValue}>
-          <LanguageContext.Provider value={languageSelectedValue}>
-            <CssBaseline />
-            <header>
-              {user && loading === false ? (
-                <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-              ) : null}
-            </header>
-            <main>
-              {user && loading === false ? (
-                <MessageContext.Provider value={showMessageValue}>
-                  <MessageContentContext.Provider value={messageContentValue}>
-                    <Message />
-                    <Switch>
-                      <Route path="/users" component={Users} />
-                      <Route path="/my-books" component={UserBooks} />
-                      <Route path="/borrowed-books" component={BorrowedBooks} />
-                      <Route path="/manage-books" component={Books} />
-                      <Route path="/create-book" component={Books} />
-                      <Route path="/" component={Books} />
-                      <Route component={Message} />
-                    </Switch>
-                  </MessageContentContext.Provider>
-                </MessageContext.Provider>
-              ) : (
-                <>
-                  {loading === false ? (
-                    <Switch>
-                      <Route
-                        path="/register"
-                        component={() => <SignUp user={user} />}
-                      />
-                      <Route
-                        path="/"
-                        component={() => <SignIn user={user} />}
-                      />
-                    </Switch>
-                  ) : null}
-                </>
-              )}
-            </main>
-            <footer>
-              <BottomOfPage />
-            </footer>
-          </LanguageContext.Provider>
+          <ShowCreateModalContext.Provider value={showCreateModalValue}>
+            <LanguageContext.Provider value={languageSelectedValue}>
+              <CssBaseline />
+              <header>
+                {user && loading === false ? (
+                  <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+                ) : null}
+              </header>
+              <main>
+                {user && loading === false ? (
+                  <MessageContext.Provider value={showMessageValue}>
+                    <MessageContentContext.Provider value={messageContentValue}>
+                      <Message />
+                      <Switch>
+                        <Route path="/users" component={Users} />
+                        <Route path="/my-books" component={UserBooks} />
+                        <Route
+                          path="/borrowed-books"
+                          component={BorrowedBooks}
+                        />
+                        <Route path="/manage-books" component={Books} />
+                        <Route path="/create-book" component={Books} />
+                        <Route path="/" component={Books} />
+                        <Route component={Message} />
+                      </Switch>
+                    </MessageContentContext.Provider>
+                  </MessageContext.Provider>
+                ) : (
+                  <>
+                    {loading === false ? (
+                      <Switch>
+                        <Route
+                          path="/register"
+                          component={() => <SignUp user={user} />}
+                        />
+                        <Route
+                          path="/"
+                          component={() => <SignIn user={user} />}
+                        />
+                      </Switch>
+                    ) : null}
+                  </>
+                )}
+              </main>
+              <footer>
+                <BottomOfPage />
+              </footer>
+            </LanguageContext.Provider>
+          </ShowCreateModalContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </div>

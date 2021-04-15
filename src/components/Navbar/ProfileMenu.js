@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { USER_DELETE_TOKENS_MUTATION } from "../Api/users";
+
 import { UserContext } from "../Contexts/UserContext";
 import { LanguageContext } from "../Contexts/LanguageContext";
+import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
 
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -14,6 +16,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
 
   const { user } = useContext(UserContext);
   const { languageSelected } = useContext(LanguageContext);
+  const { setShowCreateModal } = useContext(ShowCreateModalContext);
 
   const handleOnLogout = async () => {
     await deleteTokens();
@@ -46,7 +49,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
           <MenuItem onClick={() => history.push("/users")}>
             {languageSelected === "czech" ? "Uživatelé" : "Users"}
           </MenuItem>
-          <MenuItem onClick={() => history.push("/create-book")}>
+          <MenuItem onClick={() => setShowCreateModal(true)}>
             {languageSelected === "czech" ? "Vytvořit knihu" : "Create a book"}
           </MenuItem>
           <MenuItem onClick={() => history.push("/borrowed-books")}>
