@@ -18,6 +18,7 @@ import Navbar from "./components/Navbar/Navbar";
 import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 import Users from "./components/Users/Users";
 import Books from "./components/Books/Books";
+import Book from "./components/Books/Book";
 import Message from "./components/Message/Message";
 import UserBooks from "./components/Books/UserBooks";
 import BottomOfPage from "./components/BottomOfPage/BottomOfPage";
@@ -111,9 +112,8 @@ const App = () => {
                           path="/borrowed-books"
                           component={BorrowedBooks}
                         />
-                        <Route path="/manage-books" component={Books} />
-                        <Route path="/create-book" component={Books} />
                         <Route path="/" component={Books} />
+                        <Route component={Book} />
                         <Route component={Message} />
                       </Switch>
                     </MessageContentContext.Provider>

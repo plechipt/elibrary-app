@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
+
 import { LanguageContext } from "../Contexts/LanguageContext";
+import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
 import Book from "./Book";
+import CreateBookModal from "./CreateBookModal";
 import "./Books.css";
 
 import Grid from "@material-ui/core/Grid";
@@ -10,6 +13,10 @@ import Typography from "@material-ui/core/Typography";
 
 const Books = () => {
   const { languageSelected } = useContext(LanguageContext);
+  const { showCreateModal, setShowCreateModal } = useContext(
+    ShowCreateModalContext
+  );
+
   const { data: notBorrowedBooks, loading } = useQuery(
     BOOK_NOT_BORROWED_BOOKS_QUERY
   );
@@ -36,6 +43,10 @@ const Books = () => {
                   );
                 }
               )}
+              <CreateBookModal
+                openModal={showCreateModal}
+                closeModal={() => setShowCreateModal(false)}
+              />
             </>
           ) : (
             <Typography className="text-container" variant="h2">

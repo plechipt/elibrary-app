@@ -23,6 +23,10 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
     window.location.reload(); // Reset page
   };
 
+  const showModal = () => {
+    setShowCreateModal(true);
+  };
+
   return (
     <Menu
       open={isOpen}
@@ -49,7 +53,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
           <MenuItem onClick={() => history.push("/users")}>
             {languageSelected === "czech" ? "Uživatelé" : "Users"}
           </MenuItem>
-          <MenuItem onClick={() => setShowCreateModal(true)}>
+          <MenuItem onClick={showModal}>
             {languageSelected === "czech" ? "Vytvořit knihu" : "Create a book"}
           </MenuItem>
           <MenuItem onClick={() => history.push("/borrowed-books")}>
