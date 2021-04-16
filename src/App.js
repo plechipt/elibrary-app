@@ -14,7 +14,7 @@ import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-import PrivateRoute from "./components/PrivateRoute";
+import RestrictedRoute from "./components/RestrictedRoute";
 import Navbar from "./components/Navbar/Navbar";
 import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 import Users from "./components/Users/Users";
@@ -106,12 +106,21 @@ const App = () => {
                     <MessageContentContext.Provider value={messageContentValue}>
                       <Message />
                       <Switch>
-                        <PrivateRoute path="/users" component={Users} />
-                        <PrivateRoute
+                        <RestrictedRoute
+                          path="/users"
+                          forSuperUser={true}
+                          component={Users}
+                        />
+                        <RestrictedRoute
                           path="/borrowed-books"
+                          forSuperUser={true}
                           component={BorrowedBooks}
                         />
-                        <Route path="/my-books" component={UserBooks} />
+                        <RestrictedRoute
+                          path="/my-books"
+                          forSuperUser={false}
+                          component={UserBooks}
+                        />
                         <Route path="/" component={Books} />
                         <Route component={Message} />
                       </Switch>
