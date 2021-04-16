@@ -33,7 +33,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
           <img
-            src={`${PUBLIC_FOLDER}/static/images/hamlet.jpg`}
+            src={`${PUBLIC_FOLDER}/static/images/default_image.jpg`}
             className="modal-image"
             alt=""
           />
