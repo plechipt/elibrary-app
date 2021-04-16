@@ -14,6 +14,7 @@ import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
+import PrivateRoute from "./components/PrivateRoute";
 import Navbar from "./components/Navbar/Navbar";
 import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 import Users from "./components/Users/Users";
@@ -105,12 +106,12 @@ const App = () => {
                     <MessageContentContext.Provider value={messageContentValue}>
                       <Message />
                       <Switch>
-                        <Route path="/users" component={Users} />
-                        <Route path="/my-books" component={UserBooks} />
-                        <Route
+                        <PrivateRoute path="/users" component={Users} />
+                        <PrivateRoute
                           path="/borrowed-books"
                           component={BorrowedBooks}
                         />
+                        <Route path="/my-books" component={UserBooks} />
                         <Route path="/" component={Books} />
                         <Route component={Message} />
                       </Switch>

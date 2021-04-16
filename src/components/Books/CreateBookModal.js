@@ -27,7 +27,9 @@ const CreateBookModal = ({ openModal, closeModal }) => {
     >
       <DialogTitle onClose={closeModal}>
         <div className="modal-header">
-          <span className="modal-title">Create Book</span>
+          <span className="modal-title">
+            {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
+          </span>
         </div>
       </DialogTitle>
       <DialogContent className="modal-content" dividers>
