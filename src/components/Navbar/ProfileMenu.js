@@ -24,6 +24,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   };
 
   const showModal = () => {
+    history.push("/");
     setShowCreateModal(true);
   };
 

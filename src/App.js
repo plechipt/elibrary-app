@@ -113,7 +113,6 @@ const App = () => {
                           component={BorrowedBooks}
                         />
                         <Route path="/" component={Books} />
-                        <Route component={Book} />
                         <Route component={Message} />
                       </Switch>
                     </MessageContentContext.Provider>
