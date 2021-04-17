@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from .basic import *
 from .development import *
 from .graphene import *
+from .rest_framework import *
 from .production import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
