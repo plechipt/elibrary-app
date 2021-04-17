@@ -4,7 +4,6 @@ ALLOWED_HOSTS = [
     'awesome-elibrary-app.herokuapp.com',
 ]
 
-SESSION_COOKIE_SECURE = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
