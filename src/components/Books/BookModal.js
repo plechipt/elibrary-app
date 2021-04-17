@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../Contexts/UserContext";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import UserModal from "./UserModal";
 import AdminModal from "./AdminModal";
 
@@ -18,6 +19,9 @@ const BookModal = ({
   imageName,
 }) => {
   const { user } = useContext(UserContext);
+  const { languageSelected } = useContext(LanguageContext);
+
+  const [titleEnglish, titleCzech] = title;
 
   return (
     <Dialog
@@ -27,7 +31,9 @@ const BookModal = ({
     >
       <DialogTitle onClose={closeModal}>
         <div className="modal-header">
-          <span className="modal-title">{title}</span>
+          <span className="modal-title">
+            {languageSelected === "czech" ? titleCzech : titleEnglish}
+          </span>
         </div>
       </DialogTitle>
       {user.isSuperuser ? (

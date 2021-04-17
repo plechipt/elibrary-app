@@ -31,6 +31,10 @@ const UserModal = ({
   const { setMessageContent } = useContext(MessageContentContext);
   const { languageSelected } = useContext(LanguageContext);
 
+  const [titleEnglish, titleCzech] = title;
+  const [authorEnglish, authorCzech] = author;
+  const [genreEnglish, genreCzech] = title;
+
   const [borrowBook, { loading: borrowBookLoading }] = useMutation(
     BORROWING_BORROW_BOOK_MUTATION
   );
@@ -42,8 +46,8 @@ const UserModal = ({
   const borrowBookFunction = async () => {
     const message =
       languageSelected === "czech"
-        ? `Půjčil sis ${title} knihu`
-        : `You have borrowed ${title} book`;
+        ? `Půjčil sis ${titleCzech} knihu`
+        : `You have borrowed ${titleEnglish} book`;
 
     await borrowBook({
       variables: { id },
@@ -60,8 +64,8 @@ const UserModal = ({
   const returnBookFunction = async () => {
     const message =
       languageSelected === "czech"
-        ? `Vrátil si ${title} knihu`
-        : `You have borrowed ${title} book`;
+        ? `Vrátil si ${titleCzech} knihu`
+        : `You have borrowed ${titleEnglish} book`;
 
     await returnBook({
       variables: { id },
@@ -87,11 +91,15 @@ const UserModal = ({
         <div className="modal-right-side">
           <Typography className="modal-description-item">
             <b>{languageSelected === "czech" ? "Autor:" : "Author: "}</b>
-            <span>{author}</span>
+            <span>
+              {languageSelected === "czech" ? authorCzech : authorEnglish}
+            </span>
           </Typography>
           <Typography className="modal-description-item">
             <b>{languageSelected === "czech" ? "Žánr:" : "Genre: "}</b>
-            <span>{genre}</span>
+            <span>
+              {languageSelected === "czech" ? genreCzech : genreEnglish}
+            </span>
           </Typography>
           <Typography className="modal-description-item">
             <b>

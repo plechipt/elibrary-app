@@ -12,8 +12,16 @@ const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const AdminModal = ({ author, genre, numberOfPages, imageName }) => {
   const { languageSelected } = useContext(LanguageContext);
 
-  const [authorValue, setAuthorValue] = useState(author);
-  const [genreValue, setGenreValue] = useState(genre);
+  const [authorEnglish, authorCzech] = author;
+  const [genreEnglish, genreCzech] = genre;
+
+  const authorCondition =
+    languageSelected === "czech" ? authorCzech : authorEnglish;
+  const genreCondition =
+    languageSelected === "czech" ? genreCzech : genreEnglish;
+
+  const [authorValue, setAuthorValue] = useState(authorCondition);
+  const [genreValue, setGenreValue] = useState(genreCondition);
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
 
   return (

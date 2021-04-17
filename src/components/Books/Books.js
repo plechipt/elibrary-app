@@ -28,16 +28,26 @@ const Books = () => {
           {notBorrowedBooks.notBorrowedBooks.length !== 0 ? (
             <>
               {notBorrowedBooks.notBorrowedBooks.map(
-                ({ id, title, author, numberOfPages, genre, imageName }) => {
+                ({
+                  id,
+                  title,
+                  author,
+                  genre,
+                  titleCz,
+                  authorCz,
+                  genreCz,
+                  numberOfPages,
+                  imageName,
+                }) => {
                   return (
                     <Book
                       isBorrowed={false}
                       key={id}
                       id={id}
-                      title={title}
-                      author={author}
+                      title={[title, titleCz]}
+                      author={[author, authorCz]}
+                      genre={[genre, genreCz]}
                       numberOfPages={numberOfPages}
-                      genre={genre}
                       imageName={imageName}
                     />
                   );

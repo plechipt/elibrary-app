@@ -20,8 +20,11 @@ export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
       id
       title
       author
-      numberOfPages
       genre
+      titleCz
+      authorCz
+      genreCz
+      numberOfPages
       imageName
     }
   }

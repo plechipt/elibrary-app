@@ -13,12 +13,14 @@ const Book = ({
   id,
   title,
   author,
-  numberOfPages,
   genre,
+  numberOfPages,
   imageName,
 }) => {
   const [openModal, setOpenModal] = useState(false);
   const { languageSelected } = useContext(LanguageContext);
+
+  const [titleEnglish, titleCzech] = title;
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -26,7 +28,7 @@ const Book = ({
         <img
           onClick={() => setOpenModal(true)}
           src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
-          title={title}
+          title={languageSelected === "czech" ? titleCzech : titleEnglish}
           alt=""
         />
         <Button

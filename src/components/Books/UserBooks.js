@@ -19,17 +19,27 @@ const UserBooks = () => {
             <>
               {usersBorrowings.usersBorrowings.map(
                 ({
-                  book: { id, title, author, numberOfPages, genre, imageName },
+                  book: {
+                    id,
+                    title,
+                    author,
+                    genre,
+                    titleCz,
+                    authorCz,
+                    genreCz,
+                    numberOfPages,
+                    imageName,
+                  },
                 }) => {
                   return (
                     <Book
                       isBorrowed={true}
                       key={id}
                       id={id}
-                      title={title}
-                      author={author}
+                      title={[title, titleCz]}
+                      author={[author, authorCz]}
+                      genre={[genre, genreCz]}
                       numberOfPages={numberOfPages}
-                      genre={genre}
                       imageName={imageName}
                     />
                   );

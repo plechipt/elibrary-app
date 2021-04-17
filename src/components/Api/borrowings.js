@@ -13,8 +13,11 @@ export const BORROWING_USER_LIST_QUERY = gql`
         id
         title
         author
-        numberOfPages
         genre
+        titleCz
+        authorCz
+        genreCz
+        numberOfPages
         imageName
       }
     }
