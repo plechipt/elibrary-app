@@ -26,8 +26,8 @@ import SignIn from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/Register";
 
 const App = () => {
-  const [user, setUser] = useState({ username: "admin1", isSuperuser: true });
-  //const [user, setUser] = useState(null);
+  //const [user, setUser] = useState({ username: "admin1", isSuperuser: true });
+  const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
@@ -96,12 +96,12 @@ const App = () => {
             <LanguageContext.Provider value={languageSelectedValue}>
               <CssBaseline />
               <header>
-                {true && loading === false ? (
+                {user && loading === false ? (
                   <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
                 ) : null}
               </header>
               <main>
-                {true && loading === false ? (
+                {user && loading === false ? (
                   <MessageContext.Provider value={showMessageValue}>
                     <MessageContentContext.Provider value={messageContentValue}>
                       <Message />

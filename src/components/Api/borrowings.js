@@ -24,6 +24,22 @@ export const BORROWING_USER_LIST_QUERY = gql`
   }
 `;
 
+export const BORROWING_LIST_QUERY = gql`
+  query {
+    borrowings {
+      id
+      book {
+        title
+        titleCz
+      }
+      user {
+        username
+      }
+      dateString
+    }
+  }
+`;
+
 // Mutation
 export const BORROWING_BORROW_BOOK_MUTATION = gql`
   mutation($id: ID!) {

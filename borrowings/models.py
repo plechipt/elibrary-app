@@ -11,5 +11,8 @@ class Borrowing(models.Model):
     date = models.DateTimeField(default=timezone.now)
     date_string = models.CharField(blank=True, null=True, max_length=50)
 
+    class Meta:
+        ordering = ['-date']
+
     def __str__(self):
         return f'{self.user.username} borrowed {self.book.title}'

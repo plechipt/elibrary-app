@@ -1,4 +1,5 @@
 import graphene
+from datetime import datetime
 from graphene_django import DjangoObjectType
 
 from users.models import User
@@ -19,8 +20,9 @@ class BorrowBook(graphene.Mutation):
     def mutate(self, info, id):
         user = info.context.user
         book = Book.objects.get(id=id)
+        date = datetime.now().strftime('%d.%m %Y')
 
-        borrowing = Borrowing.objects.create(user=user, book=book)
+        borrowing = Borrowing.objects.create(user=user, book=book, date_string=date)
 
         return BorrowBook(borrowing)
 

@@ -9,7 +9,7 @@ class BorrowingMutation(graphene.ObjectType):
 
 class BorrowingQuery(graphene.ObjectType):
     borrowings = graphene.List(BorrowingType)
-    users_borrowings = graphene.List(BorrowingType, language=graphene.String())
+    users_borrowings = graphene.List(BorrowingType)
 
     def resolve_borrowings(self, info):
         return Borrowing.objects.all()
