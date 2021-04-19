@@ -10,6 +10,15 @@ export const USER_ME_QUERY = gql`
   }
 `;
 
+export const USER_ALL_USERS_QUERY = gql`
+  query {
+    allUsers {
+      id
+      username
+    }
+  }
+`;
+
 // Mutations
 export const USER_REGISTER_MUTATION = gql`
   mutation(

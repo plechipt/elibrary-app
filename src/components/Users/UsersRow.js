@@ -1,40 +1,21 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import User from "./User";
+
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  blue: {
-    backgroundColor: "#1976D2",
-  },
-}));
-
-const UsersRow = () => {
-  const classes = useStyles();
-
+const UsersRow = ({ users }) => {
   return (
     <List className="user-row">
-      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
+      {users.allUsers.map(({ id, username }) => {
+        const firstLetter = username[0].toUpperCase();
+
         return (
-          <ListItem className="user-item" key={value} button>
-            <ListItemAvatar>
-              <Avatar className={classes.blue}>A{value}</Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              className="text-item"
-              id={labelId}
-              primary={`Line item ${value + 1}`}
-            />
-          </ListItem>
+          <User
+            key={id}
+            id={id}
+            username={username}
+            firstLetter={firstLetter}
+          />
         );
       })}
     </List>
