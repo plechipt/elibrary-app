@@ -6,7 +6,7 @@ from borrowings.models import Borrowing
 
 
 class BookMutation(graphene.ObjectType):
-    pass
+    delete_book = DeleteBook.Field()
 
 
 class BookQuery(graphene.ObjectType):

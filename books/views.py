@@ -15,5 +15,4 @@ class BookViewSet(viewsets.ModelViewSet):
     ]
 
     def perform_create(self, serializer, **kwargs):
-        print(kwargs)
         serializer.save(owner=self.request.user)

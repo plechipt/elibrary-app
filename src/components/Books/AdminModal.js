@@ -66,10 +66,10 @@ const AdminModal = ({ author, genre, numberOfPages, imageName }) => {
       </DialogContent>
       <DialogActions>
         <Button color="primary" variant="contained">
-          {languageSelected === "czech" ? "Smazat knihu" : "Delete Book"}
+          {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
         </Button>
         <Button color="primary" variant="contained">
-          {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
+          {languageSelected === "czech" ? "Smazat knihu" : "Delete Book"}
         </Button>
       </DialogActions>
     </>
