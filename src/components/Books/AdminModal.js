@@ -1,5 +1,10 @@
 import React, { useState, useContext } from "react";
+import { useMutation } from "@apollo/client";
 import { LanguageContext } from "../Contexts/LanguageContext";
+import { MessageContext } from "../Contexts/MessageContext";
+import { MessageContentContext } from "../Contexts/MessageContentContext";
+import { BOOK_DELETE_BOOK_MUTATION } from "../Api/books";
+import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -9,9 +14,16 @@ import DialogActions from "@material-ui/core/DialogActions";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
-const AdminModal = ({ author, genre, numberOfPages, imageName }) => {
+const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
+  const { setShowMessage } = useContext(MessageContext);
+  const { setMessageContent } = useContext(MessageContentContext);
   const { languageSelected } = useContext(LanguageContext);
 
+  console.log(title);
+
+  const [deleteBook] = useMutation(BOOK_DELETE_BOOK_MUTATION);
+
+  const [titleEnglish, titleCzech] = title;
   const [authorEnglish, authorCzech] = author;
   const [genreEnglish, genreCzech] = genre;
 
@@ -23,6 +35,21 @@ const AdminModal = ({ author, genre, numberOfPages, imageName }) => {
   const [authorValue, setAuthorValue] = useState(authorCondition);
   const [genreValue, setGenreValue] = useState(genreCondition);
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
+
+  const handleOnDelete = async () => {
+    const message =
+      languageSelected === "czech"
+        ? `Smazal si ${titleCzech} knihu`
+        : `You have deleted ${titleEnglish} book`;
+
+    await deleteBook({
+      variables: { id },
+      refetchQueries: [{ query: BOOK_NOT_BORROWED_BOOKS_QUERY }],
+    });
+
+    setShowMessage(true);
+    setMessageContent(message);
+  };
 
   return (
     <>
@@ -68,7 +95,7 @@ const AdminModal = ({ author, genre, numberOfPages, imageName }) => {
         <Button color="primary" variant="contained">
           {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
         </Button>
-        <Button color="primary" variant="contained">
+        <Button onClick={handleOnDelete} color="primary" variant="contained">
           {languageSelected === "czech" ? "Smazat knihu" : "Delete Book"}
         </Button>
       </DialogActions>

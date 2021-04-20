@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-// Query
+// Queries
 export const BORROWING_USER_LIST_QUERY = gql`
   query {
     usersBorrowings {

@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-//Query
+// Queries
 export const BOOK_LIST_QUERY = gql`
   query {
     books {
@@ -26,6 +26,15 @@ export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
       genreCz
       numberOfPages
       imageName
+    }
+  }
+`;
+
+// Mutations
+export const BOOK_DELETE_BOOK_MUTATION = gql`
+  mutation($id: ID!) {
+    deleteBook(id: $id) {
+      message
     }
   }
 `;

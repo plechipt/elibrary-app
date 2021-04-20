@@ -38,6 +38,8 @@ const BookModal = ({
       </DialogTitle>
       {user.isSuperuser ? (
         <AdminModal
+          id={id}
+          title={title}
           author={author}
           genre={genre}
           numberOfPages={numberOfPages}

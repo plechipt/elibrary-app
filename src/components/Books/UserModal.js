@@ -33,7 +33,7 @@ const UserModal = ({
 
   const [titleEnglish, titleCzech] = title;
   const [authorEnglish, authorCzech] = author;
-  const [genreEnglish, genreCzech] = title;
+  const [genreEnglish, genreCzech] = genre;
 
   const [borrowBook, { loading: borrowBookLoading }] = useMutation(
     BORROWING_BORROW_BOOK_MUTATION
