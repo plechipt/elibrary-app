@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.response import Response
 
 from .models import Book
 from .serializers import BookSerializer
@@ -13,5 +14,6 @@ class BookViewSet(viewsets.ModelViewSet):
         permissions.IsAdminUser
     ]
 
-    def perform_create(self, serializer):
+    def perform_create(self, serializer, **kwargs):
+        print(kwargs)
         serializer.save(owner=self.request.user)

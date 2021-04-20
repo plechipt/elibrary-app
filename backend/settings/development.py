@@ -1,3 +1,8 @@
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:3000',
@@ -19,7 +24,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Static files (CSS, JavaScript, Images)
+MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'public' / 'static' / 'images')
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
