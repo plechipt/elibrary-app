@@ -16,6 +16,7 @@ ADMIN_PATH = os.getenv("ADMIN_PATH")
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('books/', include('books.urls')),
     path("graphql/", jwt_cookie(GraphQLView.as_view(graphiql=True))),
     path('robots.txt', TemplateView.as_view(template_name='static/text/robots.txt')),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
