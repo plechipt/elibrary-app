@@ -47,8 +47,12 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
       refetchQueries: [{ query: BOOK_NOT_BORROWED_BOOKS_QUERY }],
     });
 
+    // Show success message
     setShowMessage(true);
     setMessageContent(message);
+
+    //Scroll to top
+    window.scrollTo(0, 0);
   };
 
   return (
