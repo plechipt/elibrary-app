@@ -28,11 +28,14 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [authorEnglish, authorCzech] = author;
   const [genreEnglish, genreCzech] = genre;
 
+  const titleCondition =
+    languageSelected === "czech" ? titleCzech : titleEnglish;
   const authorCondition =
     languageSelected === "czech" ? authorCzech : authorEnglish;
   const genreCondition =
     languageSelected === "czech" ? genreCzech : genreEnglish;
 
+  const [titleValue, setTitleValue] = useState(titleCondition);
   const [authorValue, setAuthorValue] = useState(authorCondition);
   const [genreValue, setGenreValue] = useState(genreCondition);
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
@@ -86,6 +89,13 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
           </Button>
         </div>
         <div className="modal-right-side">
+          <Typography className="modal-description-item">
+            <TextField
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+              label={languageSelected === "czech" ? "Název" : "Title"}
+            />
+          </Typography>
           <Typography className="modal-description-item">
             <TextField
               value={authorValue}
