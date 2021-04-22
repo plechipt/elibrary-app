@@ -13,13 +13,25 @@ import DialogActions from "@material-ui/core/DialogActions";
 import PublishIcon from "@material-ui/icons/Publish";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+const DEFAULT_IMAGE = `${PUBLIC_FOLDER}/static/images/default.jpg`;
 
 const CreateBookModal = ({ openModal, closeModal }) => {
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [numberOfPages, setNumberOfPages] = useState("");
+  const [image, setImage] = useState(null);
 
   const { languageSelected } = useContext(LanguageContext);
+
+  const handleImageChange = (e) => {
+    const selected = e.target.files[0];
+
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(selected);
+  };
 
   return (
     <Dialog
@@ -37,17 +49,20 @@ const CreateBookModal = ({ openModal, closeModal }) => {
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
           <img
-            src={`${PUBLIC_FOLDER}/static/images/default.jpg`}
+            src={image ? image : DEFAULT_IMAGE}
             className="modal-image"
             alt=""
           />
           <Button
             className="upload-button"
+            type="submit"
             variant="contained"
             color="primary"
+            component="label"
             startIcon={<PublishIcon />}
           >
             {languageSelected === "czech" ? "Nahrát obrázek" : "Upload image"}
+            <input onChange={handleImageChange} type="file" hidden />
           </Button>
         </div>
         <div className="modal-right-side">
