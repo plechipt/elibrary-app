@@ -10,6 +10,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
+import PublishIcon from "@material-ui/icons/Publish";
+
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
 const CreateBookModal = ({ openModal, closeModal }) => {
@@ -39,6 +41,14 @@ const CreateBookModal = ({ openModal, closeModal }) => {
             className="modal-image"
             alt=""
           />
+          <Button
+            className="upload-button"
+            variant="contained"
+            color="primary"
+            startIcon={<PublishIcon />}
+          >
+            {languageSelected === "czech" ? "Nahrát obrázek" : "Upload image"}
+          </Button>
         </div>
         <div className="modal-right-side">
           <Typography className="modal-description-item">

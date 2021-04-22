@@ -29,6 +29,12 @@
   height: 40%;
 }
 
+.upload-button {
+  display: flex !important;
+  margin: auto !important;
+  margin-top: 0.5rem !important;
+}
+
 .blue-button {
   background: #1976d2 !important;
 }
