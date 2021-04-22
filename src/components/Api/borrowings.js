@@ -35,7 +35,7 @@ export const BORROWING_LIST_QUERY = gql`
       user {
         username
       }
-      dateString
+      dateBorrowed
     }
   }
 `;

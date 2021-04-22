@@ -39,13 +39,13 @@ const BorrowedBooks = () => {
             </TableHead>
             <TableBody>
               {borrowings.borrowings.map(
-                ({ id, book: { title }, user: { username }, dateString }) => {
+                ({ id, book: { title }, user: { username }, dateBorrowed }) => {
                   return (
                     <TableRowComponent
                       key={id}
                       title={title}
                       username={username}
-                      date={dateString}
+                      date={dateBorrowed}
                     />
                   );
                 }
