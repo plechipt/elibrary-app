@@ -36,6 +36,7 @@ export const BORROWING_LIST_QUERY = gql`
         username
       }
       dateBorrowed
+      dateReturned
     }
   }
 `;

@@ -9,6 +9,7 @@ class Borrowing(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.OneToOneField(Book, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
+    returned = models.BooleanField(default=False)
     date_borrowed = models.CharField(blank=True, null=True, max_length=50)
     date_returned = models.CharField(blank=True, null=True, max_length=50)
 

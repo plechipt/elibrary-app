@@ -16,5 +16,5 @@ class BorrowingQuery(graphene.ObjectType):
 
     def resolve_users_borrowings(self, info):
         user = info.context.user
-        return Borrowing.objects.filter(user=user)
+        return Borrowing.objects.filter(user=user, returned=False)
 

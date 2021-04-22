@@ -36,8 +36,11 @@ class ReturnBook(graphene.Mutation):
     def mutate(self, info, id):
         user = info.context.user
         book = Book.objects.get(id=id)
+        date = datetime.now().strftime('%d.%m %Y')
 
         borrowing = Borrowing.objects.get(user=user, book=book)
-        borrowing.delete() 
+        borrowing.date_returned = date
+        borrowing.returned = True
+        borrowing.save()
 
         return ReturnBook(message='Success')

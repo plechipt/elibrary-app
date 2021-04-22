@@ -33,19 +33,29 @@ const BorrowedBooks = () => {
                 <TableCell align="left">
                   {languageSelected === "czech"
                     ? "Den vypůjčení"
-                    : "Borrowing day"}
+                    : "Borrow day"}
+                </TableCell>
+                <TableCell align="left">
+                  {languageSelected === "czech" ? "Den vrácení" : "Return day"}
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {borrowings.borrowings.map(
-                ({ id, book: { title }, user: { username }, dateBorrowed }) => {
+                ({
+                  id,
+                  book: { title },
+                  user: { username },
+                  dateBorrowed,
+                  dateReturned,
+                }) => {
                   return (
                     <TableRowComponent
                       key={id}
                       title={title}
                       username={username}
-                      date={dateBorrowed}
+                      dateBorrowed={dateBorrowed}
+                      dateReturned={dateReturned}
                     />
                   );
                 }
