@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import PublishIcon from "@material-ui/icons/Publish";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 
@@ -18,6 +19,8 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
   const { languageSelected } = useContext(LanguageContext);
+
+  const imageURL = `${PUBLIC_FOLDER}/static/images/${imageName}`;
 
   const [deleteBook] = useMutation(BOOK_DELETE_BOOK_MUTATION);
 
@@ -33,6 +36,17 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [authorValue, setAuthorValue] = useState(authorCondition);
   const [genreValue, setGenreValue] = useState(genreCondition);
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const selected = e.target.files[0];
+
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(selected);
+  };
 
   const handleOnDelete = async () => {
     const message =
@@ -57,11 +71,19 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     <>
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
-          <img
-            src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
-            className="modal-image"
-            alt=""
-          />
+          <img src={image ? image : imageURL} className="modal-image" alt="" />
+
+          <Button
+            className="upload-button"
+            type="submit"
+            variant="contained"
+            color="primary"
+            component="label"
+            startIcon={<PublishIcon />}
+          >
+            {languageSelected === "czech" ? "Nahrát obrázek" : "Upload image"}
+            <input onChange={handleImageChange} type="file" hidden />
+          </Button>
         </div>
         <div className="modal-right-side">
           <Typography className="modal-description-item">
