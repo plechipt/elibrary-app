@@ -19,8 +19,6 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setMessageContent } = useContext(MessageContentContext);
   const { languageSelected } = useContext(LanguageContext);
 
-  console.log(title);
-
   const [deleteBook] = useMutation(BOOK_DELETE_BOOK_MUTATION);
 
   const [titleEnglish, titleCzech] = title;

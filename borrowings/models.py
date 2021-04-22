@@ -10,6 +10,7 @@ class Borrowing(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     date_string = models.CharField(blank=True, null=True, max_length=50)
+    returned = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date']
