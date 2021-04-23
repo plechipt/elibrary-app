@@ -14,6 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import PublishIcon from "@material-ui/icons/Publish";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setShowMessage } = useContext(MessageContext);
@@ -22,6 +23,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
 
   const imageURL = `${PUBLIC_FOLDER}/static/images/${imageName}`;
 
+  const [errorMessage, setErrorMessage] = useState(null);
   const [deleteBook] = useMutation(BOOK_DELETE_BOOK_MUTATION);
 
   const [titleEnglish, titleCzech] = title;
@@ -42,13 +44,24 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
+    setErrorMessage(null);
     const selected = e.target.files[0];
+    const isCorrectType = ALLOWED_TYPES.includes(selected.type);
 
-    let reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(selected);
+    if (selected && isCorrectType) {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(selected);
+    } else {
+      const message =
+        languageSelected === "czech"
+          ? "Přiložený soubor není obrázek!"
+          : "Attached file is not image!";
+
+      setErrorMessage(message);
+    }
   };
 
   const handleOnDelete = async () => {
@@ -74,8 +87,17 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     <>
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
-          <img src={image ? image : imageURL} className="modal-image" alt="" />
-
+          {errorMessage ? (
+            <Typography className="modal-error-message" variant="h5">
+              {errorMessage}
+            </Typography>
+          ) : (
+            <img
+              src={image ? image : imageURL}
+              className="modal-image"
+              alt=""
+            />
+          )}
           <Button
             className="upload-button"
             type="submit"

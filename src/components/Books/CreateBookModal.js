@@ -13,6 +13,7 @@ import PublishIcon from "@material-ui/icons/Publish";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const DEFAULT_IMAGE = `${PUBLIC_FOLDER}/static/images/default.jpg`;
+const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 const CreateBookModal = ({ openModal, closeModal }) => {
   const [title, setTitle] = useState("");
@@ -21,22 +22,32 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [image, setImage] = useState(null);
 
+  const [errorMessage, setErrorMessage] = useState(null);
   const { languageSelected } = useContext(LanguageContext);
 
   const handleImageChange = (e) => {
+    setErrorMessage(null);
     const selected = e.target.files[0];
+    const isCorrectType = ALLOWED_TYPES.includes(selected.type);
 
-    let reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(selected);
+    if (selected && isCorrectType) {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(selected);
+    } else {
+      const message =
+        languageSelected === "czech"
+          ? "Přiložený soubor není obrázek!"
+          : "Attached file is not image!";
+
+      setErrorMessage(message);
+    }
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("test");
 
     axiosInstance.post("/books/", {
       title,
@@ -62,11 +73,17 @@ const CreateBookModal = ({ openModal, closeModal }) => {
       <form onSubmit={handleOnSubmit}>
         <DialogContent className="modal-content" dividers>
           <div className="modal-left-side">
-            <img
-              src={image ? image : DEFAULT_IMAGE}
-              className="modal-image"
-              alt=""
-            />
+            {errorMessage ? (
+              <Typography className="modal-error-message" variant="h5">
+                {errorMessage}
+              </Typography>
+            ) : (
+              <img
+                src={image ? image : DEFAULT_IMAGE}
+                className="modal-image"
+                alt=""
+              />
+            )}
             <Button
               className="upload-button"
               variant="contained"
