@@ -18,6 +18,7 @@ ipython = "*"
 python-dotenv = "*"
 djangorestframework = "*"
 pillow = "*"
+django-extra-fields = "*"
 
 [dev-packages]
 

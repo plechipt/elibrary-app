@@ -11,15 +11,15 @@ from .serializers import BookSerializer
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-   
-    @action(detail=True, methods=['post'])
-    def upload_file(self, request, pk):
+
+    @action(detail=False, methods=['post'])
+    def upload_file(self, request):
         try:
             file = request.data['file']
         except KeyError:
             return Response('Request has no resource file attached')
 
-        print(pk)
-        book = Product.objects.get(id=id)
+        print(file)
+        book = Book.objects.last()
 
         return Response(book)

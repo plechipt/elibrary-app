@@ -18,9 +18,6 @@ class Book(models.Model):
     image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
 
-    class Meta:
-        ordering = ['-id']
-
     def __str__(self):
         return self.title
 

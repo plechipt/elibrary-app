@@ -41,7 +41,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [authorValue, setAuthorValue] = useState(authorCondition);
   const [genreValue, setGenreValue] = useState(genreCondition);
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
-  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const handleImageChange = (e) => {
     setErrorMessage(null);
@@ -51,7 +51,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     if (selected && isCorrectType) {
       let reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(selected);
     } else {
@@ -93,7 +93,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
             </Typography>
           ) : (
             <img
-              src={image ? image : imageURL}
+              src={imagePreview ? imagePreview : imageURL}
               className="modal-image"
               alt=""
             />
