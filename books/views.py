@@ -12,10 +12,6 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
    
-
-    def perform_create(self, serializer, **kwargs):
-        serializer.save(owner=self.request.user)
-    
     @action(detail=True, methods=['post'])
     def upload_file(self, request, pk):
         try:

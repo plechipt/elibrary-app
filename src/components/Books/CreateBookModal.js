@@ -10,7 +10,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import PublishIcon from "@material-ui/icons/Publish";
-import axios from "axios";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const DEFAULT_IMAGE = `${PUBLIC_FOLDER}/static/images/default.jpg`;
@@ -36,23 +35,31 @@ const CreateBookModal = ({ openModal, closeModal }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    axios.post("/books/", {});
+
+    console.log("test");
+
+    axiosInstance.post("/books/", {
+      title,
+      author,
+      genre,
+      number_of_pages: numberOfPages,
+    });
   };
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <Dialog
-        open={openModal}
-        onClose={closeModal}
-        aria-labelledby="customized-dialog-title"
-      >
-        <DialogTitle onClose={closeModal}>
-          <div className="modal-header">
-            <span className="modal-title">
-              {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
-            </span>
-          </div>
-        </DialogTitle>
+    <Dialog
+      open={openModal}
+      onClose={closeModal}
+      aria-labelledby="customized-dialog-title"
+    >
+      <DialogTitle onClose={closeModal}>
+        <div className="modal-header">
+          <span className="modal-title">
+            {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
+          </span>
+        </div>
+      </DialogTitle>
+      <form onSubmit={handleOnSubmit}>
         <DialogContent className="modal-content" dividers>
           <div className="modal-left-side">
             <img
@@ -62,7 +69,6 @@ const CreateBookModal = ({ openModal, closeModal }) => {
             />
             <Button
               className="upload-button"
-              type="submit"
               variant="contained"
               color="primary"
               component="label"
@@ -122,8 +128,8 @@ const CreateBookModal = ({ openModal, closeModal }) => {
             {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
           </Button>
         </DialogActions>
-      </Dialog>
-    </form>
+      </form>
+    </Dialog>
   );
 };
 
