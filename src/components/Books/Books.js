@@ -8,6 +8,7 @@ import Book from "./Book";
 import CreateBookModal from "./CreateBookModal";
 import "./Books.css";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
@@ -66,7 +67,9 @@ const Books = () => {
             </Typography>
           )}
         </Grid>
-      ) : null}
+      ) : (
+        <CircularProgress />
+      )}
     </div>
   );
 };

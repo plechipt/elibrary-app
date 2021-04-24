@@ -4,6 +4,7 @@ import { BORROWING_USER_LIST_QUERY } from "../Api/borrowings";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import Book from "./Book";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
@@ -54,7 +55,9 @@ const UserBooks = () => {
             </Typography>
           )}
         </Grid>
-      ) : null}
+      ) : (
+        <CircularProgress />
+      )}
     </div>
   );
 };

@@ -57,11 +57,18 @@ const CreateBookModal = ({ openModal, closeModal }) => {
     formData.append("author", author);
     formData.append("genre", genre);
     formData.append("number_of_pages", numberOfPages);
-    formData.append("image", image);
+
+    // If image was attached -> add image
+    if (image) {
+      formData.append("image", image);
+    }
 
     await axiosInstance.post("/books/", formData).catch((err) => {
       console.log(err.response);
     });
+
+    // Reset website
+    window.location.reload();
   };
 
   return (

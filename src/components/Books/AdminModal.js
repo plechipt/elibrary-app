@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { axiosInstance } from "../axios";
 import { useMutation } from "@apollo/client";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { MessageContext } from "../Contexts/MessageContext";
@@ -42,6 +43,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [genreValue, setGenreValue] = useState(genreCondition);
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
   const [imagePreview, setImagePreview] = useState(null);
+  const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
     setErrorMessage(null);
@@ -49,6 +51,8 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     const isCorrectType = ALLOWED_TYPES.includes(selected.type);
 
     if (selected && isCorrectType) {
+      setImage(selected);
+
       let reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -62,6 +66,28 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
 
       setErrorMessage(message);
     }
+  };
+
+  const handleOnEdit = async (e) => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("title", titleValue);
+    formData.append("author", authorValue);
+    formData.append("genre", genreValue);
+    formData.append("number_of_pages", numberOfPagesValue);
+
+    // If image was attached -> add image
+    if (image) {
+      formData.append("image", image);
+    }
+
+    await axiosInstance.put(`/books/${id}/`, formData).catch((err) => {
+      console.log(err.response);
+    });
+
+    // Reset website
+    window.location.reload();
   };
 
   const handleOnDelete = async () => {
@@ -148,7 +174,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="contained">
+        <Button onClick={handleOnEdit} color="primary" variant="contained">
           {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
         </Button>
         <Button onClick={handleOnDelete} color="primary" variant="contained">
