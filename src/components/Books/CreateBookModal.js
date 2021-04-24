@@ -22,6 +22,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
+  const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const { languageSelected } = useContext(LanguageContext);
 
@@ -31,6 +32,8 @@ const CreateBookModal = ({ openModal, closeModal }) => {
     const isCorrectType = ALLOWED_TYPES.includes(selected.type);
 
     if (selected && isCorrectType) {
+      setImage(selected);
+
       let reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -49,11 +52,15 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    await axiosInstance.post("/books/", {
-      title,
-      author,
-      genre,
-      number_of_pages: numberOfPages,
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("genre", genre);
+    formData.append("number_of_pages", numberOfPages);
+    formData.append("image", image);
+
+    await axiosInstance.post("/books/", formData).catch((err) => {
+      console.log(err.response);
     });
   };
 

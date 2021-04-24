@@ -15,11 +15,15 @@ class BookViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def upload_file(self, request):
         try:
-            file = request.data['file']
+            file = request.data['image_file']
         except KeyError:
             return Response('Request has no resource file attached')
 
         print(file)
         book = Book.objects.last()
+        print(book)
+        book.image = file
+        book.save()
+        serializer = BookSerializer(book)
 
-        return Response(book)
+        return Response(serializer.data)
