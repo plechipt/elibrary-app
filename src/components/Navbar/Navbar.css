@@ -1,7 +1,6 @@
 .root {
   flex-grow: 1;
-  margin-bottom: 100;
-  margin-bottom: 7rem !important;
+  margin-bottom: 5rem !important;
 }
 
 .main-title {

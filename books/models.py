@@ -17,11 +17,7 @@ class Book(models.Model):
     number_of_pages = models.IntegerField()
     image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
-
-    def __init__(self, *args, **kwargs):
-        super(Book, self).__init__(*args, **kwargs)
-        self.__original_image = self.image
-
+    
     def __str__(self):
         return self.title
 
