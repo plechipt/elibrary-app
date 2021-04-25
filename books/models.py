@@ -18,13 +18,19 @@ class Book(models.Model):
     image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
 
+    def __init__(self, *args, **kwargs):
+        super(Book, self).__init__(*args, **kwargs)
+        self.__original_image = self.image
+
     def __str__(self):
         return self.title
 
 
 @receiver(post_save, sender=Book)
 def after_book_create(sender, instance, created, **kwargs):
-    if created:
-        obj = instance
+    obj = instance
+
+    # If image was updated
+    if obj.image != obj.image_name:
         obj.image_name = obj.image.name
         obj.save()
