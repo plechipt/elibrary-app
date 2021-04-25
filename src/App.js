@@ -14,7 +14,9 @@ import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-import RestrictedRoute from "./components/RestrictedRoute";
+import RestrictedRoute from "./components/Other/RestrictedRoute";
+import ScrollToTop from "./components/Other/ScrollToTop";
+
 import Navbar from "./components/Navbar/Navbar";
 import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 import Users from "./components/Users/Users";
@@ -90,6 +92,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <ScrollToTop />
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={userValue}>
           <ShowCreateModalContext.Provider value={showCreateModalValue}>

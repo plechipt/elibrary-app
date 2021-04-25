@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { UserContext } from "./Contexts/UserContext";
+import { UserContext } from "../Contexts/UserContext";
 
 const RestrictedRoute = ({ component: Component, forSuperUser }) => {
   const { user } = useContext(UserContext);
