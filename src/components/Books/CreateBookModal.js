@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import { MessageContext } from "../Contexts/MessageContext";
+import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { axiosInstance } from "../axios";
 
@@ -22,6 +24,8 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
+  const { setShowMessage } = useContext(MessageContext);
+  const { setMessageContent } = useContext(MessageContentContext);
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const { languageSelected } = useContext(LanguageContext);
@@ -51,6 +55,10 @@ const CreateBookModal = ({ openModal, closeModal }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    const message =
+      languageSelected === "czech"
+        ? `Uspěšná vytvořena ${title} kniha`
+        : `Successfully created ${title} book`;
 
     let formData = new FormData();
     formData.append("title", title);
@@ -69,6 +77,8 @@ const CreateBookModal = ({ openModal, closeModal }) => {
 
     // Reset website
     window.location.reload();
+    setShowMessage(true);
+    setMessageContent(message);
   };
 
   return (
