@@ -70,6 +70,10 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
 
   const handleOnEdit = async (e) => {
     e.preventDefault();
+    const message =
+      languageSelected === "czech"
+        ? `Uspěšně upravena ${titleCzech} kniha`
+        : `Successfully edited ${titleEnglish} book`;
 
     let formData = new FormData();
     formData.append("title", titleValue);
@@ -87,7 +91,10 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     });
 
     // Reset website
-    window.location.reload();
+    //window.location.reload();
+    setShowMessage(true);
+    setMessageContent(message);
+    console.log("test");
   };
 
   const handleOnDelete = async () => {
