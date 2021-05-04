@@ -22,7 +22,7 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
-    def save(self):
+    def save(self, *args, **kwargs):
         super().save()
         img = Image.open(self.image.path)
 
@@ -30,7 +30,6 @@ class Book(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
-
 
 
 @receiver(post_save, sender=Book)
