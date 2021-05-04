@@ -20,7 +20,7 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
 
   const handleOnLogout = async () => {
     await deleteTokens();
-    window.location.reload(); // Reset page
+    history.go(0); // Reset page
   };
 
   const showModal = () => {

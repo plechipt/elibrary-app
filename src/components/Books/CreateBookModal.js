@@ -3,6 +3,7 @@ import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { axiosInstance } from "../axios";
+import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -24,8 +25,10 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
+  const history = useHistory();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
+
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const { languageSelected } = useContext(LanguageContext);
@@ -75,8 +78,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
       console.log(err.response);
     });
 
-    // Reset website
-    window.location.reload();
+    history.got(0); // Reset website
     setShowMessage(true);
     setMessageContent(message);
   };

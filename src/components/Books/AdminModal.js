@@ -93,6 +93,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     });
 
     // Reset website
+    history.go(0);
     setShowMessage(true);
     setMessageContent(message);
   };
