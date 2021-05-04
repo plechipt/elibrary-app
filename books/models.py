@@ -39,11 +39,12 @@ def after_book_create(sender, instance, created, **kwargs):
     # If image was updated
     if obj.image != obj.image_name:
         obj.image_name = obj.image.name
+        obj.save()
     
     # Save the attributes to czech language after create
     if created:
         obj.title_cz = obj.title
         obj.author_cz = obj.author
         obj.genre_cz = obj.genre
+        obj.save()
     
-    obj.save()

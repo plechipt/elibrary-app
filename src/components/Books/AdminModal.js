@@ -6,6 +6,7 @@ import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { BOOK_DELETE_BOOK_MUTATION } from "../Api/books";
 import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
+import { useHistory } from "react-router";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -22,6 +23,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setMessageContent } = useContext(MessageContentContext);
   const { languageSelected } = useContext(LanguageContext);
 
+  const history = useHistory();
   const imageURL = `${PUBLIC_FOLDER}/static/images/${imageName}`;
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -91,10 +93,8 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     });
 
     // Reset website
-    //window.location.reload();
     setShowMessage(true);
     setMessageContent(message);
-    console.log("test");
   };
 
   const handleOnDelete = async () => {
