@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { axiosInstance } from "../axios";
 import { useMutation } from "@apollo/client";
 import { LanguageContext } from "../Contexts/LanguageContext";
@@ -45,6 +45,35 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [numberOfPagesValue, setNumberOfPagesValue] = useState(numberOfPages);
   const [imagePreview, setImagePreview] = useState(null);
   const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const titleDidntChange = titleValue === titleCondition;
+    const authorDidntChange = authorValue === authorCondition;
+    const genreDidntChange = genreValue === genreCondition;
+    const numberOfPagesDidntChange = numberOfPagesValue === numberOfPages;
+
+    if (
+      titleDidntChange &&
+      authorDidntChange &&
+      genreDidntChange &&
+      numberOfPagesDidntChange &&
+      image === null
+    ) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [
+    titleValue,
+    authorValue,
+    genreValue,
+    numberOfPagesValue,
+    image,
+    titleCondition,
+    authorCondition,
+    genreCondition,
+    numberOfPages,
+  ]);
 
   const handleImageChange = (e) => {
     setErrorMessage(null);
