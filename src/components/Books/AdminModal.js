@@ -6,7 +6,6 @@ import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { BOOK_DELETE_BOOK_MUTATION } from "../Api/books";
 import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
-import { useHistory } from "react-router";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -23,7 +22,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setMessageContent } = useContext(MessageContentContext);
   const { languageSelected } = useContext(LanguageContext);
 
-  const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const imageURL = `${PUBLIC_FOLDER}/static/images/${imageName}`;
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -71,7 +70,9 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   };
 
   const handleOnEdit = async (e) => {
+    setLoading(true);
     e.preventDefault();
+
     const message =
       languageSelected === "czech"
         ? `Uspěšně upravena ${titleCzech} kniha`
@@ -88,17 +89,24 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
       formData.append("image", image);
     }
 
-    await axiosInstance.put(`/books/${id}/`, formData).catch((err) => {
-      console.log(err.response);
-    });
+    await axiosInstance
+      .put(`/books/${id}/`, formData)
+      .catch((err) => {
+        console.log(err.response);
+      })
+      .then(() => {
+        setLoading(false);
+      });
 
     // Reset website
-    history.go(0);
+    window.location.reload();
     setShowMessage(true);
     setMessageContent(message);
   };
 
   const handleOnDelete = async () => {
+    setLoading(true);
+
     const message =
       languageSelected === "czech"
         ? `Smazal si ${titleCzech} knihu`
@@ -112,6 +120,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     // Show success message
     setShowMessage(true);
     setMessageContent(message);
+    setLoading(false);
 
     //Scroll to top
     window.scrollTo(0, 0);
@@ -182,7 +191,12 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleOnEdit} color="primary" variant="contained">
+        <Button
+          disabled={loading}
+          onClick={handleOnEdit}
+          color="primary"
+          variant="contained"
+        >
           {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
         </Button>
         <Button onClick={handleOnDelete} color="primary" variant="contained">

@@ -25,10 +25,10 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
-  const history = useHistory();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
 
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const { languageSelected } = useContext(LanguageContext);
@@ -57,6 +57,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   };
 
   const handleOnSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const message =
       languageSelected === "czech"
@@ -74,11 +75,16 @@ const CreateBookModal = ({ openModal, closeModal }) => {
       formData.append("image", image);
     }
 
-    await axiosInstance.post("/books/", formData).catch((err) => {
-      console.log(err.response);
-    });
+    await axiosInstance
+      .post("/books/", formData)
+      .catch((err) => {
+        console.log(err.response);
+      })
+      .then(() => {
+        setLoading(false);
+      });
 
-    history.got(0); // Reset website
+    window.location.reload(); // Reset website
     setShowMessage(true);
     setMessageContent(message);
   };
@@ -167,7 +173,12 @@ const CreateBookModal = ({ openModal, closeModal }) => {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button type="submit" color="primary" variant="contained">
+          <Button
+            disabled={loading}
+            type="submit"
+            color="primary"
+            variant="contained"
+          >
             {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
           </Button>
         </DialogActions>
