@@ -16,6 +16,7 @@ class Book(models.Model):
     genre_cz = models.CharField(blank=True, null=True, max_length=50)
 
     number_of_pages = models.IntegerField()
+    borrowed = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
     

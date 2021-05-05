@@ -17,13 +17,4 @@ class BookQuery(graphene.ObjectType):
         return Book.objects.all()
 
     def resolve_not_borrowed_books(self, info):
-        user = info.context.user
-
-        book_titles = []
-        users_books = Borrowing.objects.filter(user=user)
-
-        for book in users_books:
-            title = book.book.title
-            book_titles.append(title)
-
-        return Book.objects.exclude(title__in=book_titles)
+        return Book.objects.filter(borrowed=False)

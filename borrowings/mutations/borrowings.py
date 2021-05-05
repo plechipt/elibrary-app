@@ -24,6 +24,9 @@ class BorrowBook(graphene.Mutation):
 
         borrowing = Borrowing.objects.create(user=user, book=book, date_borrowed=date)
 
+        book.borrowed = True
+        book.save()
+
         return BorrowBook(borrowing)
 
 
@@ -42,5 +45,8 @@ class ReturnBook(graphene.Mutation):
         borrowing.date_returned = date
         borrowing.returned = True
         borrowing.save()
+
+        book.borrowed = False
+        book.save()
 
         return ReturnBook(message='Success')
