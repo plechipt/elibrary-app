@@ -108,12 +108,20 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
         : `Successfully edited ${titleEnglish} book`;
 
     let formData = new FormData();
-    formData.append("title", titleValue);
-    formData.append("author", authorValue);
-    formData.append("genre", genreValue);
     formData.append("number_of_pages", numberOfPagesValue);
 
-    // If image was attached -> add image
+    // Set values to correct language
+    if (languageSelected === "czech") {
+      formData.append("title_cz", titleValue);
+      formData.append("author_cz", authorValue);
+      formData.append("genre_cz", genreValue);
+    } else {
+      formData.append("title", titleValue);
+      formData.append("author", authorValue);
+      formData.append("genre", genreValue);
+    }
+
+    // Add image if it was attached
     if (image) {
       formData.append("image", image);
     }

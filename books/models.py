@@ -6,9 +6,9 @@ from PIL import Image
 
 class Book(models.Model):
     # Default language in english
-    title = models.CharField(max_length=100)
-    author = models.CharField(max_length=100)
-    genre = models.CharField(max_length=50)
+    title = models.CharField(blank=True, max_length=100)
+    author = models.CharField(blank=True, max_length=100)
+    genre = models.CharField(blank=True, max_length=50)
 
     # Czech language
     title_cz = models.CharField(blank=True, null=True, max_length=100)
