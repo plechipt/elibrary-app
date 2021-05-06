@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'graphql_jwt',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'rest_framework',
+    'rest_framework_filters',
 ]
 
 MIDDLEWARE = [
@@ -31,7 +32,7 @@ MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware', # Corsheaders
     'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise
-    "django_graphql_ratelimit.middleware.ParseClientIpMiddleware", # Django graphql ratelimit
+    #"django_graphql_ratelimit.middleware.ParseClientIpMiddleware", # Django graphql ratelimit
 ]
 
 # Password validation
