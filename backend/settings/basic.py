@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'rest_framework_filters',
 ]
 
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
