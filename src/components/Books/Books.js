@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
-import { axiosInstance } from "../axios";
 
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
@@ -13,48 +12,34 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-
 const Books = () => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-
   const { languageSelected } = useContext(LanguageContext);
   const { showCreateModal, setShowCreateModal } = useContext(
     ShowCreateModalContext
   );
 
-  useEffect(() => {
-    setLoading(true);
-
-    const fetchBooks = async () => {
-      const {
-        data: { results },
-      } = await axiosInstance.get(`${BASE_URL}/books/`);
-
-      setBooks(results);
-      setLoading(false);
-    };
-    fetchBooks();
-  }, []);
+  const {
+    data: notBorrowedBooks,
+    loading,
+  } = useQuery(BOOK_NOT_BORROWED_BOOKS_QUERY, { variables: { page: 1 } });
 
   return (
     <div className="books-container">
-      {books && loading === false ? (
+      {notBorrowedBooks && loading === false ? (
         <Grid container>
-          {books.length !== 0 ? (
+          {notBorrowedBooks.notBorrowedBooks.length !== 0 ? (
             <>
-              {books.map(
+              {notBorrowedBooks.notBorrowedBooks.map(
                 ({
                   id,
                   title,
                   author,
                   genre,
-                  title_cz: titleCz,
-                  author_cz: authorCz,
-                  genre_cz: genreCz,
-                  number_of_pages: numberOfPages,
-                  image_name: imageName,
+                  titleCz,
+                  authorCz,
+                  genreCz,
+                  numberOfPages,
+                  imageName,
                 }) => {
                   return (
                     <Book
