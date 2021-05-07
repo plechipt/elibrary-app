@@ -26,7 +26,7 @@ class CustomPagination(PageNumberPagination):
 
 
 class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all()
+    queryset = Book.objects.filter(borrowed=False)
     serializer_class = BookSerializer
     filter_class = BookFilter
     pagination_class = CustomPagination
