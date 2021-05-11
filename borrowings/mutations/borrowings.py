@@ -9,6 +9,7 @@ from borrowings.models import Borrowing
 class BorrowingType(DjangoObjectType):
     class Meta:
         model = Borrowing
+        fields = '__all__'
 
 
 class BorrowBook(graphene.Mutation):

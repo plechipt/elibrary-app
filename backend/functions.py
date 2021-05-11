@@ -1,6 +1,6 @@
+
 def pagination(PAGE_SIZE, page, objects):
     # Get objects depending on page
-    print(objects)
     if page != 1:
         num_of_starting_object = PAGE_SIZE * page
         num_of_ending_object = num_of_starting_object + PAGE_SIZE
