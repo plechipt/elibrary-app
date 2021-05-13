@@ -17,7 +17,6 @@ class BorrowingQuery(graphene.ObjectType):
         return Borrowing.objects.all()
 
     def resolve_users_borrowings(self, info, page):
-        print('test')
         user = info.context.user
         borrowings = Borrowing.objects.filter(user=user, returned=False)
         borrowings = pagination(PAGE_SIZE, page, borrowings)
