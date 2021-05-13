@@ -14,8 +14,7 @@ class BorrowingQuery(graphene.ObjectType):
     users_borrowings = graphene.List(BorrowingType, page=graphene.Int())
 
     def resolve_borrowings(self, info):
-        borrowings = Borrowing.objects.all()
-        return borrowings
+        return Borrowing.objects.all()
 
     def resolve_users_borrowings(self, info, page):
         print('test')
