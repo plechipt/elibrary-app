@@ -18,10 +18,9 @@ const Books = () => {
     ShowCreateModalContext
   );
 
-  const {
-    data: notBorrowedBooks,
-    loading,
-  } = useQuery(BOOK_NOT_BORROWED_BOOKS_QUERY, { variables: { page: 1 } });
+  const { data: notBorrowedBooks, loading } = useQuery(
+    BOOK_NOT_BORROWED_BOOKS_QUERY
+  );
 
   return (
     <div className="books-container">

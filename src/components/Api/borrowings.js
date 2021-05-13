@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 // Queries
 export const BORROWING_USER_LIST_QUERY = gql`
-  query ($page: Int) {
-    usersBorrowings(page: $page) {
+  query {
+    usersBorrowings {
       id
       date
       user {

@@ -1,5 +1,4 @@
 import graphene
-from graphene_django_extras import DjangoFilterListField
 
 from .mutations.books import *
 from users.models import User
@@ -20,6 +19,7 @@ class BookQuery(graphene.ObjectType):
         return Book.objects.all()
 
     def resolve_not_borrowed_books(self, info, page):
+        page = 1
         books = Book.objects.filter(borrowed=False) 
         books = pagination(PAGE_SIZE, page, books)
         

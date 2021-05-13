@@ -15,8 +15,8 @@ export const BOOK_LIST_QUERY = gql`
 `;
 
 export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
-  query ($page: Int) {
-    notBorrowedBooks(page: $page) {
+  query {
+    notBorrowedBooks {
       id
       title
       author
