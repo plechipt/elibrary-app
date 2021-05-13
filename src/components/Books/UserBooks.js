@@ -10,12 +10,8 @@ import Typography from "@material-ui/core/Typography";
 
 const UserBooks = () => {
   const { languageSelected } = useContext(LanguageContext);
-  let {
-    errors,
-    data: usersBorrowings,
-    loading,
-  } = useQuery(BORROWING_USER_LIST_QUERY, {
-    onError: (err) => console.log(err.graphQLErrors),
+  let { data: usersBorrowings, loading } = useQuery(BORROWING_USER_LIST_QUERY, {
+    variables: { page: 1 },
   });
 
   return (

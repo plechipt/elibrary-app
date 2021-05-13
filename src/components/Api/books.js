@@ -15,7 +15,7 @@ export const BOOK_LIST_QUERY = gql`
 `;
 
 export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
-  query($page: Int!) {
+  query ($page: Int) {
     notBorrowedBooks(page: $page) {
       id
       title
@@ -32,7 +32,7 @@ export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
 
 // Mutations
 export const BOOK_DELETE_BOOK_MUTATION = gql`
-  mutation($id: ID!) {
+  mutation ($id: ID!) {
     deleteBook(id: $id) {
       message
     }

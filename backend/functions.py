@@ -10,6 +10,4 @@ def pagination(PAGE_SIZE, page, objects):
     else:
         objects = objects[:PAGE_SIZE]
 
-    print(objects)
-
     return objects
