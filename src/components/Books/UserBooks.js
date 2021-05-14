@@ -51,7 +51,7 @@ const UserBooks = () => {
             <Typography className="text-container" variant="h2">
               {languageSelected === "czech"
                 ? "Žádné vypůjčené knihy"
-                : "No borrowed bookss"}
+                : "No borrowed books"}
             </Typography>
           )}
         </Grid>

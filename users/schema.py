@@ -5,7 +5,7 @@ from users.models import User
 from .mutations.users import *
 from .mutations.jwt import *
 
-PAGE_SIZE = 12
+PAGE_SIZE = 10
 
 class UserMutation(AuthMutation, graphene.ObjectType):
     register = Register.Field()
