@@ -10,11 +10,15 @@ class BorrowingMutation(graphene.ObjectType):
 
 
 class BorrowingQuery(graphene.ObjectType):
-    borrowings = graphene.List(BorrowingType)
+    borrowings = graphene.List(BorrowingType, page=graphene.Int())
     users_borrowings = graphene.List(BorrowingType, page=graphene.Int())
 
-    def resolve_borrowings(self, info):
-        return Borrowing.objects.all()
+    def resolve_borrowings(self, info, page):
+        page = 1
+        borrowings = Borrowing.objects.all()
+        borrowings = pagination(PAGE_SIZE, page, borrowings)
+
+        return borrowings
 
     def resolve_users_borrowings(self, info, page):
         page = 1
