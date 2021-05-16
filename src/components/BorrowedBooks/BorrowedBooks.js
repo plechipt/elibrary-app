@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
-import { BORROWING_LIST_QUERY } from "../Api/borrowings";
+import {
+  BORROWING_LIST_QUERY,
+  BORROWING_LIST_COUNT_QUERY,
+} from "../Api/borrowings";
 import { LanguageContext } from "../Contexts/LanguageContext";
+
 import TableRowComponent from "./TableRowComponent";
 import CustomPagination from "../Other/CustomPagination";
 import "./BorrowedBooks.css";
@@ -17,6 +21,7 @@ import Paper from "@material-ui/core/Paper";
 const BorrowedBooks = () => {
   const { languageSelected } = useContext(LanguageContext);
   const { data: borrowings } = useQuery(BORROWING_LIST_QUERY);
+  const { data: borrowingsCount } = useQuery(BORROWING_LIST_COUNT_QUERY);
 
   return (
     <>
@@ -65,7 +70,7 @@ const BorrowedBooks = () => {
           </Table>
         </TableContainer>
       ) : null}
-      <CustomPagination />
+      <CustomPagination count={borrowingsCount} />
     </>
   );
 };

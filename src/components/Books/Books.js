@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
-import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
+import {
+  BOOK_NOT_BORROWED_BOOKS_QUERY,
+  BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY,
+} from "../Api/books";
 
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
@@ -21,6 +24,9 @@ const Books = () => {
 
   const { data: notBorrowedBooks, loading } = useQuery(
     BOOK_NOT_BORROWED_BOOKS_QUERY
+  );
+  const { data: notBorrowedBooksCount } = useQuery(
+    BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY
   );
 
   return (
@@ -73,7 +79,7 @@ const Books = () => {
           <CircularProgress />
         )}
       </div>
-      <CustomPagination />
+      <CustomPagination count={notBorrowedBooksCount} />
     </>
   );
 };

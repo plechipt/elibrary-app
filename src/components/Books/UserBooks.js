@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
-import { BORROWING_USER_LIST_QUERY } from "../Api/borrowings";
+import {
+  BORROWING_USER_LIST_QUERY,
+  BORROWING_LIST_COUNT_QUERY,
+} from "../Api/borrowings";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import CustomPagination from "../Other/CustomPagination";
 import Book from "./Book";
@@ -12,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 const UserBooks = () => {
   const { languageSelected } = useContext(LanguageContext);
   let { data: usersBorrowings, loading } = useQuery(BORROWING_USER_LIST_QUERY);
+  const { data: usersBorrowingsCount } = useQuery(BORROWING_LIST_COUNT_QUERY);
 
   return (
     <>
@@ -65,7 +69,7 @@ const UserBooks = () => {
           <CircularProgress />
         )}
       </div>
-      <CustomPagination />
+      <CustomPagination count={usersBorrowingsCount} />
     </>
   );
 };

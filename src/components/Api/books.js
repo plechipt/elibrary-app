@@ -30,6 +30,12 @@ export const BOOK_NOT_BORROWED_BOOKS_QUERY = gql`
   }
 `;
 
+export const BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY = gql`
+  query {
+    notBorrowedBooksCount
+  }
+`;
+
 // Mutations
 export const BOOK_DELETE_BOOK_MUTATION = gql`
   mutation ($id: ID!) {

@@ -24,6 +24,12 @@ export const BORROWING_USER_LIST_QUERY = gql`
   }
 `;
 
+export const BORROWING_USER_LIST_COUNT_QUERY = gql`
+  query {
+    usersBorrowingsCount
+  }
+`;
+
 export const BORROWING_LIST_QUERY = gql`
   query {
     borrowings {
@@ -38,6 +44,12 @@ export const BORROWING_LIST_QUERY = gql`
       dateBorrowed
       dateReturned
     }
+  }
+`;
+
+export const BORROWING_LIST_COUNT_QUERY = gql`
+  query {
+    borrowingsCount
   }
 `;
 
