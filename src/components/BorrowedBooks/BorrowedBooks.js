@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { BORROWING_LIST_QUERY } from "../Api/borrowings";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import TableRowComponent from "./TableRowComponent";
+import CustomPagination from "../Other/CustomPagination";
 import "./BorrowedBooks.css";
 
 import Table from "@material-ui/core/Table";
@@ -64,6 +65,7 @@ const BorrowedBooks = () => {
           </Table>
         </TableContainer>
       ) : null}
+      <CustomPagination />
     </>
   );
 };

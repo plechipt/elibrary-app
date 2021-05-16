@@ -6,6 +6,7 @@ import { LanguageContext } from "../Contexts/LanguageContext";
 import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
 import Book from "./Book";
 import CreateBookModal from "./CreateBookModal";
+import CustomPagination from "../Other/CustomPagination";
 import "./Books.css";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -23,54 +24,57 @@ const Books = () => {
   );
 
   return (
-    <div className="books-container">
-      {notBorrowedBooks && loading === false ? (
-        <Grid container>
-          {notBorrowedBooks.notBorrowedBooks.length !== 0 ? (
-            <>
-              {notBorrowedBooks.notBorrowedBooks.map(
-                ({
-                  id,
-                  title,
-                  author,
-                  genre,
-                  titleCz,
-                  authorCz,
-                  genreCz,
-                  numberOfPages,
-                  imageName,
-                }) => {
-                  return (
-                    <Book
-                      isBorrowed={false}
-                      key={id}
-                      id={id}
-                      title={[title, titleCz]}
-                      author={[author, authorCz]}
-                      genre={[genre, genreCz]}
-                      numberOfPages={numberOfPages}
-                      imageName={imageName}
-                    />
-                  );
-                }
-              )}
-              <CreateBookModal
-                openModal={showCreateModal}
-                closeModal={() => setShowCreateModal(false)}
-              />
-            </>
-          ) : (
-            <Typography className="text-container" variant="h2">
-              {languageSelected === "czech"
-                ? "Žádné dostupné knihy"
-                : "No available books"}
-            </Typography>
-          )}
-        </Grid>
-      ) : (
-        <CircularProgress />
-      )}
-    </div>
+    <>
+      <div className="books-container">
+        {notBorrowedBooks && loading === false ? (
+          <Grid container>
+            {notBorrowedBooks.notBorrowedBooks.length !== 0 ? (
+              <>
+                {notBorrowedBooks.notBorrowedBooks.map(
+                  ({
+                    id,
+                    title,
+                    author,
+                    genre,
+                    titleCz,
+                    authorCz,
+                    genreCz,
+                    numberOfPages,
+                    imageName,
+                  }) => {
+                    return (
+                      <Book
+                        isBorrowed={false}
+                        key={id}
+                        id={id}
+                        title={[title, titleCz]}
+                        author={[author, authorCz]}
+                        genre={[genre, genreCz]}
+                        numberOfPages={numberOfPages}
+                        imageName={imageName}
+                      />
+                    );
+                  }
+                )}
+                <CreateBookModal
+                  openModal={showCreateModal}
+                  closeModal={() => setShowCreateModal(false)}
+                />
+              </>
+            ) : (
+              <Typography className="text-container" variant="h2">
+                {languageSelected === "czech"
+                  ? "Žádné dostupné knihy"
+                  : "No available books"}
+              </Typography>
+            )}
+          </Grid>
+        ) : (
+          <CircularProgress />
+        )}
+      </div>
+      <CustomPagination />
+    </>
   );
 };
 

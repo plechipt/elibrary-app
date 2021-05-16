@@ -22,9 +22,14 @@ class BorrowBook(graphene.Mutation):
         book = Book.objects.get(id=id)
         date = datetime.now().strftime('%d.%m %Y')
 
-        borrowing, created = Borrowing.objects.get_or_create(
-            user=user, book=book, date_borrowed=date
-        )
+        try:
+            borrowing, created = Borrowing.objects.get_or_create(
+                user=user, book=book, date_borrowed=date
+            )
+        except:
+            borrowing = Borrowing.objects.get(book=book)
+            book = Book.objects.get(id=id) 
+
         borrowing.returned = False
         borrowing.save()
 
