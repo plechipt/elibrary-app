@@ -17,6 +17,7 @@ class UserMutation(AuthMutation, graphene.ObjectType):
 class UserQuery(graphene.ObjectType):
     me = graphene.Field(UserType)
     all_users = graphene.List(UserType, page=graphene.Int())
+    all_users_count = graphene.Int()
 
     def resolve_me(self, info):
         user = info.context.user
@@ -32,4 +33,7 @@ class UserQuery(graphene.ObjectType):
         users = pagination(PAGE_SIZE, page, users)
 
         return users
+
+    def resolve_all_users_count(self, info):
+        return User.objects.filter(is_superuser=False).count()
 

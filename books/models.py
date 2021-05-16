@@ -20,6 +20,9 @@ class Book(models.Model):
     image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
     
+    def all_objects_count(self):
+        return Book.objects.all().count()
+    
     def __str__(self):
         return self.title
     

@@ -12,7 +12,9 @@ class BorrowingMutation(graphene.ObjectType):
 
 class BorrowingQuery(graphene.ObjectType):
     borrowings = graphene.List(BorrowingType, page=graphene.Int())
+    borrowings_count = graphene.Int()
     users_borrowings = graphene.List(BorrowingType, page=graphene.Int())
+    users_borrowings_count = graphene.Int()
 
     def resolve_borrowings(self, info, page):
         page = 1
@@ -20,6 +22,9 @@ class BorrowingQuery(graphene.ObjectType):
         borrowings = pagination(PAGE_SIZE2, page, borrowings)
 
         return borrowings
+    
+    def resolve_borrowings_count(self, info):
+        return Borrowing.objects.all().count()
 
     def resolve_users_borrowings(self, info, page):
         page = 1
@@ -28,4 +33,8 @@ class BorrowingQuery(graphene.ObjectType):
         borrowings = pagination(PAGE_SIZE, page, borrowings)
 
         return borrowings
+
+    def resolve_users_borrowings_count(self, info):
+        user = info.context.user
+        return Borrowing.objects.filter(user=user, returned=False).count()
 
