@@ -79,7 +79,12 @@ const Books = () => {
           <CircularProgress />
         )}
       </div>
-      <CustomPagination count={notBorrowedBooksCount} />
+      {notBorrowedBooksCount ? (
+        <CustomPagination
+          count={notBorrowedBooksCount.notBorrowedBooksCount}
+          pageSize={12}
+        />
+      ) : null}
     </>
   );
 };

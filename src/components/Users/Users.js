@@ -20,7 +20,9 @@ const Users = () => {
               <UsersRow users={users} />
             </div>
           </Grid>
-          <CustomPagination count={usersCount} />
+          {usersCount ? (
+            <CustomPagination count={usersCount.allUsersCount} pageSize={10} />
+          ) : null}
         </>
       ) : null}
     </>

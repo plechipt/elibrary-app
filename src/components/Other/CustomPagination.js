@@ -2,9 +2,20 @@ import React from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import "./Other.css";
 
-const CustomPagination = () => {
+const CustomPagination = ({ count, pageSize }) => {
+  const numberOfPages = Math.ceil(count / pageSize);
+
   return (
-    <Pagination className="pagination" count={1} size="large" color="primary" />
+    <>
+      {count && pageSize ? (
+        <Pagination
+          className="pagination"
+          count={numberOfPages < 1 ? 1 : numberOfPages}
+          size="large"
+          color="primary"
+        />
+      ) : null}
+    </>
   );
 };
 

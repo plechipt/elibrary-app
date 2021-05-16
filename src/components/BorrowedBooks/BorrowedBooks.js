@@ -70,7 +70,12 @@ const BorrowedBooks = () => {
           </Table>
         </TableContainer>
       ) : null}
-      <CustomPagination count={borrowingsCount} />
+      {borrowingsCount ? (
+        <CustomPagination
+          count={borrowingsCount.borrowingsCount}
+          pageSize={10}
+        />
+      ) : null}
     </>
   );
 };
