@@ -4,8 +4,11 @@ import { useMutation } from "@apollo/client";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
-import { BOOK_DELETE_BOOK_MUTATION } from "../Api/books";
-import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
+import {
+  BOOK_DELETE_BOOK_MUTATION,
+  BOOK_NOT_BORROWED_BOOKS_QUERY,
+  BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY,
+} from "../Api/books";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -151,7 +154,10 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
 
     await deleteBook({
       variables: { id },
-      refetchQueries: [{ query: BOOK_NOT_BORROWED_BOOKS_QUERY }],
+      refetchQueries: [
+        { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
+        { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
+      ],
     });
 
     // Show success message

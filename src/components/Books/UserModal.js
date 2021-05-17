@@ -3,7 +3,10 @@ import { useMutation } from "@apollo/client";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { LanguageContext } from "../Contexts/LanguageContext";
-import { BOOK_NOT_BORROWED_BOOKS_QUERY } from "../Api/books";
+import {
+  BOOK_NOT_BORROWED_BOOKS_QUERY,
+  BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY,
+} from "../Api/books";
 import {
   BORROWING_USER_LIST_QUERY,
   BORROWING_BORROW_BOOK_MUTATION,
@@ -54,6 +57,7 @@ const UserModal = ({
       refetchQueries: [
         { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
         { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
+        { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
       ],
     });
     closeModal();
@@ -72,6 +76,7 @@ const UserModal = ({
       refetchQueries: [
         { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
         { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
+        { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
       ],
     });
     closeModal();
