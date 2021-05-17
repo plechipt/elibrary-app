@@ -9,5 +9,5 @@ def pagination(PAGE_SIZE, page, objects):
     # Get first objects of page size
     else:
         objects = objects[:PAGE_SIZE]
-
+    
     return objects

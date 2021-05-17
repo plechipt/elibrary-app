@@ -20,10 +20,9 @@ class BookQuery(graphene.ObjectType):
         return Book.objects.all()
 
     def resolve_not_borrowed_books(self, info, page):
-        page = 1
         books = Book.objects.filter(borrowed=False) 
         books = pagination(PAGE_SIZE, page, books)
-        
+
         return books 
     
     def resolve_not_borrowed_books_count(self, info):

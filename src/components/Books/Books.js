@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useState, useContext, useEffect } from "react";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   BOOK_NOT_BORROWED_BOOKS_QUERY,
   BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY,
@@ -17,17 +17,22 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 const Books = () => {
+  const [page, setPage] = useState(1);
   const { languageSelected } = useContext(LanguageContext);
   const { showCreateModal, setShowCreateModal } = useContext(
     ShowCreateModalContext
   );
 
-  const { data: notBorrowedBooks, loading } = useQuery(
+  const [getBooks, { data: notBorrowedBooks, loading }] = useLazyQuery(
     BOOK_NOT_BORROWED_BOOKS_QUERY
   );
   const { data: notBorrowedBooksCount } = useQuery(
     BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY
   );
+
+  useEffect(() => {
+    getBooks({ variables: { page } });
+  }, [page, getBooks]);
 
   return (
     <>
@@ -83,6 +88,7 @@ const Books = () => {
         <CustomPagination
           count={notBorrowedBooksCount.notBorrowedBooksCount}
           pageSize={12}
+          setPage={setPage}
         />
       ) : null}
     </>
