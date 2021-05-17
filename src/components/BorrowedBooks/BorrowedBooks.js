@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useState, useEffect, useContext } from "react";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import {
   BORROWING_LIST_QUERY,
   BORROWING_LIST_COUNT_QUERY,
@@ -19,9 +19,16 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 const BorrowedBooks = () => {
+  const [page, setPage] = useState(1);
+
   const { languageSelected } = useContext(LanguageContext);
-  const { data: borrowings } = useQuery(BORROWING_LIST_QUERY);
   const { data: borrowingsCount } = useQuery(BORROWING_LIST_COUNT_QUERY);
+  const [getBorrowings, { data: borrowings }] =
+    useLazyQuery(BORROWING_LIST_QUERY);
+
+  useEffect(() => {
+    getBorrowings({ variables: { page } });
+  }, [page, getBorrowings]);
 
   return (
     <>
@@ -74,6 +81,7 @@ const BorrowedBooks = () => {
         <CustomPagination
           count={borrowingsCount.borrowingsCount}
           pageSize={10}
+          setPage={setPage}
         />
       ) : null}
     </>

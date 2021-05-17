@@ -28,7 +28,6 @@ class UserQuery(graphene.ObjectType):
             return None
     
     def resolve_all_users(self, info, page):
-        page = 1
         users = User.objects.filter(is_superuser=False) 
         users = pagination(PAGE_SIZE, page, users)
 

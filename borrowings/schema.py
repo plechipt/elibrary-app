@@ -17,7 +17,6 @@ class BorrowingQuery(graphene.ObjectType):
     users_borrowings_count = graphene.Int()
 
     def resolve_borrowings(self, info, page):
-        page = 1
         borrowings = Borrowing.objects.all()
         borrowings = pagination(PAGE_SIZE2, page, borrowings)
 
@@ -27,7 +26,6 @@ class BorrowingQuery(graphene.ObjectType):
         return Borrowing.objects.all().count()
 
     def resolve_users_borrowings(self, info, page):
-        page = 1
         user = info.context.user
         borrowings = Borrowing.objects.filter(user=user, returned=False)
         borrowings = pagination(PAGE_SIZE, page, borrowings)

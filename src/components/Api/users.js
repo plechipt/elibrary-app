@@ -11,8 +11,8 @@ export const USER_ME_QUERY = gql`
 `;
 
 export const USER_ALL_USERS_QUERY = gql`
-  query {
-    allUsers {
+  query ($page: Int) {
+    allUsers(page: $page) {
       id
       username
     }
