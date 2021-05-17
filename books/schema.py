@@ -23,13 +23,9 @@ class BookQuery(graphene.ObjectType):
         user = info.context.user 
         books = Book.objects.filter(borrowed=False) 
 
-        '''
         if user.is_superuser:
             books = Book.objects.all()
-            for book in books:
-                print(book)
-        '''
-
+    
         books = pagination(PAGE_SIZE, page, books)
 
         return books 
