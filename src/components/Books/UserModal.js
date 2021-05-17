@@ -52,8 +52,8 @@ const UserModal = ({
     await borrowBook({
       variables: { id },
       refetchQueries: [
-        { query: BORROWING_USER_LIST_QUERY },
-        { query: BOOK_NOT_BORROWED_BOOKS_QUERY },
+        { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
+        { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
       ],
     });
     closeModal();
@@ -70,8 +70,8 @@ const UserModal = ({
     await returnBook({
       variables: { id },
       refetchQueries: [
-        { query: BORROWING_USER_LIST_QUERY },
-        { query: BOOK_NOT_BORROWED_BOOKS_QUERY },
+        { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
+        { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
       ],
     });
     closeModal();

@@ -24,7 +24,9 @@ const UserBooks = () => {
   );
 
   useEffect(() => {
-    getBorrowings({ variables: { page } });
+    getBorrowings({
+      variables: { page },
+    });
   }, [page, getBorrowings]);
 
   return (

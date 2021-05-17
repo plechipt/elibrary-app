@@ -31,7 +31,9 @@ const Books = () => {
   );
 
   useEffect(() => {
-    getBooks({ variables: { page } });
+    getBooks({
+      variables: { page },
+    });
   }, [page, getBooks]);
 
   return (
