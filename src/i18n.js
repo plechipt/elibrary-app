@@ -21,6 +21,9 @@ i18n
     interpolation: {
       escapeValue: false, // not needed for react!!
     },
+    backend: {
+      loadPath: "/static/locales/{{lng}}/{{ns}}.json",
+    },
   });
 
 export default i18n;
