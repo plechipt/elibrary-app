@@ -1,4 +1,5 @@
 import React from "react";
+import { Suspense } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -73,7 +74,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
-      <App />
+      <Suspense fallback="Loading...">
+        <App />
+      </Suspense>
     </Router>
   </ApolloProvider>,
   document.getElementById("root")
