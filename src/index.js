@@ -16,6 +16,8 @@ import {
   verifyAccessToken,
 } from "./components/functions";
 
+import "./i18n";
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // Verify if access token expired

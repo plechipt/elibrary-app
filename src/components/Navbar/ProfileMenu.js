@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { USER_DELETE_TOKENS_MUTATION } from "../Api/users";
@@ -12,6 +13,7 @@ import Menu from "@material-ui/core/Menu";
 
 const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   const history = useHistory();
+  const { t, i18n } = useTranslation();
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const { user } = useContext(UserContext);
@@ -27,6 +29,8 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
     history.push("/");
     setShowCreateModal(true);
   };
+
+  console.log(t("common.test"));
 
   return (
     <Menu
