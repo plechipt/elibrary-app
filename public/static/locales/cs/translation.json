@@ -10,5 +10,23 @@
     "already_have_account": "Už máte účet?",
     "dont_have_account": "Nemáte účet?",
     "failed_to_login": "Příhlašovací jméno nebo heslo jsou zadané špatně"
+  },
+  "books": {
+    "upload_image": "Nahrát obrázek",
+    "title": "Název",
+    "author": "Autor",
+    "genre": "Žánr",
+    "number_of_pages": "Počet stránek",
+    "create_book": "Vytvořit Knihu",
+    "edit_book": "Upravit Knihu",
+    "delete_book": "Smazat Knihu",
+    "more_info": "Více info",
+    "no_available_books": "Žádné dostupné knihy",
+    "no_borrowed_books": "Žádné vypůjčené knihy",
+    "failed_to_preview_image": "Přiložený soubor není obrázek!",
+    "borrow_message": "Půjčil sis {{title}} knihu",
+    "edit_message": "Uspěšně upravena {{title}} kniha",
+    "return_message": "Vrátil si {{title}} knihu",
+    "delete_message": "Smazal si {{title}} knihu"
   }
 }

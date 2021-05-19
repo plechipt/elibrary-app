@@ -10,5 +10,23 @@
     "already_have_account": "Already have an account?",
     "dont_have_account": "Don't have an account?",
     "failed_to_login": "Username or password is incorrect"
+  },
+  "books": {
+    "upload_image": "Upload image",
+    "title": "Title",
+    "author": "Author",
+    "genre": "Genre",
+    "number_of_pages": "Number of pages",
+    "create_book": "Create book",
+    "edit_book": "Edit Book",
+    "delete_book": "Delete Book",
+    "more_info": "More info",
+    "no_available_books": "No available books",
+    "no_borrowed_books": "No borrowed books",
+    "failed_to_preview_image": "Attached file is not image!",
+    "borrow_message": "You have borrowed {{title}} book",
+    "success_message": "Successfully edited {{title}} book",
+    "return_message": "You have returned {{title}} book",
+    "delete_message": "You have deleted {{title}} book"
   }
 }
