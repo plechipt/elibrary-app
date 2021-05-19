@@ -28,5 +28,24 @@
     "success_message": "Successfully edited {{title}} book",
     "return_message": "You have returned {{title}} book",
     "delete_message": "You have deleted {{title}} book"
+  },
+  "borrowed_books": {
+    "book_name": "Book name",
+    "borrower": "Borrower",
+    "borrow_day": "Borrow day",
+    "return_day": "Return day",
+    "not_returned": "Not returned"
+  },
+  "navbar": {
+    "elibrary": "Elibrary",
+    "users": "Users",
+    "create_book": "Create a book",
+    "borrowed_books": "Borrowed books",
+    "my_books": "My books",
+    "logout": "Logout",
+    "language": "English"
+  },
+  "message": {
+    "success": "Success"
   }
 }

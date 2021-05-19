@@ -28,5 +28,24 @@
     "edit_message": "Uspěšně upravena {{title}} kniha",
     "return_message": "Vrátil si {{title}} knihu",
     "delete_message": "Smazal si {{title}} knihu"
+  },
+  "borrowed_books": {
+    "book_name": "Název knihy",
+    "borrower": "Dlužník",
+    "borrow_day": "Den vypůjčení",
+    "return_day": "Den vrácení",
+    "not_returned": "Nevráceno"
+  },
+  "navbar": {
+    "elibrary": "Eknihovna",
+    "users": "Uživatelé",
+    "create_book": "Vytvořit knihu",
+    "borrowed_books": "Pujčené knihy",
+    "my_books": "Moje knihy",
+    "logout": "Odhlásit se",
+    "language": "Čestina"
+  },
+  "message": {
+    "success": "Úspěch"
   }
 }
