@@ -138,7 +138,8 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const handleOnDelete = async () => {
     setLoading(true);
 
-    const message = t("books.delete_message");
+    const titleName = i18n.language === "cs" ? titleCzech : titleEnglish;
+    const message = i18n.t("books.delete_message", { title: titleName });
 
     await deleteBook({
       variables: { id },

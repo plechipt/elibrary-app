@@ -47,7 +47,8 @@ const UserModal = ({
   );
 
   const borrowBookFunction = async () => {
-    const message = t("borrow_message");
+    const titleName = i18n.language === "cs" ? titleCzech : titleEnglish;
+    const message = i18n.t("books.borrow_message", { title: titleName });
 
     await borrowBook({
       variables: { id },
@@ -63,7 +64,8 @@ const UserModal = ({
   };
 
   const returnBookFunction = async () => {
-    const message = t("books.return_message");
+    const titleName = i18n.language === "cs" ? titleCzech : titleEnglish;
+    const message = i18n.t("books.return_message", { title: titleName });
 
     await returnBook({
       variables: { id },
