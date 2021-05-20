@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { UserContext } from "../Contexts/UserContext";
 import UserModal from "./UserModal";
 import AdminModal from "./AdminModal";
@@ -18,6 +19,7 @@ const BookModal = ({
   imageName,
 }) => {
   const { user } = useContext(UserContext);
+  const { i18n } = useTranslation();
 
   const [titleEnglish, titleCzech] = title;
 
@@ -30,7 +32,7 @@ const BookModal = ({
       <DialogTitle onClose={closeModal}>
         <div className="modal-header">
           <span className="modal-title">
-            {"czech" === "czech" ? titleCzech : titleEnglish}
+            {i18n.language === "cs" ? titleCzech : titleEnglish}
           </span>
         </div>
       </DialogTitle>

@@ -18,7 +18,7 @@ const Book = ({
   imageName,
 }) => {
   const [openModal, setOpenModal] = useState(false);
-  const { t, i18next } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [titleEnglish, titleCzech] = title;
 
@@ -28,7 +28,7 @@ const Book = ({
         <img
           onClick={() => setOpenModal(true)}
           src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
-          title={"czech" === "czech" ? titleCzech : titleEnglish}
+          title={i18n.language === "cs" ? titleCzech : titleEnglish}
           alt=""
         />
         <Button

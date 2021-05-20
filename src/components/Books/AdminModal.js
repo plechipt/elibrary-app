@@ -21,7 +21,7 @@ const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
-  const { t, i18next } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
 
@@ -35,9 +35,9 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [authorEnglish, authorCzech] = author;
   const [genreEnglish, genreCzech] = genre;
 
-  const titleCondition = "czech" === "czech" ? titleCzech : titleEnglish;
-  const authorCondition = "czech" === "czech" ? authorCzech : authorEnglish;
-  const genreCondition = "czech" === "czech" ? genreCzech : genreEnglish;
+  const titleCondition = i18n.language === "cs" ? titleCzech : titleEnglish;
+  const authorCondition = i18n.language === "cs" ? authorCzech : authorEnglish;
+  const genreCondition = i18n.language === "cs" ? genreCzech : genreEnglish;
 
   const [titleValue, setTitleValue] = useState(titleCondition);
   const [authorValue, setAuthorValue] = useState(authorCondition);
@@ -105,7 +105,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     formData.append("number_of_pages", numberOfPagesValue);
 
     // Set values to correct language
-    if ("czech" === "czech") {
+    if (i18n.language === "cs") {
       formData.append("title_cz", titleValue);
       formData.append("author_cz", authorValue);
       formData.append("genre_cz", genreValue);

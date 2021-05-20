@@ -27,7 +27,7 @@ import SignIn from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/Register";
 
 const App = () => {
-  const [user, setUser] = useState({ username: "admin1", isSuperuser: false });
+  const [user, setUser] = useState({ username: "admin1", isSuperuser: true });
   //const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {

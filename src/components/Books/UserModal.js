@@ -30,7 +30,7 @@ const UserModal = ({
   genre,
   imageName,
 }) => {
-  const { t, i18next } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
 
@@ -90,11 +90,11 @@ const UserModal = ({
         <div className="modal-right-side">
           <Typography className="modal-description-item">
             <b>{t("books.author")}</b>
-            <span>{"czech" === "czech" ? authorCzech : authorEnglish}</span>
+            <span>{i18n.language === "cs" ? authorCzech : authorEnglish}</span>
           </Typography>
           <Typography className="modal-description-item">
             <b>{t("books.genre")}</b>
-            <span>{"czech" === "czech" ? genreCzech : genreEnglish}</span>
+            <span>{i18n.language === "cs" ? genreCzech : genreEnglish}</span>
           </Typography>
           <Typography className="modal-description-item">
             <b>{t("books.number_of_pages")}</b>
