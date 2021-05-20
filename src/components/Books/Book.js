@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { LanguageContext } from "../Contexts/LanguageContext";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Grid";
@@ -18,7 +18,7 @@ const Book = ({
   imageName,
 }) => {
   const [openModal, setOpenModal] = useState(false);
-  const { languageSelected } = useContext(LanguageContext);
+  const { t, i18next } = useTranslation();
 
   const [titleEnglish, titleCzech] = title;
 
@@ -28,7 +28,7 @@ const Book = ({
         <img
           onClick={() => setOpenModal(true)}
           src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
-          title={languageSelected === "czech" ? titleCzech : titleEnglish}
+          title={"czech" === "czech" ? titleCzech : titleEnglish}
           alt=""
         />
         <Button
@@ -38,7 +38,7 @@ const Book = ({
           variant="contained"
           size="large"
         >
-          {languageSelected === "czech" ? "Více info" : "More info"}
+          {t("books.more_info")}
         </Button>
       </Paper>
       <BookModal

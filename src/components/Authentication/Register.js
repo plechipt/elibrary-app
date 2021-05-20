@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_REGISTER_MUTATION } from "../Api/users";
-import { LanguageContext } from "../Contexts/LanguageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = ({ user }) => {
   const classes = useStyles();
   const history = useHistory();
-  const { languageSelected } = useContext(LanguageContext);
+  const { t } = useTranslation();
 
   const [register, { data: registerData, loading }] = useMutation(
     USER_REGISTER_MUTATION
@@ -62,10 +62,8 @@ const SignUp = ({ user }) => {
   const [usernameMessageError, setUsernameMessageError] = useState("");
   const [emailMessageError, setEmailMessageError] = useState("");
   const [passwordMessageError, setPasswordMessageError] = useState("");
-  const [
-    passwordConfirmMessageError,
-    setPasswordConfirmMessageError,
-  ] = useState("");
+  const [passwordConfirmMessageError, setPasswordConfirmMessageError] =
+    useState("");
 
   const setErrorMessage = (message, field) => {
     message = message.replace(".", ""); // Remove dot from message
@@ -133,7 +131,7 @@ const SignUp = ({ user }) => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              {languageSelected === "czech" ? "Registrovat se" : "Sign Up"}
+              {t("login_register.sign_up")}
             </Typography>
             <form onSubmit={handleOnRegister} className={classes.form}>
               <Grid container spacing={2}>
@@ -148,11 +146,7 @@ const SignUp = ({ user }) => {
                     name="username"
                     variant="outlined"
                     id="username"
-                    label={
-                      languageSelected === "czech"
-                        ? "Uživatelské Jméno"
-                        : "Username"
-                    }
+                    label={t("login_register.username")}
                     autoFocus
                     required
                     fullWidth
@@ -186,7 +180,7 @@ const SignUp = ({ user }) => {
                     type={showPasswords ? "text" : "password"}
                     variant="outlined"
                     name="password"
-                    label={languageSelected === "czech" ? "Heslo" : "Password"}
+                    label={t("login_register.password")}
                     id="password"
                     autoComplete="current-password"
                     required
@@ -206,11 +200,7 @@ const SignUp = ({ user }) => {
                     type={showPasswords ? "text" : "password"}
                     variant="outlined"
                     name="password"
-                    label={
-                      languageSelected === "czech"
-                        ? "Potvrdit Heslo"
-                        : "Confirm Password"
-                    }
+                    label={t("login_register.confirm_password")}
                     id="confirm-password"
                     autoComplete="confirm-password"
                     fullWidth
@@ -227,11 +217,7 @@ const SignUp = ({ user }) => {
                         color="primary"
                       />
                     }
-                    label={
-                      languageSelected === "czech"
-                        ? "Ukázat Hesla"
-                        : "Show Passwords"
-                    }
+                    label={t("login_register.show_passwords")}
                   />
                 </Grid>
               </Grid>
@@ -243,14 +229,12 @@ const SignUp = ({ user }) => {
                 variant="contained"
                 color="primary"
               >
-                {languageSelected === "czech" ? "Registrovat se" : "Sign Up"}
+                {t("login_register.sign_up")}
               </Button>
               <Typography color="textSecondary">
-                {languageSelected === "czech"
-                  ? "Už máte účet?"
-                  : "Already have an account?"}
+                {t("login_register.already_have_account")}
                 <Link to="/" className={classes.loginLink}>
-                  {languageSelected === "czech" ? "Přihlásit se" : "Sign In"}
+                  {t("login_register.sign_in")}
                 </Link>
               </Typography>
             </form>

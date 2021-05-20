@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { LanguageContext } from "../Contexts/LanguageContext";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
 const TableRowComponent = ({ title, username, dateBorrowed, dateReturned }) => {
-  const { languageSelected } = useContext(LanguageContext);
-  const notReturnedMessage =
-    languageSelected === "czech" ? "Nevráceno" : "Not returned";
+  const { t } = useTranslation();
+  const notReturnedMessage = t("borrowed_books.return_Day");
 
   // If dateReturned is null -> show notReturnedMessage
   dateReturned = dateReturned === null ? notReturnedMessage : dateReturned;

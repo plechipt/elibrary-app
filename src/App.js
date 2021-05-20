@@ -5,10 +5,9 @@ import { Route, Switch } from "react-router-dom";
 
 import { UserContext } from "./components/Contexts/UserContext";
 import { MessageContext } from "./components/Contexts/MessageContext";
-import { LanguageContext } from "./components/Contexts/LanguageContext";
 import { MessageContentContext } from "./components/Contexts/MessageContentContext";
 import { ShowCreateModalContext } from "./components/Contexts/ShowCreateModalContext";
-import { getThemeMode, getLanguage } from "./components/functions";
+import { getThemeMode } from "./components/functions";
 import "./App.css";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -47,12 +46,6 @@ const App = () => {
     [messageContent, setMessageContent]
   );
 
-  const [languageSelected, setLanguageSelected] = useState(getLanguage());
-  const languageSelectedValue = useMemo(
-    () => ({ languageSelected, setLanguageSelected }),
-    [languageSelected, setLanguageSelected]
-  );
-
   const [showCreateModal, setShowCreateModal] = useState();
   const showCreateModalValue = useMemo(
     () => ({ showCreateModal, setShowCreateModal }),
@@ -80,11 +73,6 @@ const App = () => {
     }
   }, [meQuery]);
 
-  // Set new language to local storage
-  useEffect(() => {
-    localStorage.setItem("languageSelected", JSON.stringify(languageSelected));
-  }, [languageSelected]);
-
   // Set new theme mode to local storage
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -96,60 +84,58 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={userValue}>
           <ShowCreateModalContext.Provider value={showCreateModalValue}>
-            <LanguageContext.Provider value={languageSelectedValue}>
-              <CssBaseline />
-              <header>
-                {user && loading === false ? (
-                  <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-                ) : null}
-              </header>
-              <main>
-                {user && loading === false ? (
-                  <MessageContext.Provider value={showMessageValue}>
-                    <MessageContentContext.Provider value={messageContentValue}>
-                      <Message />
-                      <Switch>
-                        <RestrictedRoute
-                          path="/users"
-                          forSuperUser={true}
-                          component={Users}
-                        />
-                        <RestrictedRoute
-                          path="/borrowed-books"
-                          forSuperUser={true}
-                          component={BorrowedBooks}
-                        />
-                        <RestrictedRoute
-                          path="/my-books"
-                          forSuperUser={false}
-                          component={UserBooks}
-                        />
-                        <Route path="/" component={Books} />
-                        <Route component={Message} />
-                      </Switch>
-                    </MessageContentContext.Provider>
-                  </MessageContext.Provider>
-                ) : (
-                  <>
-                    {loading === false ? (
-                      <Switch>
-                        <Route
-                          path="/register"
-                          component={() => <SignUp user={user} />}
-                        />
-                        <Route
-                          path="/"
-                          component={() => <SignIn user={user} />}
-                        />
-                      </Switch>
-                    ) : null}
-                  </>
-                )}
-              </main>
-              <footer>
-                <BottomOfPage />
-              </footer>
-            </LanguageContext.Provider>
+            <CssBaseline />
+            <header>
+              {user && loading === false ? (
+                <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+              ) : null}
+            </header>
+            <main>
+              {user && loading === false ? (
+                <MessageContext.Provider value={showMessageValue}>
+                  <MessageContentContext.Provider value={messageContentValue}>
+                    <Message />
+                    <Switch>
+                      <RestrictedRoute
+                        path="/users"
+                        forSuperUser={true}
+                        component={Users}
+                      />
+                      <RestrictedRoute
+                        path="/borrowed-books"
+                        forSuperUser={true}
+                        component={BorrowedBooks}
+                      />
+                      <RestrictedRoute
+                        path="/my-books"
+                        forSuperUser={false}
+                        component={UserBooks}
+                      />
+                      <Route path="/" component={Books} />
+                      <Route component={Message} />
+                    </Switch>
+                  </MessageContentContext.Provider>
+                </MessageContext.Provider>
+              ) : (
+                <>
+                  {loading === false ? (
+                    <Switch>
+                      <Route
+                        path="/register"
+                        component={() => <SignUp user={user} />}
+                      />
+                      <Route
+                        path="/"
+                        component={() => <SignIn user={user} />}
+                      />
+                    </Switch>
+                  ) : null}
+                </>
+              )}
+            </main>
+            <footer>
+              <BottomOfPage />
+            </footer>
           </ShowCreateModalContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>

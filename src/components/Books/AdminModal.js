@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { axiosInstance } from "../axios";
 import { useMutation } from "@apollo/client";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import {
@@ -21,9 +21,9 @@ const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
+  const { t, i18next } = useTranslation();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
-  const { languageSelected } = useContext(LanguageContext);
 
   const [loading, setLoading] = useState(false);
   const imageURL = `${PUBLIC_FOLDER}/static/images/${imageName}`;
@@ -35,12 +35,9 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const [authorEnglish, authorCzech] = author;
   const [genreEnglish, genreCzech] = genre;
 
-  const titleCondition =
-    languageSelected === "czech" ? titleCzech : titleEnglish;
-  const authorCondition =
-    languageSelected === "czech" ? authorCzech : authorEnglish;
-  const genreCondition =
-    languageSelected === "czech" ? genreCzech : genreEnglish;
+  const titleCondition = "czech" === "czech" ? titleCzech : titleEnglish;
+  const authorCondition = "czech" === "czech" ? authorCzech : authorEnglish;
+  const genreCondition = "czech" === "czech" ? genreCzech : genreEnglish;
 
   const [titleValue, setTitleValue] = useState(titleCondition);
   const [authorValue, setAuthorValue] = useState(authorCondition);
@@ -92,10 +89,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
       };
       reader.readAsDataURL(selected);
     } else {
-      const message =
-        languageSelected === "czech"
-          ? "Přiložený soubor není obrázek!"
-          : "Attached file is not image!";
+      const message = t("books.failed_to_preview_image");
 
       setErrorMessage(message);
     }
@@ -105,16 +99,13 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     setLoading(true);
     e.preventDefault();
 
-    const message =
-      languageSelected === "czech"
-        ? `Uspěšně upravena ${titleCzech} kniha`
-        : `Successfully edited ${titleEnglish} book`;
+    const message = t("books.edit_message");
 
     let formData = new FormData();
     formData.append("number_of_pages", numberOfPagesValue);
 
     // Set values to correct language
-    if (languageSelected === "czech") {
+    if ("czech" === "czech") {
       formData.append("title_cz", titleValue);
       formData.append("author_cz", authorValue);
       formData.append("genre_cz", genreValue);
@@ -147,10 +138,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const handleOnDelete = async () => {
     setLoading(true);
 
-    const message =
-      languageSelected === "czech"
-        ? `Smazal si ${titleCzech} knihu`
-        : `You have deleted ${titleEnglish} book`;
+    const message = t("books.delete_message");
 
     await deleteBook({
       variables: { id },
@@ -192,7 +180,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
             component="label"
             startIcon={<PublishIcon />}
           >
-            {languageSelected === "czech" ? "Nahrát obrázek" : "Upload image"}
+            {t("books.upload_image")}
             <input onChange={handleImageChange} type="file" hidden />
           </Button>
         </div>
@@ -201,21 +189,21 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
             <TextField
               value={titleValue}
               onChange={(e) => setTitleValue(e.target.value)}
-              label={languageSelected === "czech" ? "Název" : "Title"}
+              label={t("books.title")}
             />
           </Typography>
           <Typography className="modal-description-item">
             <TextField
               value={authorValue}
               onChange={(e) => setAuthorValue(e.target.value)}
-              label={languageSelected === "czech" ? "Autor" : "Author"}
+              label={t("books.author")}
             />
           </Typography>
           <Typography className="modal-description-item">
             <TextField
               value={genreValue}
               onChange={(e) => setGenreValue(e.target.value)}
-              label={languageSelected === "czech" ? "Žánr" : "Genre"}
+              label={t("books.genre")}
             />
           </Typography>
           <Typography className="modal-description-item">
@@ -224,11 +212,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
               type="number"
               value={numberOfPagesValue}
               onChange={(e) => setNumberOfPagesValue(e.target.value)}
-              label={
-                languageSelected === "czech"
-                  ? "Počet stránek"
-                  : "Number of pages"
-              }
+              label={t("books.number_of_pages")}
             />
           </Typography>
         </div>
@@ -240,10 +224,10 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
           color="primary"
           variant="contained"
         >
-          {languageSelected === "czech" ? "Upravit knihu" : "Edit Book"}
+          {t("books.edit_book")}
         </Button>
         <Button onClick={handleOnDelete} color="primary" variant="contained">
-          {languageSelected === "czech" ? "Smazat knihu" : "Delete Book"}
+          {t("books.delete_book")}
         </Button>
       </DialogActions>
     </>

@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   BORROWING_USER_LIST_QUERY,
   BORROWING_USER_LIST_COUNT_QUERY,
 } from "../Api/borrowings";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import CustomPagination from "../Other/CustomPagination";
 import Book from "./Book";
 
@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 
 const UserBooks = () => {
   const [page, setPage] = useState(1);
-  const { languageSelected } = useContext(LanguageContext);
+  const { t } = useTranslation();
 
   let [getBorrowings, { data: usersBorrowings, loading }] = useLazyQuery(
     BORROWING_USER_LIST_QUERY
@@ -69,9 +69,7 @@ const UserBooks = () => {
               ) : (
                 <>
                   <Typography className="text-container" variant="h2">
-                    {languageSelected === "czech"
-                      ? "Žádné vypůjčené knihy"
-                      : "No borrowed books"}
+                    {t("books.no_borrowed_books")}
                   </Typography>
                 </>
               )}

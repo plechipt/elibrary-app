@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   BOOK_NOT_BORROWED_BOOKS_QUERY,
   BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY,
 } from "../Api/books";
 
-import { LanguageContext } from "../Contexts/LanguageContext";
 import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
 import Book from "./Book";
 import CreateBookModal from "./CreateBookModal";
@@ -18,7 +18,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Books = () => {
   const [page, setPage] = useState(1);
-  const { languageSelected } = useContext(LanguageContext);
+  const { t } = useTranslation();
   const { showCreateModal, setShowCreateModal } = useContext(
     ShowCreateModalContext
   );
@@ -76,9 +76,7 @@ const Books = () => {
               </>
             ) : (
               <Typography className="text-container" variant="h2">
-                {languageSelected === "czech"
-                  ? "Žádné dostupné knihy"
-                  : "No available books"}
+                {t("books.no_available_books")}
               </Typography>
             )}
           </Grid>

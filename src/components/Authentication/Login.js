@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/users";
-import { LanguageContext } from "../Contexts/LanguageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = ({ user }) => {
   const classes = useStyles();
   const history = useHistory();
-  const { languageSelected } = useContext(LanguageContext);
+  const { t } = useTranslation();
 
   const client = useApolloClient();
   const [login, { data: loginData, loading }] = useMutation(
@@ -97,7 +97,7 @@ const SignIn = ({ user }) => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              {languageSelected === "czech" ? "Přihlásit se" : "Sign In"}
+              {t("login_register.sign_in")}
             </Typography>
             <form onSubmit={handleOnLogin} className={classes.form}>
               <TextField
@@ -106,11 +106,7 @@ const SignIn = ({ user }) => {
                 variant="outlined"
                 margin="normal"
                 id="username"
-                label={
-                  languageSelected === "czech"
-                    ? "Uživatelské Jméno"
-                    : "Username"
-                }
+                label={t("login_register.username")}
                 name="username"
                 autoComplete="username"
                 autoFocus
@@ -125,16 +121,12 @@ const SignIn = ({ user }) => {
                 error={failedToLogin ? true : false}
                 helperText={
                   /* Handle bad login  */
-                  failedToLogin
-                    ? languageSelected === "czech"
-                      ? "Příhlašovací jméno nebo heslo jsou zadané špatně"
-                      : "Username or password is incorrect"
-                    : ""
+                  failedToLogin ? t("login_register.failed_to_login") : ""
                 }
                 variant="outlined"
                 margin="normal"
                 name="password"
-                label={languageSelected === "czech" ? "Heslo" : "Password"}
+                label={t("login_register.password")}
                 id="password"
                 autoComplete="current-password"
                 required
@@ -161,14 +153,13 @@ const SignIn = ({ user }) => {
                 variant="contained"
                 color="primary"
               >
-                {languageSelected === "czech" ? "Přihlásit se" : "Sign In"}
+                {t("login_register.sign_in")}
               </Button>
               <Typography color="textSecondary">
-                {languageSelected === "czech"
-                  ? "Nemáte účet?"
-                  : "Don't have an account?"}
+                {}
+                {t("login_register.dont_have_account")}
                 <Link to="/register" className={classes.registerLink}>
-                  {languageSelected === "czech" ? "Registrovat se" : "Sign Up"}
+                  {t("login_register.sign_up")}
                 </Link>
               </Typography>
             </form>

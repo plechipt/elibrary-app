@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { USER_DELETE_TOKENS_MUTATION } from "../Api/users";
 
 import { UserContext } from "../Contexts/UserContext";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import { ShowCreateModalContext } from "../Contexts/ShowCreateModalContext";
 
 import MenuItem from "@material-ui/core/MenuItem";
@@ -13,11 +12,10 @@ import Menu from "@material-ui/core/Menu";
 
 const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   const history = useHistory();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const { user } = useContext(UserContext);
-  const { languageSelected } = useContext(LanguageContext);
   const { setShowCreateModal } = useContext(ShowCreateModalContext);
 
   const handleOnLogout = async () => {
@@ -48,29 +46,23 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
         horizontal: "right",
       }}
     >
-      <MenuItem onClick={() => history.push("/")}>
-        {languageSelected === "czech" ? "Domů" : "Home"}
-      </MenuItem>
+      <MenuItem onClick={() => history.push("/")}>{t("navbar.home")}</MenuItem>
       {user.isSuperuser ? (
         <div>
           <MenuItem onClick={() => history.push("/users")}>
-            {languageSelected === "czech" ? "Uživatelé" : "Users"}
+            {t("navbar.users")}
           </MenuItem>
-          <MenuItem onClick={showModal}>
-            {languageSelected === "czech" ? "Vytvořit knihu" : "Create a book"}
-          </MenuItem>
+          <MenuItem onClick={showModal}>{t("navbar.create_book")}</MenuItem>
           <MenuItem onClick={() => history.push("/borrowed-books")}>
-            {languageSelected === "czech" ? "Pujčené knihy" : "Borrowed books"}
+            {t("navbar.borrowed_books")}
           </MenuItem>
         </div>
       ) : (
         <MenuItem onClick={() => history.push("/my-books")}>
-          {languageSelected === "czech" ? "Moje knihy" : "My books"}
+          {t("navbar.my_books")}
         </MenuItem>
       )}
-      <MenuItem onClick={handleOnLogout}>
-        {languageSelected === "czech" ? "Odhlásit se" : "Logout"}
-      </MenuItem>
+      <MenuItem onClick={handleOnLogout}>{t("navbar.logout")}</MenuItem>
     </Menu>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import "./Message.css";
 
 import Grid from "@material-ui/core/Grid";
@@ -11,9 +11,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 const Message = () => {
+  const { t } = useTranslation();
   const { messageContent } = useContext(MessageContentContext);
   const { showMessage, setShowMessage } = useContext(MessageContext);
-  const { languageSelected } = useContext(LanguageContext);
 
   return (
     <Grid container className="message-container">
@@ -32,9 +32,7 @@ const Message = () => {
               </IconButton>
             }
           >
-            <AlertTitle>
-              {languageSelected === "czech" ? "Úspěch" : "Success"}
-            </AlertTitle>
+            <AlertTitle>{t("message.success")}</AlertTitle>
             {messageContent}
           </Alert>
         </Collapse>

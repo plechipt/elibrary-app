@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import { axiosInstance } from "../axios";
 import { useHistory } from "react-router-dom";
 
@@ -25,13 +25,13 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
+  const { t, i18next } = useTranslation();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
 
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const { languageSelected } = useContext(LanguageContext);
 
   const handleImageChange = (e) => {
     setErrorMessage(null);
@@ -47,10 +47,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
       };
       reader.readAsDataURL(selected);
     } else {
-      const message =
-        languageSelected === "czech"
-          ? "Přiložený soubor není obrázek!"
-          : "Attached file is not image!";
+      const message = t("books.failed_to_preview_image");
 
       setErrorMessage(message);
     }
@@ -59,10 +56,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const handleOnSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const message =
-      languageSelected === "czech"
-        ? `Uspěšná vytvořena ${title} kniha`
-        : `Successfully created ${title} book`;
+    const message = t("books.create_message");
 
     let formData = new FormData();
     formData.append("title", title);
@@ -97,9 +91,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
     >
       <DialogTitle onClose={closeModal}>
         <div className="modal-header">
-          <span className="modal-title">
-            {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
-          </span>
+          <span className="modal-title">{t("books.create_book")}</span>
         </div>
       </DialogTitle>
       <form onSubmit={handleOnSubmit}>
@@ -123,7 +115,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
               component="label"
               startIcon={<PublishIcon />}
             >
-              {languageSelected === "czech" ? "Nahrát obrázek" : "Upload image"}
+              {t("books.upload_image")}
               <input onChange={handleImageChange} type="file" hidden />
             </Button>
           </div>
@@ -133,7 +125,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                label={languageSelected === "czech" ? "Název" : "Title"}
+                label={t("books.title")}
                 InputLabelProps={{ required: false }}
               />
             </Typography>
@@ -142,7 +134,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
                 required
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
-                label={languageSelected === "czech" ? "Autor" : "Author"}
+                label={t("books.author")}
                 InputLabelProps={{ required: false }}
               />
             </Typography>
@@ -151,7 +143,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
                 required
                 value={genre}
                 onChange={(e) => setGenre(e.target.value)}
-                label={languageSelected === "czech" ? "Žánr" : "Genre"}
+                label={t("books.genre")}
                 InputLabelProps={{ required: false }}
               />
             </Typography>
@@ -163,11 +155,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
                 value={numberOfPages}
                 onChange={(e) => setNumberOfPages(e.target.value)}
                 InputLabelProps={{ required: false }}
-                label={
-                  languageSelected === "czech"
-                    ? "Počet stránek"
-                    : "Number of pages"
-                }
+                label={t("books.number_of_pages")}
               />
             </Typography>
           </div>
@@ -179,7 +167,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
             color="primary"
             variant="contained"
           >
-            {languageSelected === "czech" ? "Vytvořit knihu" : "Create book"}
+            {t("books.create_book")}
           </Button>
         </DialogActions>
       </form>

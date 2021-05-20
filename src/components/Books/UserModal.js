@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import {
   BOOK_NOT_BORROWED_BOOKS_QUERY,
   BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY,
@@ -30,9 +30,9 @@ const UserModal = ({
   genre,
   imageName,
 }) => {
+  const { t, i18next } = useTranslation();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
-  const { languageSelected } = useContext(LanguageContext);
 
   const [titleEnglish, titleCzech] = title;
   const [authorEnglish, authorCzech] = author;
@@ -47,10 +47,7 @@ const UserModal = ({
   );
 
   const borrowBookFunction = async () => {
-    const message =
-      languageSelected === "czech"
-        ? `Půjčil sis ${titleCzech} knihu`
-        : `You have borrowed ${titleEnglish} book`;
+    const message = t("borrow_message");
 
     await borrowBook({
       variables: { id },
@@ -66,10 +63,7 @@ const UserModal = ({
   };
 
   const returnBookFunction = async () => {
-    const message =
-      languageSelected === "czech"
-        ? `Vrátil si ${titleCzech} knihu`
-        : `You have borrowed ${titleEnglish} book`;
+    const message = t("books.return_message");
 
     await returnBook({
       variables: { id },
@@ -95,23 +89,15 @@ const UserModal = ({
         </div>
         <div className="modal-right-side">
           <Typography className="modal-description-item">
-            <b>{languageSelected === "czech" ? "Autor:" : "Author: "}</b>
-            <span>
-              {languageSelected === "czech" ? authorCzech : authorEnglish}
-            </span>
+            <b>{t("books.author")}</b>
+            <span>{"czech" === "czech" ? authorCzech : authorEnglish}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>{languageSelected === "czech" ? "Žánr:" : "Genre: "}</b>
-            <span>
-              {languageSelected === "czech" ? genreCzech : genreEnglish}
-            </span>
+            <b>{t("books.genre")}</b>
+            <span>{"czech" === "czech" ? genreCzech : genreEnglish}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>
-              {languageSelected === "czech"
-                ? "Počet stránek:"
-                : "Number of pages:"}
-            </b>
+            <b>{t("books.number_of_pages")}</b>
             <span>{numberOfPages}</span>
           </Typography>
         </div>
@@ -125,7 +111,7 @@ const UserModal = ({
             color="primary"
             variant="contained"
           >
-            {languageSelected === "czech" ? "Vrátit knihu" : "Return Book"}
+            {t("books.return_book")}
           </Button>
         ) : (
           <Button
@@ -135,7 +121,7 @@ const UserModal = ({
             color="primary"
             variant="contained"
           >
-            {languageSelected === "czech" ? "Půjčit knihu" : "Borrow Book"}
+            {t("books.borrow_book")}
           </Button>
         )}
       </DialogActions>

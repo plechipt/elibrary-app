@@ -1,6 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { LanguageContext } from "../Contexts/LanguageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 const SelectLanguage = () => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
-  const { languageSelected, setLanguageSelected } = useContext(LanguageContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef();
@@ -51,9 +49,7 @@ const SelectLanguage = () => {
         data-ga-event-action="language"
       >
         <LanguageIcon />
-        <span className={classes.language}>
-          {languageSelected === "czech" ? "Čestina" : "English"}
-        </span>
+        <span className={classes.language}>{t("navbar.language")}</span>
         <ExpandMoreIcon fontSize="small" />
       </Button>
       <Menu

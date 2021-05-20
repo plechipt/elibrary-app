@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import { LanguageContext } from "../Contexts/LanguageContext";
 import ProfileMenu from "./ProfileMenu";
 import SelectLanguage from "./SelectLanguage";
 import "./Navbar.css";
@@ -16,11 +16,11 @@ import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
+  const { t } = useTranslation();
   const history = useHistory();
 
   const profileMenuRef = useRef(null);
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
-  const { languageSelected } = useContext(LanguageContext);
 
   return (
     <div className="root">
@@ -31,7 +31,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="logo"
             variant="h6"
           >
-            {languageSelected === "czech" ? "Eknihovna" : "Elibrary"}
+            {t("navbar.elibrary")}
           </Typography>
           <Grid container justify="flex-end">
             <SelectLanguage />
