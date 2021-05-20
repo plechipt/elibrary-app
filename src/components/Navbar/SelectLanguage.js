@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { LanguageContext } from "../Contexts/LanguageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,14 +28,15 @@ const useStyles = makeStyles((theme) => ({
 
 const SelectLanguage = () => {
   const classes = useStyles();
+  const { t, i18n } = useTranslation();
   const { languageSelected, setLanguageSelected } = useContext(LanguageContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef();
 
-  const handleItemClick = (language) => {
+  const changeLanguage = (language) => {
     setIsOpen(false);
-    setLanguageSelected(language);
+    i18n.changeLanguage(language);
   };
 
   return (
@@ -69,8 +71,8 @@ const SelectLanguage = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem onClick={() => handleItemClick("czech")}>Čestina</MenuItem>
-        <MenuItem onClick={() => handleItemClick("english")}>English</MenuItem>
+        <MenuItem onClick={() => changeLanguage("cs")}>Čestina</MenuItem>
+        <MenuItem onClick={() => changeLanguage("en")}>English</MenuItem>
       </Menu>
     </div>
   );

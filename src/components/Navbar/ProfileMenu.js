@@ -30,8 +30,6 @@ const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
     setShowCreateModal(true);
   };
 
-  console.log(t("common.test"));
-
   return (
     <Menu
       open={isOpen}
