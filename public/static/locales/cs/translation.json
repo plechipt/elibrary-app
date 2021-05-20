@@ -6,7 +6,7 @@
     "email": "Email",
     "password": "Heslo",
     "confirm_password": "Potvrdit Heslo",
-    "show_passwords": "Ukázat Hesla",
+    "show_passwords": "Ukázat hesla",
     "already_have_account": "Už máte účet?",
     "dont_have_account": "Nemáte účet?",
     "failed_to_login": "Příhlašovací jméno nebo heslo jsou zadané špatně"

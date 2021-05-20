@@ -91,15 +91,15 @@ const UserModal = ({
         </div>
         <div className="modal-right-side">
           <Typography className="modal-description-item">
-            <b>{t("books.author")}</b>
+            <b>{t("books.author")}:</b>
             <span>{i18n.language === "cs" ? authorCzech : authorEnglish}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>{t("books.genre")}</b>
+            <b>{t("books.genre")}:</b>
             <span>{i18n.language === "cs" ? genreCzech : genreEnglish}</span>
           </Typography>
           <Typography className="modal-description-item">
-            <b>{t("books.number_of_pages")}</b>
+            <b>{t("books.number_of_pages")}:</b>
             <span>{numberOfPages}</span>
           </Typography>
         </div>
