@@ -144,8 +144,8 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     await deleteBook({
       variables: { id },
       refetchQueries: [
-        { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
         { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
+        { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
       ],
     });
 
@@ -155,6 +155,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
     setLoading(false);
 
     //Scroll to top
+    window.location.reload();
     window.scrollTo(0, 0);
   };
 

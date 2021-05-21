@@ -45,7 +45,7 @@ const BorrowedBooks = () => {
                   {t("borrowed_books.borrow_day")}
                 </TableCell>
                 <TableCell align="left">
-                  {t("borrowed_books.return_Day")}
+                  {t("borrowed_books.return_day")}
                 </TableCell>
               </TableRow>
             </TableHead>

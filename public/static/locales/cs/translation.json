@@ -26,11 +26,11 @@
     "no_available_books": "Žádné dostupné knihy",
     "no_borrowed_books": "Žádné vypůjčené knihy",
     "failed_to_preview_image": "Přiložený soubor není obrázek!",
-    "create_message": "Uspěšná vytvořena {{title}} kniha",
-    "borrow_message": "Půjčil sis {{title}} knihu",
-    "edit_message": "Uspěšně upravena {{title}} kniha",
-    "return_message": "Vrátil si {{title}} knihu",
-    "delete_message": "Smazal si {{title}} knihu"
+    "create_message": "Vytvořena {{title}} kniha",
+    "borrow_message": "Půjčena {{title}} kniha",
+    "edit_message": "Upravena {{title}} kniha",
+    "return_message": "Vrácena {{title}} kniha",
+    "delete_message": "Smazána {{title}} kniha"
   },
   "borrowed_books": {
     "book_name": "Název knihy",

@@ -26,11 +26,11 @@
     "no_available_books": "No available books",
     "no_borrowed_books": "No borrowed books",
     "failed_to_preview_image": "Attached file is not image!",
-    "create_message": "Successfully created {{title}} book",
-    "borrow_message": "You have borrowed {{title}} book",
-    "edit_message": "Successfully edited {{title}} book",
-    "return_message": "You have returned {{title}} book",
-    "delete_message": "You have deleted {{title}} book"
+    "create_message": "Created {{title}} book",
+    "borrow_message": "Borrowed {{title}} book",
+    "edit_message": "Edited {{title}} book",
+    "return_message": "Returned {{title}} book",
+    "delete_message": "Deleted {{title}} book"
   },
   "borrowed_books": {
     "book_name": "Book name",
