@@ -1,4 +1,7 @@
 {
+  "common": {
+    "submit": "Potvrdit"
+  },
   "login_register": {
     "sign_in": "Přihlásit se",
     "sign_up": "Registrovat se",
@@ -48,6 +51,11 @@
     "my_books": "Moje knihy",
     "logout": "Odhlásit se",
     "language": "Čestina"
+  },
+  "users": {
+    "popup_text": "Udělat speciálním uživatelem",
+    "modal_title": "Jste si jistý",
+    "modal_content": "že chcete udělat {{name}} speciálním uživatelem?"
   },
   "message": {
     "success": "Úspěch"

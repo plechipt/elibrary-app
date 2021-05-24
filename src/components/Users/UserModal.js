@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 10, 8),
+    padding: theme.spacing(2, 10, 6),
   },
   text: {
     fontSize: "1rem",
@@ -29,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
 
 const UserModal = ({ username, modalIsOpen, closeModal }) => {
   const classes = useStyles();
+  const { t, i18n } = useTranslation();
+
+  const modalTitle = t("users.modal_title");
+  const modalContent = i18n.t("users.modal_content", { name: username });
+  const buttonText = t("common.submit");
 
   return (
     <Modal
@@ -46,10 +52,10 @@ const UserModal = ({ username, modalIsOpen, closeModal }) => {
       <Fade in={modalIsOpen}>
         <div className={classes.paper}>
           <h2 align="center" id="transition-modal-title">
-            Are you sure
+            {modalTitle}
           </h2>
           <p className={classes.text} id="transition-modal-description">
-            you want to make <b>{username}</b> special user?
+            {modalContent}
           </p>
           <Button
             className={classes.deleteButton}
@@ -57,7 +63,7 @@ const UserModal = ({ username, modalIsOpen, closeModal }) => {
             variant="contained"
             color="primary"
           >
-            Submit
+            {buttonText}
           </Button>
         </div>
       </Fade>

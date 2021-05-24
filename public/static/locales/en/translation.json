@@ -1,4 +1,7 @@
 {
+  "common": {
+    "submit": "Submit"
+  },
   "login_register": {
     "sign_in": "Sign In",
     "sign_up": "Sign Up",
@@ -48,6 +51,11 @@
     "my_books": "My books",
     "logout": "Logout",
     "language": "English"
+  },
+  "users": {
+    "popup_text": "Make special user",
+    "modal_title": "Are you sure",
+    "modal_content": "you want to make {{name}} special user?"
   },
   "message": {
     "success": "Success"

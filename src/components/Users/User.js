@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 const User = ({ id, username, firstLetter }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -60,7 +63,7 @@ const User = ({ id, username, firstLetter }) => {
         open={Boolean(anchorEl)}
         onClose={() => setAnchorEl(null)}
       >
-        <MenuItem onClick={handleOnClose}>Make special user</MenuItem>
+        <MenuItem onClick={handleOnClose}>{t("users.popup_text")}</MenuItem>
       </Menu>
       <UserModal
         username={username}
