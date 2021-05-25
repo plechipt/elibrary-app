@@ -1,5 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@apollo/client";
+import {
+  USER_ALL_USERS_QUERY,
+  USER_MAKE_SUPERUSER_MUTATION,
+} from "../Api/users";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -28,13 +33,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserModal = ({ username, modalIsOpen, closeModal }) => {
+const UserModal = ({ id, username, modalIsOpen, closeModal }) => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
+  const [makeSuperuser] = useMutation(USER_MAKE_SUPERUSER_MUTATION);
 
   const modalTitle = t("users.modal_title");
   const modalContent = i18n.t("users.modal_content", { name: username });
   const buttonText = t("common.submit");
+
+  const handleOnSubmit = async () => {
+    await makeSuperuser({
+      variables: { id },
+      refetchQueries: [{ query: USER_ALL_USERS_QUERY, variables: { page: 1 } }],
+    });
+  };
 
   return (
     <Modal
@@ -58,6 +71,7 @@ const UserModal = ({ username, modalIsOpen, closeModal }) => {
             {modalContent}
           </p>
           <Button
+            onClick={handleOnSubmit}
             className={classes.deleteButton}
             size="large"
             variant="contained"

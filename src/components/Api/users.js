@@ -78,3 +78,11 @@ export const USER_REFRESH_TOKEN_SILENTLY_MUTATION = gql`
     }
   }
 `;
+
+export const USER_MAKE_SUPERUSER_MUTATION = gql`
+  mutation ($id: ID!) {
+    makeSuperuser(id: $id) {
+      message
+    }
+  }
+`;

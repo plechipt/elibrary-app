@@ -66,6 +66,7 @@ const User = ({ id, username, firstLetter }) => {
         <MenuItem onClick={handleOnClose}>{t("users.popup_text")}</MenuItem>
       </Menu>
       <UserModal
+        id={id}
         username={username}
         modalIsOpen={modalIsOpen}
         closeModal={() => setModalIsOpen(false)}
