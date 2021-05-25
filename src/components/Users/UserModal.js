@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
+import { MessageContext } from "../Contexts/MessageContext";
+import { MessageContentContext } from "../Contexts/MessageContentContext";
 import {
   USER_ALL_USERS_QUERY,
   USER_MAKE_SUPERUSER_MUTATION,
@@ -38,15 +40,25 @@ const UserModal = ({ id, username, modalIsOpen, closeModal }) => {
   const { t, i18n } = useTranslation();
   const [makeSuperuser] = useMutation(USER_MAKE_SUPERUSER_MUTATION);
 
+  const { setShowMessage } = useContext(MessageContext);
+  const { setMessageContent } = useContext(MessageContentContext);
+
   const modalTitle = t("users.modal_title");
   const modalContent = i18n.t("users.modal_content", { name: username });
   const buttonText = t("common.submit");
 
   const handleOnSubmit = async () => {
+    const message = i18n.t("users.create_message", {
+      username: username,
+    });
+
     await makeSuperuser({
       variables: { id },
       refetchQueries: [{ query: USER_ALL_USERS_QUERY, variables: { page: 1 } }],
     });
+
+    setShowMessage(true);
+    setMessageContent(message);
   };
 
   return (

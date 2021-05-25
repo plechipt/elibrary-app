@@ -55,7 +55,8 @@
   "users": {
     "popup_text": "Udělat speciálním uživatelem",
     "modal_title": "Jste si jistý",
-    "modal_content": "že chcete udělat {{name}} speciálním uživatelem?"
+    "modal_content": "že chcete udělat {{name}} speciálním uživatelem?",
+    "create_message": "{{username}} se stal speciálním uživatelem"
   },
   "message": {
     "success": "Úspěch"

@@ -55,7 +55,8 @@
   "users": {
     "popup_text": "Make special user",
     "modal_title": "Are you sure",
-    "modal_content": "you want to make {{name}} special user?"
+    "modal_content": "you want to make {{name}} special user?",
+    "create_message": "{{username}} is now special user"
   },
   "message": {
     "success": "Success"
