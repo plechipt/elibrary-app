@@ -1,3 +1,4 @@
+from django.http import request
 import graphene
 from django import forms
 from graphene_django import DjangoObjectType
@@ -94,4 +95,18 @@ class VerifyAccessToken(graphene.Mutation):
 
         return VerifyAccessToken(is_expired)
     
-    
+
+class MakeSuperuser(graphene.Mutation):
+    class Arguments:
+        id = graphene.ID(required=True)
+
+    message = graphene.String()
+
+    def mutate(self, info, id):
+        user = User.objects.get(id=id)
+        
+        user.is_superuser = True
+        user.save()
+        message = 'Success!'
+
+        return Logout(message)

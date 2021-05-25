@@ -12,6 +12,7 @@ class UserMutation(AuthMutation, graphene.ObjectType):
     login = Login.Field()
     logout = Logout.Field()
     verify_access_token = VerifyAccessToken.Field() 
+    make_superuser = MakeSuperuser.Field()
     
     
 class UserQuery(graphene.ObjectType):
