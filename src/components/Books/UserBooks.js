@@ -82,6 +82,7 @@ const UserBooks = () => {
       {usersBorrowingsCount ? (
         <CustomPagination
           count={usersBorrowingsCount.usersBorrowingsCount}
+          page={page}
           pageSize={12}
           setPage={setPage}
         />

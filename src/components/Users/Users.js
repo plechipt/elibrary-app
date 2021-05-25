@@ -29,6 +29,7 @@ const Users = () => {
             <CustomPagination
               count={usersCount.allUsersCount}
               pageSize={10}
+              page={page}
               setPage={setPage}
             />
           ) : null}

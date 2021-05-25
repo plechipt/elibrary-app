@@ -88,6 +88,7 @@ const Books = () => {
         <CustomPagination
           count={notBorrowedBooksCount.notBorrowedBooksCount}
           pageSize={12}
+          page={page}
           setPage={setPage}
         />
       ) : null}
