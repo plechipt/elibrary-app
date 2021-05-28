@@ -18,9 +18,12 @@ python-dotenv = "*"
 djangorestframework = "*"
 pillow = "*"
 django-extra-fields = "*"
-djangorestframework-filters = "*"
+djangorestframework-filters = "==1.0.0.dev2"
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
