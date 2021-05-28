@@ -1,5 +1,4 @@
 import graphene
-from graphene_django_extras import all_directives
 
 from users.schema import UserMutation, UserQuery
 from books.schema import BookMutation, BookQuery
@@ -17,5 +16,4 @@ class Mutation(BorrowingMutation, BookMutation, UserMutation, graphene.ObjectTyp
 schema = graphene.Schema(
     query=Query,
     mutation=Mutation,
-    directives=all_directives
 )

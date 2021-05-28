@@ -4,7 +4,6 @@ GRAPHENE = {
     "SCHEMA": "backend.schema.schema",
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
-        'graphene_django_extras.ExtraGraphQLDirectiveMiddleware',
     ],
 }
 
@@ -23,13 +22,4 @@ GRAPHQL_JWT = {
     # Rename JWT cookie tokens
     'JWT_COOKIE_NAME': 'accessToken',
     'JWT_REFRESH_TOKEN_COOKIE_NAME': 'refreshToken',
-}
-
-# graphene-django-extras package
-GRAPHENE_DJANGO_EXTRAS = {
-    'DEFAULT_PAGINATION_CLASS': 'graphene_django_extras.paginations.LimitOffsetGraphqlPagination',
-    'DEFAULT_PAGE_SIZE': 5,
-    'MAX_PAGE_SIZE': 50,
-    'CACHE_ACTIVE': True,
-    'CACHE_TIMEOUT': 300    # seconds
 }
