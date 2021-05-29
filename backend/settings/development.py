@@ -24,9 +24,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Static files (CSS, JavaScript, Images)
+BUCKET_URL = os.getenv('REACT_APP_BUCKET_URL')
+
 MEDIA_URL = '/media/'
-STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'public' / 'static' / 'images')
+STATIC_URL = BUCKET_URL + '/'
+MEDIA_ROOT = BUCKET_URL + '/images'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
