@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from .production import DEBUG
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
