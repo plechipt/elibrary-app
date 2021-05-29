@@ -19,6 +19,8 @@ djangorestframework = "*"
 pillow = "*"
 django-extra-fields = "*"
 djangorestframework-filters = "==1.0.0.dev2"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 

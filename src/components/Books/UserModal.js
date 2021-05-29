@@ -19,6 +19,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
 const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
 
 const UserModal = ({
   isBorrowed,
@@ -84,7 +85,7 @@ const UserModal = ({
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
           <img
-            src={`${PUBLIC_FOLDER}/static/images/${imageName}`}
+            src={`${BUCKET_URL}/${imageName}`}
             className="modal-image"
             alt=""
           />
