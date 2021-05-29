@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import { axiosInstance } from "../axios";
-import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -25,7 +24,7 @@ const CreateBookModal = ({ openModal, closeModal }) => {
   const [numberOfPages, setNumberOfPages] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
-  const { t, i18next } = useTranslation();
+  const { t } = useTranslation();
   const { setShowMessage } = useContext(MessageContext);
   const { setMessageContent } = useContext(MessageContentContext);
 

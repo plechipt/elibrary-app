@@ -18,7 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
-const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+//const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
 
 const UserModal = ({

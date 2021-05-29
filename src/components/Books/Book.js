@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookModal from "./BookModal";
 
-const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+//const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
 
 const Book = ({

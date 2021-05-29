@@ -21,12 +21,13 @@ if DEBUG == False:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
-# S3 buckets config
+# S3 bucket config
 AWS_ACCESS_KEY_ID = os.getenv('ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'

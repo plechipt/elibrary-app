@@ -17,11 +17,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import PublishIcon from "@material-ui/icons/Publish";
 
-const PUBLIC_FOLDER = process.env.PUBLIC_URL;
+//const PUBLIC_FOLDER = process.env.PUBLIC_URL;
 const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
-
-console.log(BUCKET_URL);
 
 const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { t, i18n } = useTranslation();
