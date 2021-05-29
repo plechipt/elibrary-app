@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 # Load dotenv
 load_dotenv()
 
-DEBUG = False
+DEBUG = True
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Server is running in production

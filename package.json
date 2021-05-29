@@ -1,4 +1,5 @@
 {
+  "homepage": "https://awesome-elibrary-app-bucket.s3.eu-central-1.amazonaws.com",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
