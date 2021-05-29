@@ -27,7 +27,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setMessageContent } = useContext(MessageContentContext);
 
   const [loading, setLoading] = useState(false);
-  const imageURL = `${BUCKET_URL}/${imageName}`;
+  const imageURL = `${BUCKET_URL}/images/${imageName}`;
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [deleteBook] = useMutation(BOOK_DELETE_BOOK_MUTATION);

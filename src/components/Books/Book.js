@@ -28,7 +28,7 @@ const Book = ({
       <Paper className="book">
         <img
           onClick={() => setOpenModal(true)}
-          src={`${BUCKET_URL}/${imageName}`}
+          src={`${BUCKET_URL}/images/${imageName}`}
           title={i18n.language === "cs" ? titleCzech : titleEnglish}
           alt=""
         />

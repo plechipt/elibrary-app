@@ -85,7 +85,7 @@ const UserModal = ({
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
           <img
-            src={`${BUCKET_URL}/${imageName}`}
+            src={`${BUCKET_URL}/images/${imageName}`}
             className="modal-image"
             alt=""
           />
