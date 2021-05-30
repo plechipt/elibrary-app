@@ -9,8 +9,6 @@ load_dotenv()
 
 DEBUG = os.getenv('DEBUG_VALUE')
 SECRET_KEY = os.getenv("SECRET_KEY")
-USE_S3 = os.getenv('USE_S3')
-BUCKET_URL = os.getenv('REACT_APP_BUCKET_URL')
 
 # Server is running in production
 if DEBUG == 'FALSE':

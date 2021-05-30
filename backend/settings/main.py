@@ -13,7 +13,6 @@ from .production import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
 '''
 Frontend integration
 '''
@@ -50,6 +49,9 @@ TEMPLATES = [
 
 
 # S3 bucket config
+USE_S3 = os.getenv('USE_S3')
+BUCKET_URL = os.getenv('REACT_APP_BUCKET_URL')
+
 if USE_S3 == 'TRUE':
     MEDIA_URL = '/media/'
     STATIC_URL = BUCKET_URL + '/static/'
@@ -78,4 +80,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR / 'build' / 'static'),
 ]
 
+# Settings for django and heroku
 django_heroku.settings(locals(), staticfiles=False)
