@@ -1,11 +1,16 @@
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Load dotenv
 load_dotenv()
 
 DEBUG = os.getenv('DEBUG_VALUE')
 SECRET_KEY = os.getenv("SECRET_KEY")
+USE_S3 = os.getenv('USE_S3')
+BUCKET_URL = os.getenv('REACT_APP_BUCKET_URL')
 
 # Server is running in production
 if DEBUG == 'FALSE':
@@ -20,15 +25,26 @@ if DEBUG == 'FALSE':
     SECURE_HSTS_PRELOAD = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
+
 # S3 bucket config
-AWS_ACCESS_KEY_ID = os.getenv('ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = os.getenv('CUSTOM_DOMAIN')
+if USE_S3 == 'FALSE':
+    MEDIA_URL = '/media/'
+    STATIC_URL = BUCKET_URL + '/static/'
+    MEDIA_ROOT = BUCKET_URL + '/static/images/'
 
-AWS_LOCATION = 'static'
-#AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
+    AWS_ACCESS_KEY_ID = os.getenv('ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN = os.getenv('CUSTOM_DOMAIN')
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    AWS_LOCATION = 'static'
+    #AWS_S3_FILE_OVERWRITE = False
+    AWS_DEFAULT_ACL = None
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+else:
+    MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
+    MEDIA_ROOT = os.path.join(BASE_DIR / 'public' / 'static' / 'images')

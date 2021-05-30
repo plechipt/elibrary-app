@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from .production import DEBUG
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -20,16 +19,6 @@ CORS_ALLOWED_ORIGINS = [
 # Files
 ROOT_URLCONF = 'backend.urls'
 WSGI_APPLICATION = 'backend.wsgi.application'
-
-# Whitenoise
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Static files (CSS, JavaScript, Images)
-BUCKET_URL = os.getenv('REACT_APP_BUCKET_URL')
-
-MEDIA_URL = '/media/'
-STATIC_URL = BUCKET_URL + '/'
-MEDIA_ROOT = BUCKET_URL + '/images'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
