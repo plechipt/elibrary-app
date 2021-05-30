@@ -34,8 +34,6 @@ const App = () => {
     fetchPolicy: "network-only",
   });
 
-  console.log(process.env.PUBLIC_URL);
-
   const [showMessage, setShowMessage] = useState(false);
   const showMessageValue = useMemo(
     () => ({ showMessage, setShowMessage }),

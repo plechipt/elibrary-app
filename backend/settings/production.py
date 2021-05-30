@@ -27,7 +27,7 @@ if DEBUG == 'FALSE':
 
 
 # S3 bucket config
-if USE_S3 == 'FALSE':
+if USE_S3 == 'TRUE':
     MEDIA_URL = '/media/'
     STATIC_URL = BUCKET_URL + '/static/'
     MEDIA_ROOT = BUCKET_URL + '/static/images/'
