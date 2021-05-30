@@ -1,4 +1,5 @@
 import os
+import django_heroku
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -48,3 +49,6 @@ else:
     MEDIA_URL = '/media/'
     STATIC_URL = '/static/'
     MEDIA_ROOT = os.path.join(BASE_DIR / 'public' / 'static' / 'images')
+
+
+django_heroku.settings(locals(), staticfiles=False)
