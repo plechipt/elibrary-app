@@ -40,7 +40,6 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 # S3 bucket config
 if USE_S3 == 'TRUE':
-    #MEDIA_URL = '/media/'
     STATIC_URL = BUCKET_URL + '/static/'
     MEDIA_URL = BUCKET_URL + '/static/images/'
 
@@ -50,5 +49,4 @@ if USE_S3 == 'TRUE':
 else:
     MEDIA_URL = '/media/'
     STATIC_URL = '/static/'
-    MEDIA_ROOT = os.path.join(BASE_DIR / 'public' / 'static' / 'images')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
