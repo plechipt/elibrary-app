@@ -21,6 +21,7 @@ djangorestframework-filters = "==1.0.0.dev2"
 django-storages = "*"
 boto3 = "*"
 django-heroku = "*"
+whitenoise = "*"
 
 [dev-packages]
 
