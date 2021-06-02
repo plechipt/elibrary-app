@@ -7,6 +7,9 @@ from graphql_jwt.decorators import jwt_cookie
 from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 # Load dotenv
 load_dotenv()
 
@@ -25,4 +28,4 @@ urlpatterns = [
     path("graphql/", jwt_cookie(GraphQLView.as_view(graphiql=GRAPHIQL_TURN_ON))),
     path('robots.txt', TemplateView.as_view(template_name='static/text/robots.txt')),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

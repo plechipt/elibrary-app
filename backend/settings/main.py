@@ -10,10 +10,6 @@ from .graphene import *
 from .rest_framework import *
 from .production import *
 
-from .production import STATIC_URL
-
-print(STATIC_URL)
-
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
