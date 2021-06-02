@@ -28,12 +28,12 @@ class Book(models.Model):
     
     def save(self, *args, **kwargs):
         super().save()
-        img = Image.open(self.image.path)
+        img = Image.open(self.image)
 
         if img.height > 300 or img.height > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
-            img.save(self.image.path)
+            img.save(self.image.name)
 
 
 @receiver(post_save, sender=Book)
