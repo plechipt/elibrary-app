@@ -39,7 +39,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 # S3 bucket config
 if USE_S3 == 'TRUE':
-    STATIC_URL = BUCKET_URL + '/static/'
+    STATIC_URL = BUCKET_URL + '/static/static/'
     MEDIA_URL = BUCKET_URL + '/static/images/'
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
