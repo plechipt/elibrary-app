@@ -17,7 +17,7 @@ class Book(models.Model):
 
     number_of_pages = models.IntegerField()
     borrowed = models.BooleanField(default=False)
-    image = models.ImageField(default='static/images/default.jpg')
+    image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
     
     def all_objects_count(self):
