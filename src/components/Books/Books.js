@@ -69,10 +69,6 @@ const Books = () => {
                     );
                   }
                 )}
-                <CreateBookModal
-                  openModal={showCreateModal}
-                  closeModal={() => setShowCreateModal(false)}
-                />
               </>
             ) : (
               <Typography className="text-container" variant="h2">
@@ -92,6 +88,10 @@ const Books = () => {
           setPage={setPage}
         />
       ) : null}
+      <CreateBookModal
+        openModal={showCreateModal}
+        closeModal={() => setShowCreateModal(false)}
+      />
     </>
   );
 };
