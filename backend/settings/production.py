@@ -42,7 +42,7 @@ if USE_S3 == 'TRUE':
     STATIC_URL = BUCKET_URL + '/static/'
     MEDIA_URL = BUCKET_URL + '/static/images/'
 
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'backend.storage_backends.MediaStorage'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 else:
