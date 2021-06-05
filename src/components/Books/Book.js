@@ -24,7 +24,7 @@ const Book = ({
   const [titleEnglish, titleCzech] = title;
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+    <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
       <Paper className="book">
         <img
           onClick={() => setOpenModal(true)}
