@@ -19,6 +19,9 @@ class Book(models.Model):
     borrowed = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
+
+    class Meta:
+        ordering = ['-id']
     
     def all_objects_count(self):
         return Book.objects.all().count()
