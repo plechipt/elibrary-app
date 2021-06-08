@@ -31,8 +31,8 @@ export const BORROWING_USER_LIST_COUNT_QUERY = gql`
 `;
 
 export const BORROWING_LIST_QUERY = gql`
-  query ($page: Int) {
-    borrowings(page: $page) {
+  query ($page: Int, $isFiltered: Boolean) {
+    borrowings(page: $page, isFiltered: $isFiltered) {
       id
       book {
         title

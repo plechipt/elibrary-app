@@ -6,7 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 
 const TableRowComponent = ({ title, username, dateBorrowed, dateReturned }) => {
   const { t } = useTranslation();
-  const notReturnedMessage = t("borrowed_books.return_day");
+  const notReturnedMessage = t("borrowed_books.not_returned");
 
   // If dateReturned is null -> show notReturnedMessage
   dateReturned = dateReturned === null ? notReturnedMessage : dateReturned;

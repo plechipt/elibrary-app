@@ -30,8 +30,8 @@ const BorrowedBooks = () => {
     useLazyQuery(BORROWING_LIST_QUERY);
 
   useEffect(() => {
-    getBorrowings({ variables: { page } });
-  }, [page, getBorrowings]);
+    getBorrowings({ variables: { page, isFiltered: filterNotReturned } });
+  }, [page, getBorrowings, filterNotReturned]);
 
   return (
     <>
