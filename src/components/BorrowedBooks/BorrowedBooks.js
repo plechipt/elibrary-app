@@ -17,6 +17,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const BorrowedBooks = () => {
   const [page, setPage] = useState(1);
@@ -33,45 +35,61 @@ const BorrowedBooks = () => {
   return (
     <>
       {borrowings ? (
-        <TableContainer className="table-container" component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>{t("borrowed_books.book_name")}</TableCell>
-                <TableCell align="left">
-                  {t("borrowed_books.borrower")}
-                </TableCell>
-                <TableCell align="left">
-                  {t("borrowed_books.borrow_day")}
-                </TableCell>
-                <TableCell align="left">
-                  {t("borrowed_books.return_day")}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {borrowings.borrowings.map(
-                ({
-                  id,
-                  book: { title },
-                  user: { username },
-                  dateBorrowed,
-                  dateReturned,
-                }) => {
-                  return (
-                    <TableRowComponent
-                      key={id}
-                      title={title}
-                      username={username}
-                      dateBorrowed={dateBorrowed}
-                      dateReturned={dateReturned}
-                    />
-                  );
-                }
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <div>
+          <div className="table-container">
+            <FormControlLabel
+              className="checkbox-container"
+              control={
+                <Checkbox
+                  //checked={true}
+                  //onChange={handleChange}
+                  name="checkedB"
+                  color="primary"
+                />
+              }
+              label="Filter not returned"
+            />
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>{t("borrowed_books.book_name")}</TableCell>
+                    <TableCell align="left">
+                      {t("borrowed_books.borrower")}
+                    </TableCell>
+                    <TableCell align="left">
+                      {t("borrowed_books.borrow_day")}
+                    </TableCell>
+                    <TableCell align="left">
+                      {t("borrowed_books.return_day")}
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {borrowings.borrowings.map(
+                    ({
+                      id,
+                      book: { title },
+                      user: { username },
+                      dateBorrowed,
+                      dateReturned,
+                    }) => {
+                      return (
+                        <TableRowComponent
+                          key={id}
+                          title={title}
+                          username={username}
+                          dateBorrowed={dateBorrowed}
+                          dateReturned={dateReturned}
+                        />
+                      );
+                    }
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </div>
       ) : null}
       {borrowingsCount ? (
         <CustomPagination

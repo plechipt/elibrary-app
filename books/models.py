@@ -30,7 +30,7 @@ class Book(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        super().save()
+        super().save(*args, **kwargs)
         img = Image.open(self.image)
 
         if img.height > 300 or img.height > 300:

@@ -1,8 +1,14 @@
 .table-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: right !important;
+  align-items: right !important;
   max-width: 50%;
   margin: auto;
   margin-top: 1.5rem !important;
+}
+
+.checkbox-container {
+  min-width: 100% !important;
+  margin-bottom: 0.5rem;
 }
