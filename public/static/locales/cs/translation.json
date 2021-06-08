@@ -40,7 +40,8 @@
     "borrower": "Dlužník",
     "borrow_day": "Den vypůjčení",
     "return_day": "Den vrácení",
-    "not_returned": "Nevráceno"
+    "not_returned": "Nevráceno",
+    "filter_not_returned": "Filtrovat nevrácené"
   },
   "navbar": {
     "elibrary": "Eknihovna",

@@ -40,7 +40,8 @@
     "borrower": "Borrower",
     "borrow_day": "Borrow day",
     "return_day": "Return day",
-    "not_returned": "Not returned"
+    "not_returned": "Not returned",
+    "filter_not_returned": "Filter not returned"
   },
   "navbar": {
     "elibrary": "Elibrary",

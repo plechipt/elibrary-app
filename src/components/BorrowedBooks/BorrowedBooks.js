@@ -21,8 +21,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const BorrowedBooks = () => {
-  const [page, setPage] = useState(1);
   const { t } = useTranslation();
+  const [page, setPage] = useState(1);
+  const [filterNotReturned, setFilterNotReturned] = useState(false);
 
   const { data: borrowingsCount } = useQuery(BORROWING_LIST_COUNT_QUERY);
   const [getBorrowings, { data: borrowings }] =
@@ -41,13 +42,17 @@ const BorrowedBooks = () => {
               className="checkbox-container"
               control={
                 <Checkbox
-                  //checked={true}
-                  //onChange={handleChange}
+                  checked={filterNotReturned}
+                  onChange={() =>
+                    setFilterNotReturned(
+                      (filterNotReturned) => !filterNotReturned
+                    )
+                  }
                   name="checkedB"
                   color="primary"
                 />
               }
-              label="Filter not returned"
+              label={t("borrowed_books.filter_not_returned")}
             />
             <TableContainer component={Paper}>
               <Table aria-label="simple table">
