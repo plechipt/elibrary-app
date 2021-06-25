@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { MessageContext } from "../Contexts/MessageContext";
 import { MessageContentContext } from "../Contexts/MessageContentContext";
 import {
@@ -11,6 +11,7 @@ import {
   BORROWING_USER_LIST_QUERY,
   BORROWING_BORROW_BOOK_MUTATION,
   BORROWING_RETURN_BOOK_MUTATION,
+  BORROWING_USER_LIST_COUNT_QUERY,
 } from "../Api/borrowings";
 
 import Button from "@material-ui/core/Button";
@@ -39,6 +40,10 @@ const UserModal = ({
   const [authorEnglish, authorCzech] = author;
   const [genreEnglish, genreCzech] = genre;
 
+  const { data: usersBorrowingsCount } = useQuery(
+    BORROWING_USER_LIST_COUNT_QUERY
+  );
+
   const [borrowBook, { loading: borrowBookLoading }] = useMutation(
     BORROWING_BORROW_BOOK_MUTATION
   );
@@ -50,18 +55,27 @@ const UserModal = ({
   const borrowBookFunction = async () => {
     const titleName = i18n.language === "cs" ? titleCzech : titleEnglish;
     const message = i18n.t("books.borrow_message", { title: titleName });
+    const errorMessage = "You have exceeded the limit borrowed books";
 
-    await borrowBook({
-      variables: { id },
-      refetchQueries: [
-        { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
-        { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
-        { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
-      ],
-    });
-    closeModal();
-    setShowMessage(true);
-    setMessageContent(message);
+    const maximumBorrowedBooks = 3;
+    const booksCount = usersBorrowingsCount.usersBorrowingsCount;
+
+    if (booksCount >= maximumBorrowedBooks) {
+      setShowMessage(errorMessage);
+    } else {
+      await borrowBook({
+        variables: { id },
+        refetchQueries: [
+          { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
+          { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
+          { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
+          { query: BORROWING_USER_LIST_COUNT_QUERY },
+        ],
+      });
+      closeModal();
+      setShowMessage(true);
+      setMessageContent(message);
+    }
   };
 
   const returnBookFunction = async () => {
@@ -74,6 +88,7 @@ const UserModal = ({
         { query: BORROWING_USER_LIST_QUERY, variables: { page: 1 } },
         { query: BOOK_NOT_BORROWED_BOOKS_QUERY, variables: { page: 1 } },
         { query: BOOK_NOT_BORROWED_BOOKS_COUNT_QUERY },
+        { query: BORROWING_USER_LIST_COUNT_QUERY },
       ],
     });
     closeModal();

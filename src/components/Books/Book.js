@@ -18,8 +18,8 @@ const Book = ({
   numberOfPages,
   imageName,
 }) => {
-  const [openModal, setOpenModal] = useState(false);
   const { t, i18n } = useTranslation();
+  const [openModal, setOpenModal] = useState(false);
 
   const [titleEnglish, titleCzech] = title;
 
