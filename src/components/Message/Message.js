@@ -15,6 +15,8 @@ const Message = () => {
   const { messageContent } = useContext(MessageContentContext);
   const { showMessage, setShowMessage } = useContext(MessageContext);
 
+  console.log(messageContent);
+
   return (
     <Grid container className="message-container">
       <Grid item xs={11} sm={8} md={6} lg={4} xl={3}>

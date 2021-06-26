@@ -54,14 +54,14 @@ const UserModal = ({
 
   const borrowBookFunction = async () => {
     const titleName = i18n.language === "cs" ? titleCzech : titleEnglish;
-    const message = i18n.t("books.borrow_message", { title: titleName });
-    const errorMessage = "You have exceeded the limit borrowed books";
+    let message = i18n.t("books.borrow_message", { title: titleName });
+    let errorMessage = "You have exceeded the limit borrowed books";
 
     const maximumBorrowedBooks = 3;
     const booksCount = usersBorrowingsCount.usersBorrowingsCount;
 
     if (booksCount >= maximumBorrowedBooks) {
-      setShowMessage(errorMessage);
+      message = errorMessage;
     } else {
       await borrowBook({
         variables: { id },
@@ -72,10 +72,10 @@ const UserModal = ({
           { query: BORROWING_USER_LIST_COUNT_QUERY },
         ],
       });
-      closeModal();
-      setShowMessage(true);
-      setMessageContent(message);
     }
+    closeModal();
+    setMessageContent(message);
+    setShowMessage(true);
   };
 
   const returnBookFunction = async () => {
