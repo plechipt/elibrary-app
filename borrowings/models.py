@@ -6,6 +6,7 @@ from books.models import Book
 
 
 class Borrowing(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.OneToOneField(Book, null=True, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)

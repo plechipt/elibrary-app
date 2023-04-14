@@ -6,6 +6,7 @@ from PIL import Image
 
 class Book(models.Model):
     # Default language in english
+    id = models.AutoField(primary_key=True)
     title = models.CharField(blank=True, max_length=100)
     author = models.CharField(blank=True, max_length=100)
     genre = models.CharField(blank=True, max_length=50)
