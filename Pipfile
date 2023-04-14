@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 django = "*"
-graphene-django = "==3.0.0b7"
 django-graphql-jwt = "==0.3.2"
 django-cors-headers = "*"
 pyjwt = "*"
@@ -22,6 +21,7 @@ django-storages = "*"
 boto3 = "*"
 django-heroku = "*"
 whitenoise = "*"
+graphene-django = "*"
 
 [dev-packages]
 
