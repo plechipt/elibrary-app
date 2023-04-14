@@ -13,21 +13,34 @@ from .production import *
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-'''
-Frontend integration
-'''
+DEBUG = os.getenv('DEBUG_VALUE')
+SECRET_KEY = os.getenv('SECRET_KEY')
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {}
 
-# Connect Postgres
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env) 
+if DEBUG == 'TRUE':
+    DEBUG = True
+else:
+    DEBUG = False
+
+if DEBUG == True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+# PostgreSQL in production 
+else:
+    DB_URL = os.getenv('DATABASE_URL')
+    DATABASES["default"] = dj_database_url.config(
+        default=DB_URL,
+        conn_max_age=600, 
+        ssl_require=True
+    )
 
 TEMPLATES = [
     {
