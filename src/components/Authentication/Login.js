@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/users";
+import Cookies from "js-cookie";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -71,6 +72,7 @@ const SignIn = ({ user }) => {
       const loginWasSuccessful = tokenAuth !== null;
 
       if (loginWasSuccessful) {
+        Cookies.set("token", tokenAuth.token);
         client.resetStore();
         history.push("/");
       } else {
