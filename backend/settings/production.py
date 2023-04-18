@@ -17,6 +17,8 @@ if DEBUG_VALUE == 'FALSE':
     SECURE_HSTS_PRELOAD = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = 'public/static/images/'
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
