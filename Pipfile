@@ -10,7 +10,6 @@ django-cors-headers = "*"
 pyjwt = "*"
 gunicorn = "*"
 dj-database-url = "*"
-psycopg2 = "*"
 ipython = "*"
 python-dotenv = "*"
 djangorestframework = "*"
@@ -22,6 +21,7 @@ boto3 = "*"
 django-heroku = "*"
 whitenoise = "*"
 graphene-django = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
