@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
@@ -13,13 +14,12 @@ import Menu from "@material-ui/core/Menu";
 const ProfileMenu = ({ isOpen, anchorEl, closeProfileMenu }) => {
   const history = useHistory();
   const { t } = useTranslation();
-  const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const { user } = useContext(UserContext);
   const { setShowCreateModal } = useContext(ShowCreateModalContext);
 
   const handleOnLogout = async () => {
-    await deleteTokens();
+    Cookies.remove("token");
     history.go(0); // Reset page
   };
 

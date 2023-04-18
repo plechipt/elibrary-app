@@ -99,7 +99,7 @@ const UserModal = ({
       <DialogContent className="modal-content" dividers>
         <div className="modal-left-side">
           <img
-            src={`/static/images/default.jpg`}
+            src={`/static/images/${imageName}`}
             className="modal-image"
             alt=""
           />
