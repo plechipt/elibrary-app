@@ -20,6 +20,7 @@ class BorrowBook(graphene.Mutation):
     def mutate(self, info, id):
         user = info.context.user
         book = Book.objects.get(id=id)
+        print(book.image_name)
         date = datetime.now().strftime('%d.%m %Y')
 
         try:

@@ -13,8 +13,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import PublishIcon from "@material-ui/icons/Publish";
 
-const PUBLIC_FOLDER = process.env.PUBLIC_URL;
-const DEFAULT_IMAGE = `${PUBLIC_FOLDER}/static/images/default.jpg`;
+const DEFAULT_IMAGE = `/static/images/default.jpg`;
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 const CreateBookModal = ({ openModal, closeModal }) => {

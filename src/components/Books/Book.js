@@ -6,9 +6,6 @@ import Paper from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import BookModal from "./BookModal";
 
-//const PUBLIC_FOLDER = process.env.PUBLIC_URL;
-const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
-
 const Book = ({
   isBorrowed,
   id,
@@ -28,7 +25,7 @@ const Book = ({
       <Paper className="book">
         <img
           onClick={() => setOpenModal(true)}
-          src={`${BUCKET_URL}/static/images/${imageName}`}
+          src={`/static/images/${imageName}`}
           title={i18n.language === "cs" ? titleCzech : titleEnglish}
           alt=""
         />

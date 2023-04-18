@@ -17,8 +17,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import PublishIcon from "@material-ui/icons/Publish";
 
-//const PUBLIC_FOLDER = process.env.PUBLIC_URL;
-const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
@@ -27,7 +25,7 @@ const AdminModal = ({ id, title, author, genre, numberOfPages, imageName }) => {
   const { setMessageContent } = useContext(MessageContentContext);
 
   const [loading, setLoading] = useState(false);
-  const imageURL = `${BUCKET_URL}/static/images/${imageName}`;
+  const imageURL = `/static/images/default.jpg`;
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [deleteBook] = useMutation(BOOK_DELETE_BOOK_MUTATION);

@@ -3,6 +3,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
 
+image_path_folder = 'public/static/images'
+
 
 class Book(models.Model):
     # Default language in english
@@ -18,7 +20,7 @@ class Book(models.Model):
 
     number_of_pages = models.IntegerField()
     borrowed = models.BooleanField(default=False)
-    image = models.ImageField(default='default.jpg')
+    image = models.ImageField(default=f'{image_path_folder}/default.jpg')
     image_name = models.CharField(max_length=50, default='default.jpg')
 
     class Meta:
@@ -37,12 +39,14 @@ class Book(models.Model):
         if img.height > 300 or img.height > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
-            img.save(self.image.name)
+            img.save(f'{image_path_folder}/{self.image.name}')
 
 
 @receiver(post_save, sender=Book)
 def after_book_create(sender, instance, created, **kwargs):
     obj = instance
+
+    print(obj.image, obj.image_name)
 
     # If image was updated
     if obj.image != obj.image_name:

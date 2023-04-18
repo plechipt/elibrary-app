@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Hamlet",
+    "author": "William Shakespeare",
+    "number_of_pages": 368,
+    "genre": "Tragedy",
+    "image_name": "hamlet.jpg"
+  },
+  {
+    "title": "Hobbit",
+    "author": "John Ronald Reuel Tolkien",
+    "number_of_pages": 310,
+    "genre": "Fantasy",
+    "image_name": "hobbit.jpg"
+  },
+  {
+    "title": "The Old Man and the Sea",
+    "author": "Ernest Hemingway",
+    "number_of_pages": 127,
+    "genre": "Tragedy",
+    "image_name": "the_old_man_and_sea.jpg"
+  },
+  {
+    "title": "Alice in Wonderland",
+    "author": "Lewis Carroll",
+    "number_of_pages": 200,
+    "genre": "Fantasy",
+    "image_name": "alice_in_wonderland.jpg"
+  },
+  {
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "number_of_pages": 280,
+    "genre": "Science Fiction",
+    "image_name": "frankenstein.jpg"
+  },
+  {
+    "title": "The Little Prince",
+    "author": "Antoine de Saint-Exup\u00e9ry",
+    "number_of_pages": 96,
+    "genre": "Children\u2019s",
+    "image_name": "little_prince.jpg"
+  },
+  {
+    "title": "Romeo and Juliet",
+    "author": "William Shakespeare",
+    "number_of_pages": 480,
+    "genre": "Tragedy",
+    "image_name": "romeo_a_julie.jpg"
+  },
+  {
+    "title": "The Lord of the Rings",
+    "author": "John Ronald Reuel Tolkien",
+    "number_of_pages": 1178,
+    "genre": "Fantasy",
+    "image_name": "lord_of_the_rings.jpg"
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "Francis Scott Fitzgerald",
+    "number_of_pages": 218,
+    "genre": "Romance",
+    "image_name": "great_gatsby.jpg"
+  },
+  {
+    "title": "The Decameron",
+    "author": "Giovanni Boccaccio",
+    "number_of_pages": 1072,
+    "genre": "Fiction",
+    "image_name": "decameron.jpg"
+  },
+  {
+    "title": "Schindler's List",
+    "author": "Thomas Keneally",
+    "number_of_pages": 380,
+    "genre": "Romance",
+    "image_name": "schindlers_list.jpg"
+  },
+  {
+    "title": "Don Quixote",
+    "author": "Miguel de Cervantes y Saavedra",
+    "number_of_pages": 863,
+    "genre": "Comedy",
+    "image_name": "don_quijote.jpg"
+  }
+]
