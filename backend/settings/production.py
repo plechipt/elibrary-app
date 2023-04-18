@@ -20,5 +20,6 @@ if DEBUG_VALUE == 'FALSE':
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'public/static/images/'
+
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
