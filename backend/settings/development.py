@@ -3,16 +3,18 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost:3000',
-    'elibrary-app-git-per-header-crazycatcz.vercel.app'
-]
-
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:3000',
+    'https://elibrary-app-frontend.netlify.app'
+]
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost:3000',
+    'elibrary-app-frontend.netlify.app',
+    'elibrary-app-git-per-header-crazycatcz.vercel.app'
 ]
 
 # Files
