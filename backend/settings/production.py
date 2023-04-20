@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 DEBUG_VALUE = os.getenv('DEBUG_VALUE')
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Server is running in production
 if DEBUG_VALUE == 'FALSE':
@@ -21,4 +22,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'public/static/images/'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

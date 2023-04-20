@@ -16,9 +16,6 @@ CORS_ALLOWED_ORIGINS = [
     'https://awesome-elibrary-app.herokuapp.com',
 ]
 
-# Whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # Files
 ROOT_URLCONF = 'backend.urls'
 WSGI_APPLICATION = 'backend.wsgi.application'
