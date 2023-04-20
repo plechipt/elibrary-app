@@ -6,14 +6,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:3000',
-    'awesome-elibrary-app.herokuapp.com',
+    'elibrary-app-git-per-header-crazycatcz.vercel.app'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:3000',
-    'https://awesome-elibrary-app.herokuapp.com',
 ]
 
 # Files
