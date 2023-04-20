@@ -15,18 +15,15 @@ python-dotenv = "*"
 djangorestframework = "*"
 pillow = "*"
 django-extra-fields = "*"
-djangorestframework-filters = "==1.0.0.dev2"
-django-storages = "*"
-boto3 = "*"
-django-heroku = "*"
 whitenoise = "*"
 graphene-django = "*"
 psycopg2-binary = "*"
+django-utils-six = "*"
+six = "*"
+djangorestframework-filters = "==1.0.0.dev2"
+django-filter = "==23.1"
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
-
-[pipenv]
-allow_prereleases = true

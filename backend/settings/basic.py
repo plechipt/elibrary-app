@@ -18,8 +18,6 @@ INSTALLED_APPS = [
     'graphql_jwt',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'rest_framework',
-    'rest_framework_filters',
-    'storages',
 ]
 
 # Middleware
