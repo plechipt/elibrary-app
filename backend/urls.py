@@ -22,6 +22,7 @@ else:
     GRAPHIQL_TURN_ON = False
 
 urlpatterns = [
+    path('', include('users.urls')),
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('books/', include('books.urls')),
