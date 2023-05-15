@@ -54,13 +54,11 @@ const SignUp = ({ user }) => {
   );
 
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showPasswords, setShowPasswords] = useState(false);
 
   const [usernameMessageError, setUsernameMessageError] = useState("");
-  const [emailMessageError, setEmailMessageError] = useState("");
   const [passwordMessageError, setPasswordMessageError] = useState("");
   const [passwordConfirmMessageError, setPasswordConfirmMessageError] =
     useState("");
@@ -70,9 +68,6 @@ const SignUp = ({ user }) => {
 
     if (field === "username") {
       setUsernameMessageError(message);
-    }
-    if (field === "email") {
-      setEmailMessageError(message);
     }
     if (field === "password1") {
       setPasswordMessageError(message);
@@ -84,7 +79,6 @@ const SignUp = ({ user }) => {
 
   const resetErrorMessages = () => {
     setUsernameMessageError("");
-    setEmailMessageError("");
     setPasswordConfirmMessageError("");
     setPasswordConfirmMessageError("");
   };
@@ -115,7 +109,6 @@ const SignUp = ({ user }) => {
     await register({
       variables: {
         username,
-        email,
         password1: password,
         password2: passwordConfirm,
       },
@@ -148,23 +141,6 @@ const SignUp = ({ user }) => {
                     id="username"
                     label={t("login_register.username")}
                     autoFocus
-                    required
-                    fullWidth
-                    InputLabelProps={{ required: false }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    onChange={(e) => setEmail(e.target.value)}
-                    error={emailMessageError !== "" ? true : false}
-                    helperText={
-                      emailMessageError !== "" ? emailMessageError : ""
-                    }
-                    variant="outlined"
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
                     required
                     fullWidth
                     InputLabelProps={{ required: false }}
