@@ -12,7 +12,6 @@ from .production import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
 DEBUG = os.getenv('DEBUG_VALUE')
 SECRET_KEY = os.getenv('SECRET_KEY')
 BASE_DIR = Path(__file__).resolve().parent.parent
